@@ -1,0 +1,181 @@
+[23Feb2024 21:20:11.968] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\davio\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.2.20, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, create_addon_template, --all, --output, C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\src\generated\resources, --existing, C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\src\main\resources]
+[23Feb2024 21:20:11.975] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.8 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[23Feb2024 21:20:12.035] [main/DEBUG] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Found launch services [fmlclientdev,forgeclient,minecraft,forgegametestserverdev,fmlserveruserdev,fmlclient,fmldatauserdev,forgeserverdev,forgeserveruserdev,forgeclientdev,forgeclientuserdev,forgeserver,forgedatadev,fmlserver,fmlclientuserdev,fmlserverdev,forgedatauserdev,testharness,forgegametestserveruserdev]
+[23Feb2024 21:20:12.046] [main/DEBUG] [cpw.mods.modlauncher.NameMappingServiceHandler/MODLAUNCHER]: Found naming services : [srgtomcp]
+[23Feb2024 21:20:12.058] [main/DEBUG] [cpw.mods.modlauncher.LaunchPluginHandler/MODLAUNCHER]: Found launch plugins: [mixin,eventbus,slf4jfixer,object_holder_definalize,runtime_enum_extender,capability_token_subclass,accesstransformer,runtimedistcleaner]
+[23Feb2024 21:20:12.067] [main/DEBUG] [cpw.mods.modlauncher.TransformationServicesHandler/MODLAUNCHER]: Discovering transformation services
+[23Feb2024 21:20:12.072] [main/DEBUG] [net.minecraftforge.fml.loading.FMLPaths/CORE]: Path GAMEDIR is C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\run-data
+[23Feb2024 21:20:12.072] [main/DEBUG] [net.minecraftforge.fml.loading.FMLPaths/CORE]: Path MODSDIR is C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\run-data\mods
+[23Feb2024 21:20:12.073] [main/DEBUG] [net.minecraftforge.fml.loading.FMLPaths/CORE]: Path CONFIGDIR is C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\run-data\config
+[23Feb2024 21:20:12.073] [main/DEBUG] [net.minecraftforge.fml.loading.FMLPaths/CORE]: Path FMLCONFIG is C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\run-data\config\fml.toml
+[23Feb2024 21:20:12.102] [main/WARN] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Configuration file C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\run-data\config\fml.toml is not correct. Correcting
+[23Feb2024 21:20:12.104] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowSkipGLVersions] was corrected from null to []
+[23Feb2024 21:20:12.105] [main/INFO] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [earlyWindowSquir] was corrected from null to false
+[23Feb2024 21:20:12.123] [main/DEBUG] [cpw.mods.modlauncher.TransformationServicesHandler/MODLAUNCHER]: Found additional transformation services from discovery services: 
+[23Feb2024 21:20:12.136] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
+[23Feb2024 21:20:12.150] [main/DEBUG] [cpw.mods.modlauncher.TransformationServicesHandler/MODLAUNCHER]: Found transformer services : [mixin,fml]
+[23Feb2024 21:20:12.150] [main/DEBUG] [cpw.mods.modlauncher.TransformationServicesHandler/MODLAUNCHER]: Transformation services loading
+[23Feb2024 21:20:12.151] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: Loading service mixin
+[23Feb2024 21:20:12.151] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: Loaded service mixin
+[23Feb2024 21:20:12.151] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: Loading service fml
+[23Feb2024 21:20:12.152] [main/DEBUG] [net.minecraftforge.fml.loading.LauncherVersion/CORE]: Found FMLLauncher version 1.0
+[23Feb2024 21:20:12.153] [main/DEBUG] [net.minecraftforge.fml.loading.FMLLoader/CORE]: FML 1.0 loading
+[23Feb2024 21:20:12.153] [main/DEBUG] [net.minecraftforge.fml.loading.FMLLoader/CORE]: FML found ModLauncher version : 10.0.9+10.0.9+main.dcd20f30
+[23Feb2024 21:20:12.154] [main/DEBUG] [net.minecraftforge.fml.loading.FMLLoader/CORE]: FML found AccessTransformer version : 8.0.4+66+master.c09db6d7
+[23Feb2024 21:20:12.154] [main/DEBUG] [net.minecraftforge.fml.loading.FMLLoader/CORE]: FML found EventBus version : 6.0.5+6.0.5+master.eb8e549b
+[23Feb2024 21:20:12.154] [main/DEBUG] [net.minecraftforge.fml.loading.FMLLoader/CORE]: Found Runtime Dist Cleaner
+[23Feb2024 21:20:12.155] [main/DEBUG] [net.minecraftforge.fml.loading.FMLLoader/CORE]: FML found CoreMod version : 5.0.1+15+master.dc5a2922
+[23Feb2024 21:20:12.157] [main/DEBUG] [net.minecraftforge.fml.loading.FMLLoader/CORE]: Found ForgeSPI package implementation version 7.0.1+7.0.1+master.d2b38bf6
+[23Feb2024 21:20:12.158] [main/DEBUG] [net.minecraftforge.fml.loading.FMLLoader/CORE]: Found ForgeSPI package specification 5
+[23Feb2024 21:20:12.158] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: Loaded service fml
+[23Feb2024 21:20:12.159] [main/DEBUG] [cpw.mods.modlauncher.TransformationServicesHandler/MODLAUNCHER]: Configuring option handling for services
+[23Feb2024 21:20:12.165] [main/DEBUG] [cpw.mods.modlauncher.TransformationServicesHandler/MODLAUNCHER]: Transformation services initializing
+[23Feb2024 21:20:12.166] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: Initializing transformation service mixin
+[23Feb2024 21:20:12.177] [main/DEBUG] [mixin/]: MixinService [ModLauncher] was successfully booted in cpw.mods.cl.ModuleClassLoader@19bb07ed
+[23Feb2024 21:20:12.188] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/davio/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[23Feb2024 21:20:12.191] [main/DEBUG] [mixin/]: Initialising Mixin Platform Manager
+[23Feb2024 21:20:12.191] [main/DEBUG] [mixin/]: Adding mixin platform agents for container ModLauncher Root Container(ModLauncher:4f56a0a2)
+[23Feb2024 21:20:12.192] [main/DEBUG] [mixin/]: Instancing new MixinPlatformAgentMinecraftForge for ModLauncher Root Container(ModLauncher:4f56a0a2)
+[23Feb2024 21:20:12.192] [main/DEBUG] [mixin/]: MixinPlatformAgentMinecraftForge rejected container ModLauncher Root Container(ModLauncher:4f56a0a2)
+[23Feb2024 21:20:12.192] [main/DEBUG] [mixin/]: Instancing new MixinPlatformAgentDefault for ModLauncher Root Container(ModLauncher:4f56a0a2)
+[23Feb2024 21:20:12.193] [main/DEBUG] [mixin/]: MixinPlatformAgentDefault accepted container ModLauncher Root Container(ModLauncher:4f56a0a2)
+[23Feb2024 21:20:12.194] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: Initialized transformation service mixin
+[23Feb2024 21:20:12.194] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: Initializing transformation service fml
+[23Feb2024 21:20:12.194] [main/DEBUG] [net.minecraftforge.fml.loading.FMLServiceProvider/CORE]: Setting up basic FML game directories
+[23Feb2024 21:20:12.195] [main/DEBUG] [net.minecraftforge.fml.loading.FMLPaths/CORE]: Path GAMEDIR is C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\run-data
+[23Feb2024 21:20:12.195] [main/DEBUG] [net.minecraftforge.fml.loading.FMLPaths/CORE]: Path MODSDIR is C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\run-data\mods
+[23Feb2024 21:20:12.195] [main/DEBUG] [net.minecraftforge.fml.loading.FMLPaths/CORE]: Path CONFIGDIR is C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\run-data\config
+[23Feb2024 21:20:12.195] [main/DEBUG] [net.minecraftforge.fml.loading.FMLPaths/CORE]: Path FMLCONFIG is C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\run-data\config\fml.toml
+[23Feb2024 21:20:12.196] [main/DEBUG] [net.minecraftforge.fml.loading.FMLServiceProvider/CORE]: Loading configuration
+[23Feb2024 21:20:12.198] [main/DEBUG] [net.minecraftforge.fml.loading.FMLServiceProvider/CORE]: Preparing ModFile
+[23Feb2024 21:20:12.201] [main/DEBUG] [net.minecraftforge.fml.loading.FMLServiceProvider/CORE]: Preparing launch handler
+[23Feb2024 21:20:12.201] [main/DEBUG] [net.minecraftforge.fml.loading.FMLLoader/CORE]: Using forgedatauserdev as launch service
+[23Feb2024 21:20:12.211] [main/DEBUG] [net.minecraftforge.fml.loading.FMLLoader/CORE]: Received command line version data  : VersionInfo[forgeVersion=47.2.20, mcVersion=1.20.1, mcpVersion=20230612.114412, forgeGroup=net.minecraftforge]
+[23Feb2024 21:20:12.212] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: Initialized transformation service fml
+[23Feb2024 21:20:12.212] [main/DEBUG] [cpw.mods.modlauncher.NameMappingServiceHandler/MODLAUNCHER]: Current naming domain is 'mcp'
+[23Feb2024 21:20:12.213] [main/DEBUG] [cpw.mods.modlauncher.NameMappingServiceHandler/MODLAUNCHER]: Identified name mapping providers {srg=srgtomcp:1234}
+[23Feb2024 21:20:12.213] [main/DEBUG] [cpw.mods.modlauncher.TransformationServicesHandler/MODLAUNCHER]: Transformation services begin scanning
+[23Feb2024 21:20:12.214] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: Beginning scan trigger - transformation service mixin
+[23Feb2024 21:20:12.214] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: End scan trigger - transformation service mixin
+[23Feb2024 21:20:12.214] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: Beginning scan trigger - transformation service fml
+[23Feb2024 21:20:12.214] [main/DEBUG] [net.minecraftforge.fml.loading.FMLServiceProvider/CORE]: Initiating mod scan
+[23Feb2024 21:20:12.224] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModListHandler/CORE]: Found mod coordinates from lists: []
+[23Feb2024 21:20:12.227] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModDiscoverer/CORE]: Found Mod Locators : (mods folder:null),(maven libs:null),(exploded directory:null),(minecraft:null),(userdev classpath:null)
+[23Feb2024 21:20:12.228] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModDiscoverer/CORE]: Found Dependency Locators : (JarInJar:null)
+[23Feb2024 21:20:12.235] [main/DEBUG] [net.minecraftforge.fml.loading.targets.CommonLaunchHandler/CORE]: Got mod coordinates create_addon_template%%C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\build\resources\main;create_addon_template%%C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\build\classes\java\main from env
+[23Feb2024 21:20:12.236] [main/DEBUG] [net.minecraftforge.fml.loading.targets.CommonLaunchHandler/CORE]: Found supplied mod coordinates [{create_addon_template=[C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\build\resources\main, C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\build\classes\java\main]}]
+[23Feb2024 21:20:12.555] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file forge-1.20.1-47.2.20_mapped_parchment_2023.07.23-1.20.1-recomp.jar with {minecraft} mods - versions {1.20.1}
+[23Feb2024 21:20:12.570] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.2.20\918959a037ab7191a0c45a359f4746ab76c110c3\javafmllanguage-1.20.1-47.2.20.jar
+[23Feb2024 21:20:12.572] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\davio\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.2.20\918959a037ab7191a0c45a359f4746ab76c110c3\javafmllanguage-1.20.1-47.2.20.jar is missing mods.toml file
+[23Feb2024 21:20:12.575] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.2.20\c1d1efcb98e8bfcf3dbfed0d1e81b55b648b86bf\lowcodelanguage-1.20.1-47.2.20.jar
+[23Feb2024 21:20:12.576] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\davio\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.2.20\c1d1efcb98e8bfcf3dbfed0d1e81b55b648b86bf\lowcodelanguage-1.20.1-47.2.20.jar is missing mods.toml file
+[23Feb2024 21:20:12.578] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.2.20\efca3bee89c0085192b122d47334692b921ca7d1\mclanguage-1.20.1-47.2.20.jar
+[23Feb2024 21:20:12.578] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\davio\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.2.20\efca3bee89c0085192b122d47334692b921ca7d1\mclanguage-1.20.1-47.2.20.jar is missing mods.toml file
+[23Feb2024 21:20:12.582] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.2.20\12cd436f148405b50c9b16bd8f3cc6f18db89824\fmlcore-1.20.1-47.2.20.jar
+[23Feb2024 21:20:12.582] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\davio\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.2.20\12cd436f148405b50c9b16bd8f3cc6f18db89824\fmlcore-1.20.1-47.2.20.jar is missing mods.toml file
+[23Feb2024 21:20:12.588] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\Minecraft Modding\Create To The Skies\Mods\CreateAddonTemplate\build\resources\main
+[23Feb2024 21:20:12.594] [main/ERROR] [net.minecraftforge.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Locator net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@2d83c5a5 found an invalid mod file net.minecraftforge.fml.loading.moddiscovery.ModFileInfo@48d7ad8b
+net.minecraftforge.fml.loading.moddiscovery.InvalidModFileException: Illegal version number specified mod_version (main)
+	at net.minecraftforge.fml.loading.moddiscovery.ModInfo.<init>(ModInfo.java:77) ~[fmlloader-1.20.1-47.2.20.jar:?]
+	at net.minecraftforge.fml.loading.moddiscovery.ModFileInfo.lambda$new$2(ModFileInfo.java:85) ~[fmlloader-1.20.1-47.2.20.jar:?]
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[?:?]
+	at java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625) ~[?:?]
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?]
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:575) ~[?:?]
+	at java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260) ~[?:?]
+	at java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616) ~[?:?]
+	at java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622) ~[?:?]
+	at java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627) ~[?:?]
+	at net.minecraftforge.fml.loading.moddiscovery.ModFileInfo.<init>(ModFileInfo.java:86) ~[fmlloader-1.20.1-47.2.20.jar:?]
+	at net.minecraftforge.fml.loading.moddiscovery.ModFileParser.modsTomlParser(ModFileParser.java:47) ~[fmlloader-1.20.1-47.2.20.jar:?]
+	at net.minecraftforge.fml.loading.moddiscovery.ModFileParser.readModList(ModFileParser.java:31) ~[fmlloader-1.20.1-47.2.20.jar:?]
+	at net.minecraftforge.fml.loading.moddiscovery.ModFile.<init>(ModFile.java:79) ~[fmlloader-1.20.1-47.2.20.jar:?]
+	at net.minecraftforge.fml.loading.moddiscovery.ModFile.<init>(ModFile.java:68) ~[fmlloader-1.20.1-47.2.20.jar:?]
+	at net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider.createMod(AbstractModProvider.java:52) ~[fmlloader-1.20.1-47.2.20.jar:?]
+	at net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator.lambda$scanMods$6(MinecraftLocator.java:43) ~[fmlloader-1.20.1-47.2.20.jar:?]
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[?:?]
+	at java.util.AbstractList$RandomAccessSpliterator.forEachRemaining(AbstractList.java:720) ~[?:?]
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?]
+	at java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310) ~[?:?]
+	at java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735) ~[?:?]
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?]
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:575) ~[?:?]
+	at java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260) ~[?:?]
+	at java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616) ~[?:?]
+	at java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622) ~[?:?]
+	at java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627) ~[?:?]
+	at net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator.scanMods(MinecraftLocator.java:47) ~[fmlloader-1.20.1-47.2.20.jar:?]
+	at net.minecraftforge.fml.loading.moddiscovery.ModDiscoverer.discoverMods(ModDiscoverer.java:75) ~[fmlloader-1.20.1-47.2.20.jar:?]
+	at net.minecraftforge.fml.loading.FMLLoader.beginModScan(FMLLoader.java:164) ~[fmlloader-1.20.1-47.2.20.jar:1.0]
+	at net.minecraftforge.fml.loading.FMLServiceProvider.beginScanning(FMLServiceProvider.java:86) ~[fmlloader-1.20.1-47.2.20.jar:1.0]
+	at cpw.mods.modlauncher.TransformationServiceDecorator.runScan(TransformationServiceDecorator.java:112) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.TransformationServicesHandler.lambda$runScanningTransformationServices$8(TransformationServicesHandler.java:100) ~[modlauncher-10.0.9.jar:?]
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[?:?]
+	at java.util.HashMap$ValueSpliterator.forEachRemaining(HashMap.java:1779) ~[?:?]
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?]
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:575) ~[?:?]
+	at java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260) ~[?:?]
+	at java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616) ~[?:?]
+	at java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622) ~[?:?]
+	at java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627) ~[?:?]
+	at cpw.mods.modlauncher.TransformationServicesHandler.runScanningTransformationServices(TransformationServicesHandler.java:102) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.TransformationServicesHandler.initializeTransformationServices(TransformationServicesHandler.java:55) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:88) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:78) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:141) ~[bootstraplauncher-1.1.2.jar:?]
+[23Feb2024 21:20:12.642] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\com\simibubi\create\create-1.20.1\0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1\create-1.20.1-0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1-slim.jar
+[23Feb2024 21:20:12.649] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file create-1.20.1-0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1-slim.jar with {create} mods - versions {0.5.1.e-24}
+[23Feb2024 21:20:12.652] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\com\jozufozu\flywheel\flywheel-forge-1.20.1\0.6.10-7_mapped_parchment_2023.07.23-1.20.1\flywheel-forge-1.20.1-0.6.10-7_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.653] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file flywheel-forge-1.20.1-0.6.10-7_mapped_parchment_2023.07.23-1.20.1.jar with {flywheel} mods - versions {0.6.10-7}
+[23Feb2024 21:20:12.655] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\mezz\jei\jei-1.20.1-forge\15.2.0.22_mapped_parchment_2023.07.23-1.20.1\jei-1.20.1-forge-15.2.0.22_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.657] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file jei-1.20.1-forge-15.2.0.22_mapped_parchment_2023.07.23-1.20.1.jar with {jei} mods - versions {15.2.0.22}
+[23Feb2024 21:20:12.659] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\top\theillusivec4\curios\curios-forge\5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1\curios-forge-5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.660] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file curios-forge-5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1.jar with {curios} mods - versions {5.3.1+1.20.1}
+[23Feb2024 21:20:12.666] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\com\simibubi\create\create-1.20.1\0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1\create-1.20.1-0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1-slim.jar
+[23Feb2024 21:20:12.667] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file create-1.20.1-0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1-slim.jar with {create} mods - versions {0.5.1.e-24}
+[23Feb2024 21:20:12.671] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\com\jozufozu\flywheel\flywheel-forge-1.20.1\0.6.10-7_mapped_parchment_2023.07.23-1.20.1\flywheel-forge-1.20.1-0.6.10-7_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.671] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file flywheel-forge-1.20.1-0.6.10-7_mapped_parchment_2023.07.23-1.20.1.jar with {flywheel} mods - versions {0.6.10-7}
+[23Feb2024 21:20:12.685] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\mezz\jei\jei-1.20.1-forge\15.2.0.22_mapped_parchment_2023.07.23-1.20.1\jei-1.20.1-forge-15.2.0.22_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.686] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file jei-1.20.1-forge-15.2.0.22_mapped_parchment_2023.07.23-1.20.1.jar with {jei} mods - versions {15.2.0.22}
+[23Feb2024 21:20:12.688] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\top\theillusivec4\curios\curios-forge\5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1\curios-forge-5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.689] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file curios-forge-5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1.jar with {curios} mods - versions {5.3.1+1.20.1}
+[23Feb2024 21:20:12.702] [main/DEBUG] [net.minecraftforge.fml.loading.UniqueModListBuilder/]: Found 2 mods for first modid curios, selecting most recent based on version data
+[23Feb2024 21:20:12.704] [main/DEBUG] [net.minecraftforge.fml.loading.UniqueModListBuilder/]: Selected file curios-forge-5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1.jar for modid curios with version 5.3.1+1.20.1
+[23Feb2024 21:20:12.704] [main/DEBUG] [net.minecraftforge.fml.loading.UniqueModListBuilder/]: Found 2 mods for first modid flywheel, selecting most recent based on version data
+[23Feb2024 21:20:12.704] [main/DEBUG] [net.minecraftforge.fml.loading.UniqueModListBuilder/]: Selected file flywheel-forge-1.20.1-0.6.10-7_mapped_parchment_2023.07.23-1.20.1.jar for modid flywheel with version 0.6.10-7
+[23Feb2024 21:20:12.704] [main/DEBUG] [net.minecraftforge.fml.loading.UniqueModListBuilder/]: Found 2 mods for first modid create, selecting most recent based on version data
+[23Feb2024 21:20:12.704] [main/DEBUG] [net.minecraftforge.fml.loading.UniqueModListBuilder/]: Selected file create-1.20.1-0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1-slim.jar for modid create with version 0.5.1.e-24
+[23Feb2024 21:20:12.704] [main/DEBUG] [net.minecraftforge.fml.loading.UniqueModListBuilder/]: Found 2 mods for first modid jei, selecting most recent based on version data
+[23Feb2024 21:20:12.704] [main/DEBUG] [net.minecraftforge.fml.loading.UniqueModListBuilder/]: Selected file jei-1.20.1-forge-15.2.0.22_mapped_parchment_2023.07.23-1.20.1.jar for modid jei with version 15.2.0.22
+[23Feb2024 21:20:12.715] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.AbstractJarFileDependencyLocator/]: Failed to load resource META-INF\jarjar\metadata.json from Registrate-MC1.20-1.3.3_mapped_parchment_2023.07.23-1.20.1.jar, it does not contain dependency information.
+[23Feb2024 21:20:12.715] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.AbstractJarFileDependencyLocator/]: Failed to load resource META-INF\jarjar\metadata.json from curios-forge-5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1.jar, it does not contain dependency information.
+[23Feb2024 21:20:12.715] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.AbstractJarFileDependencyLocator/]: Failed to load resource META-INF\jarjar\metadata.json from flywheel-forge-1.20.1-0.6.10-7_mapped_parchment_2023.07.23-1.20.1.jar, it does not contain dependency information.
+[23Feb2024 21:20:12.717] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.AbstractJarFileDependencyLocator/]: Failed to load resource META-INF\jarjar\metadata.json from create-1.20.1-0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1-slim.jar, it does not contain dependency information.
+[23Feb2024 21:20:12.717] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.AbstractJarFileDependencyLocator/]: Failed to load resource META-INF\jarjar\metadata.json from jei-1.20.1-forge-15.2.0.22_mapped_parchment_2023.07.23-1.20.1.jar, it does not contain dependency information.
+[23Feb2024 21:20:12.734] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[23Feb2024 21:20:12.735] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\com\jozufozu\flywheel\flywheel-forge-1.20.1\0.6.10-7_mapped_parchment_2023.07.23-1.20.1\flywheel-forge-1.20.1-0.6.10-7_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.737] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file flywheel-forge-1.20.1-0.6.10-7_mapped_parchment_2023.07.23-1.20.1.jar with {flywheel} mods - versions {0.6.10-7}
+[23Feb2024 21:20:12.739] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFile/LOADING]: Loading mod file C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\com\jozufozu\flywheel\flywheel-forge-1.20.1\0.6.10-7_mapped_parchment_2023.07.23-1.20.1\flywheel-forge-1.20.1-0.6.10-7_mapped_parchment_2023.07.23-1.20.1.jar with languages [LanguageSpec[languageName=javafml, acceptedVersions=[47,)]]
+[23Feb2024 21:20:12.740] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\top\theillusivec4\curios\curios-forge\5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1\curios-forge-5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.741] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file curios-forge-5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1.jar with {curios} mods - versions {5.3.1+1.20.1}
+[23Feb2024 21:20:12.741] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFile/LOADING]: Loading mod file C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\top\theillusivec4\curios\curios-forge\5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1\curios-forge-5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1.jar with languages [LanguageSpec[languageName=javafml, acceptedVersions=[41,)]]
+[23Feb2024 21:20:12.741] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\com\simibubi\create\create-1.20.1\0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1\create-1.20.1-0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1-slim.jar
+[23Feb2024 21:20:12.742] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file create-1.20.1-0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1-slim.jar with {create} mods - versions {0.5.1.e-24}
+[23Feb2024 21:20:12.742] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFile/LOADING]: Loading mod file C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\com\simibubi\create\create-1.20.1\0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1\create-1.20.1-0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1-slim.jar with languages [LanguageSpec[languageName=javafml, acceptedVersions=[47,)]]
+[23Feb2024 21:20:12.742] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Considering mod file candidate C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\mezz\jei\jei-1.20.1-forge\15.2.0.22_mapped_parchment_2023.07.23-1.20.1\jei-1.20.1-forge-15.2.0.22_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.743] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFileInfo/LOADING]: Found valid mod file jei-1.20.1-forge-15.2.0.22_mapped_parchment_2023.07.23-1.20.1.jar with {jei} mods - versions {15.2.0.22}
+[23Feb2024 21:20:12.743] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFile/LOADING]: Loading mod file C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\mezz\jei\jei-1.20.1-forge\15.2.0.22_mapped_parchment_2023.07.23-1.20.1\jei-1.20.1-forge-15.2.0.22_mapped_parchment_2023.07.23-1.20.1.jar with languages [LanguageSpec[languageName=javafml, acceptedVersions=[47,)]]
+[23Feb2024 21:20:12.744] [main/DEBUG] [net.minecraftforge.fml.loading.moddiscovery.ModFile/LOADING]: Loading mod file C:\Users\davio\.gradle\caches\forge_gradle\deobf_dependencies\com\tterrag\registrate\Registrate\MC1.20-1.3.3_mapped_parchment_2023.07.23-1.20.1\Registrate-MC1.20-1.3.3_mapped_parchment_2023.07.23-1.20.1.jar with languages []
+[23Feb2024 21:20:12.745] [main/DEBUG] [cpw.mods.modlauncher.TransformationServiceDecorator/MODLAUNCHER]: End scan trigger - transformation service fml
+[23Feb2024 21:20:12.747] [main/DEBUG] [net.minecraftforge.fml.loading.LanguageLoadingProvider/CORE]: Found 0 language providers
+[23Feb2024 21:20:12.748] [main/ERROR] [net.minecraftforge.fml.loading.LanguageLoadingProvider/LOADING]: Missing language javafml version [47,) wanted by flywheel-forge-1.20.1-0.6.10-7_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.748] [main/ERROR] [net.minecraftforge.fml.loading.LanguageLoadingProvider/LOADING]: Missing language javafml version [41,) wanted by curios-forge-5.3.1+1.20.1_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.748] [main/ERROR] [net.minecraftforge.fml.loading.LanguageLoadingProvider/LOADING]: Missing language javafml version [47,) wanted by create-1.20.1-0.5.1.e-24_mapped_parchment_2023.07.23-1.20.1-slim.jar
+[23Feb2024 21:20:12.749] [main/ERROR] [net.minecraftforge.fml.loading.LanguageLoadingProvider/LOADING]: Missing language javafml version [47,) wanted by jei-1.20.1-forge-15.2.0.22_mapped_parchment_2023.07.23-1.20.1.jar
+[23Feb2024 21:20:12.751] [main/DEBUG] [net.minecraftforge.fml.loading.ModSorter/]: Configured system mods: [minecraft]
