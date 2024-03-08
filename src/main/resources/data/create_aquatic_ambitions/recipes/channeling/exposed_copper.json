@@ -1,0 +1,13 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:copper_block"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:exposed_copper"
+    }
+  ]
+}

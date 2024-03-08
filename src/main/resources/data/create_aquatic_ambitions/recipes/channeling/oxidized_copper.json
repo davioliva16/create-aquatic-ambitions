@@ -1,0 +1,13 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:weathered_copper"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:oxidized_copper"
+    }
+  ]
+}

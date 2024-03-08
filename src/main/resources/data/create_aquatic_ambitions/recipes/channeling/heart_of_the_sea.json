@@ -1,0 +1,13 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:ender_pearl"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:heart_of_the_sea"
+    }
+  ]
+}

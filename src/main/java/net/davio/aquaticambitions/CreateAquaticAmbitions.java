@@ -1,6 +1,13 @@
-package net.davio.createaddon;
+package net.davio.aquaticambitions;
 
 import com.mojang.logging.LogUtils;
+import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.davio.aquaticambitions.entry.CCAPartials;
+import net.davio.aquaticambitions.entry.CCARecipeTypes;
+import net.davio.aquaticambitions.entry.CCATags;
+import net.davio.aquaticambitions.kinetics.fan.processing.CCAFanProcessingTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -14,23 +21,28 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(CreateAddonTemplate.MODID)
-public class CreateAddonTemplate
+@Mod(CreateAquaticAmbitions.MODID)
+public class CreateAquaticAmbitions
 {
-    // Define mod id in a common place for everything to reference
-    public static final String MODID = "create_addon_template";
-    // Directly reference a slf4j logger
+    public static final String MODID = "create_aquatic_ambitions";
     private static final Logger LOGGER = LogUtils.getLogger();
+    public static final NonNullSupplier<CreateRegistrate> REGISTRATE =
+            NonNullSupplier.lazy(() -> CreateRegistrate.create(MODID));
+    public CreateAquaticAmbitions() {
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-    public CreateAddonTemplate() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        CCATags.setRegister();
+        CCARecipeTypes.register(eventBus);
+        CCAFanProcessingTypes.register();
+        CCAPartials.init();
 
-        modEventBus.addListener(this::commonSetup);
+        REGISTRATE.get().registerEventListeners(eventBus);
+
+        eventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
 
-        modEventBus.addListener(this::addCreative);
-
+        eventBus.addListener(this::addCreative);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -51,5 +63,9 @@ public class CreateAddonTemplate
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
         }
+    }
+
+    public static ResourceLocation asResource(String path) {
+        return new ResourceLocation(MODID,path);
     }
 }

@@ -1,0 +1,13 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:dead_horn_coral_block"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:horn_coral_block"
+    }
+  ]
+}
