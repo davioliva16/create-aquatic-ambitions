@@ -7,7 +7,6 @@ Made by DaviO
 -----------------------------------------------------------------------------------------------------------------
 This mod requires create 0.5.1-j-build.1631 or newer to work correctly
 EMI is recommended but not required!
-You may need java 21.
 
 
 (This may be outdated now. Can you check Davi0? Also is it intended that water blocks cannot be channeled? Only air? If it worked on items underwater, it would be simple to understand. I was not sure how to communicate how it works in the fan icon thing. Check line 9 in en_us.json)
