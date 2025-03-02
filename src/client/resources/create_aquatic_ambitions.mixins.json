@@ -3,11 +3,11 @@
   "minVersion": "0.8",
   "package": "net.davio.create_aquatic_ambitions.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-  ],
+  "mixins": [],
   "client": [
     "MinecraftMixin"
   ],
+  "server": [],
   "injectors": {
     "defaultRequire": 1
   }

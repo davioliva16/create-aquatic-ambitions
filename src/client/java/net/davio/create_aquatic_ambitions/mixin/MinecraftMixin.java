@@ -13,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
-	@Inject(method = "<init>", at = @At("TAIL"))
-	private void example$init(GameConfig gameConfig, CallbackInfo ci) {
-		CreateAquaticAmbitions.LOGGER.info("Hello from {}", CreateAquaticAmbitions.NAME);
-	}
+    @Inject(method = "<init>", at = @At("TAIL"))
+    private void example$init(GameConfig gameConfig, CallbackInfo ci) {
+        CreateAquaticAmbitions.LOGGER.info("Hello from {}", CreateAquaticAmbitions.NAME);
+    }
 }

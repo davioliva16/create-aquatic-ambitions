@@ -1,16 +1,30 @@
-//file:noinspection GroovyAssignabilityCheck
-//file:noinspection GroovyAccessibility
-//file:noinspection GradlePackageVersionRange
 plugins {
-	id "fabric-loom" version "1.5.+"
-	id "io.github.p03w.machete" version "1.+" // automatic jar compressing on build
+	id "fabric-loom" version "1.10-SNAPSHOT"
+//	id "io.github.p03w.machete" version "1.+" // automatic jar compressing on build
 	id "maven-publish"
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+java {
+	withSourcesJar()
 
-archivesBaseName = project.archives_base_name
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"create_aquatic_ambitions" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+base {
+	archivesName = project.archives_base_name
+}
 group = project.maven_group
 
 // Formats the mod version to include the Minecraft version and build number (if present)
@@ -20,9 +34,25 @@ version = "${mod_version}+${minecraft_version}" + (buildNumber != null ? "-${bui
 
 repositories {
 	maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
-	maven { url = "https://maven.blamejared.com/" } // JEI
-	maven { url = "https://modmaven.dev"} //JEI Backup
-	maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
+	maven {
+		// location of the maven that hosts JEI files before January 2023
+		name = "Progwml6's maven"
+		url = "https://dvs1.progwml6.com/files/maven/"
+	}
+	maven {
+		// location of the maven that hosts JEI files since January 2023
+		name = "Jared's maven"
+		url = "https://maven.blamejared.com/"
+	}
+	maven {
+		// location of a maven mirror for JEI files, as a fallback
+		name = "ModMaven"
+		url = "https://modmaven.dev"
+	}
+	maven {
+		name = 'ParchmentMC'
+		url = 'https://maven.parchmentmc.org'
+	}
 	maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
 	maven { url = "https://api.modrinth.com/maven" } // LazyDFU
 	maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
@@ -32,6 +62,11 @@ repositories {
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release" } // Reach Entity Attributes
 	maven { url = "https://jitpack.io/" } // Mixin Extras, Fabric ASM
 	maven { url = "https://maven.tterrag.com/" } // Flywheel
+	maven {
+		// EMI
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/"
+	}
 }
 
 configurations.configureEach {
@@ -43,10 +78,10 @@ configurations.configureEach {
 dependencies {
 	// Setup
 	minecraft("com.mojang:minecraft:${minecraft_version}")
-	mappings(loom.layered {
-		it.mappings("org.quiltmc:quilt-mappings:${minecraft_version}+build.${qm_version}:intermediary-v2")
-		it.parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
-		it.officialMojangMappings { nameSyntheticMembers = false }
+	mappings( loom.layered() {
+		officialMojangMappings() { nameSyntheticMembers = false }
+		parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
+//		mappings("org.quiltmc:quilt-mappings:${minecraft_version}+build.${qm_version}:intermediary-v2")
 	})
 	modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
 
@@ -60,21 +95,22 @@ dependencies {
 	modLocalRuntime("maven.modrinth:lazydfu:${lazydfu_version}")
 	modLocalRuntime("com.terraformersmc:modmenu:${modmenu_version}")
 
+	implementation("org.vineflower:vineflower:${vineflower_version}")
+
 	// Recipe Viewers - Create Fabric supports JEI, REI, and EMI.
 	// See root gradle.properties to choose which to use at runtime.
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
-		case "jei": modLocalRuntime("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"); break
-		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"); break
-		case "emi": modLocalRuntime("dev.emi:emi:${emi_version}"); break
+		case "jei": modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"); break
+		case "rei": modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"); break
+		case "emi": modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"); modLocalRuntime("dev.emi:emi-fabric:${emi_version}"); break
 		case "disabled": break
 		default: println("Unknown recipe viewer specified: ${recipe_viewer}. Must be JEI, REI, EMI, or disabled.")
 	}
 	// if you would like to add integration with them, uncomment them here.
-	modCompileOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
-//    modCompileOnly("mezz.jei:jei-${minecraft_version}-common:${jei_fabric_version}")
-//    modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}")
-//    modCompileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${rei_version}")
-//    modCompileOnly("dev.emi:emi:${emi_version}")
+	modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}")
+//	modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}")
+//	modCompileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${rei_version}")
+	modCompileOnly("dev.emi:emi-fabric:${emi_version}:api")
 }
 
 processResources {
@@ -84,7 +120,8 @@ processResources {
 			"fabric_loader_version", fabric_loader_version,
 			"fabric_api_version", fabric_api_version,
 			"create_version", create_version,
-			"minecraft_version", minecraft_version
+			"minecraft_version", minecraft_version,
+			"minimum_fabric_loader_version", minimum_fabric_loader_version
 	)
 
 	inputs.properties(properties)
@@ -94,28 +131,25 @@ processResources {
 	}
 }
 
-machete {
-	// disable machete locally for faster builds
-	enabled = buildNumber != null
-}
+//machete {
+//	// disable machete locally for faster builds
+//	enabled = buildNumber != null
+//}
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = Integer.parseInt(sourceCompatibility)
 }
 
-java {
-	withSourcesJar()
-}
-
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}" }
+		rename { "${it}_${base.archivesName.get()}"}
 	}
 }
 
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
+			artifactId = project.archives_base_name
 			from components.java
 		}
 	}

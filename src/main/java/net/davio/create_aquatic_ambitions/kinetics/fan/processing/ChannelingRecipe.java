@@ -3,8 +3,7 @@ package net.davio.create_aquatic_ambitions.kinetics.fan.processing;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder.ProcessingRecipeParams;
 
-import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandler;
-import io.github.fabricators_of_create.porting_lib.transfer.item.RecipeWrapper;
+import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandlerContainer;
 import net.davio.create_aquatic_ambitions.entry.CCARecipeTypes;
 import net.minecraft.world.level.Level;
 public class ChannelingRecipe extends ProcessingRecipe<ChannelingRecipe.ChannelingWrapper> {
@@ -28,9 +27,9 @@ public class ChannelingRecipe extends ProcessingRecipe<ChannelingRecipe.Channeli
 		return 12;
 	}
 
-	public static class ChannelingWrapper extends RecipeWrapper {
+	public static class ChannelingWrapper extends ItemStackHandlerContainer {
 		public ChannelingWrapper() {
-			super(new ItemStackHandler(1));
+			super(1);
 		}
 	}
 }

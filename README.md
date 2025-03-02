@@ -1,34 +1,21 @@
-# Create Fabric Addon Template
-
-This template mod comes pre-configured for developing an addon mod for Create on Fabric.
+This fork will not be updated further until create fabric 6 and ponder release.
 
 
-## Setup
 
-This template is an extension of the base [Fabric Example Mod](https://github.com/FabricMC/fabric-example-mod).
-Setup is mostly the same.
+Create: Aquatic Ambitions
+----------------------------------------------------------------------------------------------------------------
+This Create Mod Add On lets you automate prismarine without guardian farms, age your copper faster, and revive dead coral. 
 
-Additionally, set `recipe_viewer` in [gradle.properties](gradle.properties). Remember to remove unused
-example code. Make sure versions are up-to-date.
+Made by DaviO
+-----------------------------------------------------------------------------------------------------------------
+This mod requires create 0.5.1-j-build.1631 or newer to work correctly
+EMI is recommended but not required!
 
-When you publish your mod, you should use jars provided by GitHub Actions. These jars will have
-build number metadata and will be compressed by the Machete plugin.
 
-## Features
-- Access to Create and all of its dependencies
-- Mojang Mappings base, with Quilt Mappings and Parchment providing Javadoc and parameters
-- VineFlower decompiler for high quality Minecraft sources: `gradlew genSourcesWithVineflower`
-- GitHub Actions automatic build workflow
-- Machete Gradle plugin to shrink jar file sizes
-- Developer QOL: Mod Menu, LazyDFU, recipe viewers
+(This may be outdated now. Can you check Davi0? Also is it intended that water blocks cannot be channeled? Only air? If it worked on items underwater, it would be simple to understand. I was not sure how to communicate how it works in the fan icon thing. Check line 9 in en_us.json)
 
-## Other Templates
-- [Multi-loader template](https://github.com/Fabricators-of-Create/create-multiloader-addon-template)
-- [Forge-only template](https://github.com/kotakotik22/CreateAddonTemplate)
+Also, I noticed you still use the default template license. Do you want it like that?
+Also, some small improvements that you can choose if you want. Post releases in github, set up an update checker with modmenu (i think), show license on modrinth, make a wiki and make modrinth link to it, setup a cool readme (look at mine, for example) https://github.com/ninjaguardian/Crystallized, check https://github.com/davioliva16/create-aquatic-ambitions/community.
+Also, setup gradle tasks and workflows. e.g. Java with Gradle (github), Publish Java Package with Gradle (github), gitleaks (pre-commit and action), gradle versions plugin
 
-## Help
-Questions? Join us in the #devchat channel of the [Create Discord](https://discord.com/invite/hmaD7Se).
-
-## License
-
-This template is available under the CC0 license. Feel free to do as you wish with it.
+Also forge branch and fabric branch have different licenses?????

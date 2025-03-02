@@ -5,5 +5,6 @@
   "item.create_aquatic_ambitions.prismarine_rod": "Prismarine Rod",
   "item.create_aquatic_ambitions.flint_shard": "Flint Shard",
   "item.create_aquatic_ambitions.polished_quartz_tine": "Polished Quartz Tine",
-  "block.create_aquatic_ambitions.prismarine_alloy_block": "Prismarine Alloy Block"
+  "block.create_aquatic_ambitions.prismarine_alloy_block": "Prismarine Alloy Block",
+  "create.recipe.aquatic_ambitions.fan_channeling.fan": "Fan behind active Conduit"
 }
