@@ -6,13 +6,13 @@ import java.util.function.Supplier;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
+import net.createmod.catnip.lang.Lang;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.kinetics.fan.processing.ChannelingRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import org.jetbrains.annotations.Nullable;
-import com.simibubi.create.foundation.utility.Lang;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.Container;

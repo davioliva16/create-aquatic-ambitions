@@ -1,10 +1,7 @@
 package net.davio.aquaticambitions.kinetics.fan.processing;
 
-import com.simibubi.create.content.kinetics.fan.processing.FanProcessingTypeRegistry;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
-import com.simibubi.create.foundation.utility.Color;
-import it.unimi.dsi.fastutil.objects.Object2ReferenceOpenHashMap;
-import net.davio.aquaticambitions.CreateAquaticAmbitions;
+import net.createmod.catnip.theme.Color;
 import net.davio.aquaticambitions.entry.CCARecipeTypes;
 import net.davio.aquaticambitions.entry.CCATags;
 import net.davio.aquaticambitions.kinetics.fan.processing.ChannelingRecipe.ChannelingWrapper;
@@ -32,22 +29,8 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class CCAFanProcessingTypes {
+public class ChannellingProcessingType implements FanProcessingType {
 
-    public static final ChannelingType CHANNELING = register("channeling", new ChannelingType());
-
-    static {
-        Object2ReferenceOpenHashMap<String, FanProcessingType> map = new Object2ReferenceOpenHashMap<>();
-        map.put("CHANNELING", CHANNELING);
-        map.trim();
-    }
-
-    private static <T extends FanProcessingType> T register(String id, T type) {
-        FanProcessingTypeRegistry.register(CreateAquaticAmbitions.asResource(id), type);
-        return type;
-    }
-
-    public static class ChannelingType implements FanProcessingType {
         private static final ChannelingWrapper CHANNELING_WRAPPER = new ChannelingWrapper();
 
         @Override
@@ -133,6 +116,4 @@ public class CCAFanProcessingTypes {
                 ((Player) entity).addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 260, 0, true, true));
             }
         }
-    }
-    public static void register() {}
 }

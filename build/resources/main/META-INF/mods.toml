@@ -26,9 +26,10 @@ logoFile="icon.png"
     ordering="NONE"
     side="BOTH"
 
-[[dependenciescreate_aquatic_ambitions]]
+[[dependencies.create_aquatic_ambitions]]
     modId="create"
     mandatory=true
-    versionRange="[0.5.1.e,)"
+    versionRange="[6.0.1,)"
     ordering="NONE"
     side="BOTH"
+

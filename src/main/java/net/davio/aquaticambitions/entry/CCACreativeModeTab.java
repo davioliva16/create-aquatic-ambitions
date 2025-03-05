@@ -1,9 +1,9 @@
 package net.davio.aquaticambitions.entry;
 
 import com.simibubi.create.AllCreativeModeTabs;
-import com.simibubi.create.foundation.utility.Components;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,7 +22,7 @@ public class CCACreativeModeTab {
         static {
             REGISTER = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CreateAquaticAmbitions.MODID);
             CREATIVE_TAB = REGISTER.register("base",()-> {
-                return CreativeModeTab.builder().title(Components.literal("Create Aquatic Ambitions"))
+                return CreativeModeTab.builder().title(Component.literal("Create Aquatic Ambitions"))
                         .withTabsBefore(AllCreativeModeTabs.BASE_CREATIVE_TAB.getKey(),AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
                         .icon(CCAItems.PRISMARINE_ALLOY::asStack)
                         .displayItems((params,output)-> {

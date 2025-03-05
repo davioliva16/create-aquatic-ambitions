@@ -4,7 +4,7 @@ license="${mod_license}"
 logoFile="icon.png"
 
 [[mods]] #mandatory
-    modId="${mod_id}" #mandatory
+    modId="create_aquatic_ambitions" #mandatory
     version="${mod_version}" #mandatory
     displayName="${mod_name}" #mandatory
     authors="${mod_authors}"
@@ -12,23 +12,24 @@ logoFile="icon.png"
     ${mod_description}
     '''
 #Dependencies
-[[dependencies.${mod_id}]] #optional
+[[dependencies.create_aquatic_ambitions]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
     versionRange="${forge_version_range}" #mandatory
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.create_aquatic_ambitions]]
     modId="minecraft"
     mandatory=true
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies${mod_id}]]
+[[dependencies.create_aquatic_ambitions]]
     modId="create"
     mandatory=true
-    versionRange="[0.5.1.e,)"
+    versionRange="[6.0.1,)"
     ordering="NONE"
     side="BOTH"
+

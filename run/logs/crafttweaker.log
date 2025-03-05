@@ -1,20 +1,6 @@
-[18:48:11.727][INFO][CraftTweaker-EarlyInit]: CraftTweaker is running on a Minecraft 1.20.1 development client modded with platform Forge
-[18:48:11.762][INFO][CraftTweaker-EarlyInit]: Successfully injected RecipeFS file system
-[18:48:11.877][INFO][CraftTweaker-Plugins]: Successfully identified and loaded plugin crafttweaker:builtin
-[18:48:11.878][INFO][CraftTweaker-Plugins]: Successfully identified and loaded plugin crafttweaker:builtin_forge
-[18:48:12.723][INFO][CraftTweaker]: The following mods have explicit CraftTweaker support through the default plugin:
-[18:48:12.724][INFO][CraftTweaker]: - 'crafttweaker' at version '14.0.28'
-[18:48:15.067][INFO][CraftTweaker-ZenCode]: Started loading scripts for loader 'initialize'
-[18:48:15.733][INFO][CraftTweaker-ZenCode]: Compiling and executing scripts
-[18:48:15.813][INFO][CraftTweaker-ZenCode]: Successfully initialized modules [crafttweaker, expansions]
-[18:48:16.020][INFO][CraftTweaker-ZenCode]: Execution for loader 'initialize' completed successfully
-[18:51:36.340][INFO][CraftTweaker-ZenCode]: Started loading scripts for loader 'tags'
-[18:51:36.352][INFO][CraftTweaker-ZenCode]: Compiling and executing scripts
-[18:51:36.369][INFO][CraftTweaker-ZenCode]: Successfully initialized modules [crafttweaker, expansions]
-[18:51:36.374][INFO][CraftTweaker-ZenCode]: Execution for loader 'tags' completed successfully
-[18:51:36.502][INFO][CraftTweaker]: CraftTweaker reload starting!
-[18:51:36.506][INFO][CraftTweaker-ZenCode]: Started loading scripts for loader 'crafttweaker'
-[18:51:36.519][INFO][CraftTweaker-ZenCode]: Compiling and executing scripts
-[18:51:36.839][INFO][CraftTweaker-ZenCode]: Successfully initialized modules [crafttweaker, expansions]
-[18:51:36.846][INFO][CraftTweaker-ZenCode]: Execution for loader 'crafttweaker' completed successfully
-[18:51:36.850][INFO][CraftTweaker]: CraftTweaker reload complete!
+[20:13:10.581][INFO][CraftTweaker-EarlyInit]: CraftTweaker is running on a Minecraft 1.20.1 development client modded with platform Forge
+[20:13:10.618][INFO][CraftTweaker-EarlyInit]: Successfully injected RecipeFS file system
+[20:13:10.702][INFO][CraftTweaker-Plugins]: Successfully identified and loaded plugin crafttweaker:builtin
+[20:13:10.705][INFO][CraftTweaker-Plugins]: Successfully identified and loaded plugin crafttweaker:builtin_forge
+[20:13:11.609][INFO][CraftTweaker]: The following mods have explicit CraftTweaker support through the default plugin:
+[20:13:11.609][INFO][CraftTweaker]: - 'crafttweaker' at version '14.0.28'

@@ -2,7 +2,8 @@ package net.davio.aquaticambitions.compat.jei.category.animations;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.compat.jei.category.animations.AnimatedKinetics;
-import com.simibubi.create.foundation.utility.AnimationTickHolder;
+
+import net.createmod.catnip.animation.AnimationTickHolder;
 import net.davio.aquaticambitions.entry.CCAPartials;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.util.Mth;
