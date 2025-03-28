@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/create-aquatic-ambitions-forge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/create-aquatic-ambitions-forge.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/create-aquatic-ambitions-forge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/create-aquatic-ambitions-forge.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/create-aquatic-ambitions-neoforge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/create-aquatic-ambitions-neoforge.main.iml" />
     </modules>
   </component>
 </project>
