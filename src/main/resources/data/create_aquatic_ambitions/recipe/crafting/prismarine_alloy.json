@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cP",
+    "Pc"
+  ],
+  "key": {
+    "c": {
+      "item": "create:copper_nugget"
+    },
+    "P": {
+      "item": "minecraft:prismarine"
+    }
+  },
+  "result": {
+    "id": "create_aquatic_ambitions:prismarine_alloy",
+    "count": 1
+  }
+}

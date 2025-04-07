@@ -1,0 +1,17 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:dead_tube_coral_fan"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:tube_coral_fan"
+    },
+    {
+      "id": "minecraft:tube_coral_fan",
+      "chance": 0.25
+    }
+  ]
+}

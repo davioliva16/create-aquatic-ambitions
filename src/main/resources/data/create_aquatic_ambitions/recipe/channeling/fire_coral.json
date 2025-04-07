@@ -1,0 +1,17 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:dead_fire_coral"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:fire_coral"
+    },
+    {
+      "id": "minecraft:fire_coral",
+      "chance": 0.25
+    }
+  ]
+}
