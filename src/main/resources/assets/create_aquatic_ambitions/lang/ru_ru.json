@@ -1,0 +1,9 @@
+{
+  "itemGroup.create_aquatic_ambitions": "Create: Aquatic Ambitions",
+  "create_aquatic_ambitions.recipe.aquatic_ambitions.fan_channeling": "Каналирование морского источника",
+  "item.create_aquatic_ambitions.prismarine_alloy": "Призмариновый сплав",
+  "item.create_aquatic_ambitions.prismarine_rod": "Призмариновый стержень",
+  "item.create_aquatic_ambitions.flint_shard": "Осколок кремня",
+  "item.create_aquatic_ambitions.polished_quartz_tine": "Зубец из полированного кварца",
+  "block.create_aquatic_ambitions.prismarine_alloy_block": "Блок призмаринового сплава"
+}
