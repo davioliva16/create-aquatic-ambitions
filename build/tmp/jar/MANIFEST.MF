@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Specification-Title: create_aquatic_ambitions
-Specification-Vendor: Davi Oliva
-Specification-Version: 1
-Implementation-Title: create-aquatic-ambitions-forge
-Implementation-Version: 1.20.1-0.0.1
-Implementation-Vendor: Davi Oliva
-Implementation-Timestamp: 2025-03-04T20:07:28-0600
-
