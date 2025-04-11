@@ -10,7 +10,7 @@
       "id": "minecraft:horn_coral"
     },
     {
-      "item": "minecraft:horn_coral",
+      "id": "minecraft:horn_coral",
       "chance": 0.25
     }
   ]
