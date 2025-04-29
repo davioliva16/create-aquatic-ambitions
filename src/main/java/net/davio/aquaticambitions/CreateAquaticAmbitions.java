@@ -6,7 +6,9 @@ import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import com.tterrag.registrate.util.RegistrateDistExecutor;
 import net.createmod.catnip.lang.FontHelper;
-import net.davio.aquaticambitions.kinetics.fan.processing.CCAFanProcessing;
+import net.davio.aquaticambitions.content.kinetics.fan.processing.CCAFanProcessing;
+import net.davio.aquaticambitions.content.logistics.CCAItemAttributes;
+import net.davio.aquaticambitions.data.CCADatagen;
 import net.davio.aquaticambitions.registry.CCABlocks;
 import net.davio.aquaticambitions.registry.CCACreativeTab;
 import net.davio.aquaticambitions.registry.CCAItems;
@@ -17,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -43,14 +46,16 @@ public class CreateAquaticAmbitions
         CCABlocks.register();
         CCACreativeTab.register(modEventBus);
 
-        CCATags.setRegister();
+        CCATags.init();
         CCARecipeTypes.register(modEventBus);
         CCAFanProcessing.register(modEventBus);
+        CCAItemAttributes.register(modEventBus);
 
 
         RegistrateDistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CreateAquaticAmbitionsClient.onCtorClient(modEventBus));
 
         modEventBus.addListener(this::setup);
+        modEventBus.addListener(EventPriority.LOWEST, CCADatagen::gatherData);
     }
 
     public static ResourceLocation asResource(String path) {

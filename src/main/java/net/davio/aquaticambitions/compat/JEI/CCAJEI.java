@@ -24,7 +24,7 @@ import net.davio.aquaticambitions.CCALang;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.compat.JEI.category.FanChannelingCategory;
 import net.davio.aquaticambitions.registry.recipe.CCARecipeTypes;
-import net.davio.aquaticambitions.kinetics.fan.processing.ChannelingRecipe;
+import net.davio.aquaticambitions.content.kinetics.fan.processing.ChannelingRecipe;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;

@@ -1,23 +1,221 @@
 package net.davio.aquaticambitions.registry;
 
+import net.createmod.catnip.lang.Lang;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
+
+import com.simibubi.create.Create;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.level.material.FluidState;
+
+import static net.davio.aquaticambitions.CreateAquaticAmbitions.MODID;
 
 public class CCATags {
-
-    public static final TagKey<Fluid> FAN_CHANNELING_PROCESSING_FLUID_TAG = addonTag("channeling_fluid", Registries.FLUID);
-    public static final TagKey<Block> FAN_CHANNELING_PROCESSING_TAG = addonTag("channeling_block", Registries.BLOCK);
-
-    private static <F> TagKey<F> addonTag(String name, ResourceKey<Registry<F>> key) {
-        return TagKey.create(key, CreateAquaticAmbitions.asResource(name));
+    public static <T> TagKey<T> optionalTag(Registry<T> registry, ResourceLocation id) {
+        return TagKey.create(registry.key(), id);
+    }
+    public static <T> TagKey<T> commonTag(Registry<T> registry, String path) {
+        return optionalTag(registry, ResourceLocation.fromNamespaceAndPath("c", path));
+    }
+    public static <T> TagKey<T> modTag(Registry<T> registry, String path) {
+        return optionalTag(registry, CreateAquaticAmbitions.asResource(path));
+    }
+    public static TagKey<Block> commonBlockTag(String path) {
+        return commonTag(BuiltInRegistries.BLOCK, path);
+    }
+    public static TagKey<Item> commonItemTag(String path) {
+        return commonTag(BuiltInRegistries.ITEM, path);
+    }
+    public static TagKey<Fluid> commonFluidTag(String path) {
+        return commonTag(BuiltInRegistries.FLUID, path);
+    }
+    public static TagKey<Block> modBlockTag(String path) {
+        return modTag(BuiltInRegistries.BLOCK, path);
+    }
+    public static TagKey<Item> modItemTag(String path) {
+        return modTag(BuiltInRegistries.ITEM, path);
+    }
+    public static TagKey<Fluid> modFluidTag(String path) {
+        return modTag(BuiltInRegistries.FLUID, path);
     }
 
-    public static void setRegister() {}
+    public enum NameSpace {
+        MOD(MODID, false, true),
+        COMMON("c"),
+        CREATE(Create.ID);
 
+        public final String id;
+        public final boolean optionalDefault;
+        public final boolean alwaysDatagenDefault;
+        NameSpace(String id) {
+            this(id, true, false);
+        }
+        NameSpace(String id, boolean optionalDefault, boolean alwaysDatagenDefault) {
+            this.id = id;
+            this.optionalDefault = optionalDefault;
+            this.alwaysDatagenDefault = alwaysDatagenDefault;
+        }
+    }
+
+    public enum CCABlockTags {
+
+        FAN_PROCESSING_CATALYSTS_CHANELLING(NameSpace.MOD, "fan_processing_catalysts/channeling");
+
+        public final TagKey<Block> tag;
+        public final boolean alwaysDatagen;
+
+        CCABlockTags() {
+            this(NameSpace.MOD);
+        }
+
+        CCABlockTags(NameSpace namespace) {
+            this(namespace, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
+
+        CCABlockTags(NameSpace namespace, String path) {
+            this(namespace, path, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
+
+        CCABlockTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
+            this(namespace, null, optional, alwaysDatagen);
+        }
+
+        CCABlockTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace.id, path == null ? Lang.asId(name()) : path);
+        if (optional) {
+            tag = optionalTag(BuiltInRegistries.BLOCK, id);
+        } else {
+            tag = BlockTags.create(id);
+        }
+        this.alwaysDatagen = alwaysDatagen;
+        }
+
+            @SuppressWarnings("deprecation")
+            public boolean matches(Block block) {
+            return block.builtInRegistryHolder()
+                    .is(tag);
+        }
+
+            public boolean matches(ItemStack stack) {
+            return stack != null && stack.getItem() instanceof BlockItem blockItem && matches(blockItem.getBlock());
+        }
+
+            public boolean matches(BlockState state) {
+            return state.is(tag);
+        }
+
+            private static void init() {
+        }
+    }
+
+    public enum CCAItemTags {
+
+        UA_CORAL(NameSpace.MOD, "upgrade_aquatic/coral");
+
+        public final TagKey<Item> tag;
+        public final boolean alwaysDatagen;
+
+        CCAItemTags() {
+            this(NameSpace.MOD);
+        }
+
+        CCAItemTags(NameSpace namespace) {
+            this(namespace, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
+
+        CCAItemTags(NameSpace namespace, String path) {
+            this(namespace, path, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
+
+        CCAItemTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
+            this(namespace, null, optional, alwaysDatagen);
+        }
+
+        CCAItemTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
+            ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace.id, path == null ? Lang.asId(name()) : path);
+            if (optional) {
+                tag = optionalTag(BuiltInRegistries.ITEM, id);
+            } else {
+                tag = ItemTags.create(id);
+            }
+            this.alwaysDatagen = alwaysDatagen;
+        }
+
+        @SuppressWarnings("deprecation")
+        public boolean matches(Item item) {
+            return item.builtInRegistryHolder()
+                    .is(tag);
+        }
+
+        public boolean matches(ItemStack stack) {
+            return stack.is(tag);
+        }
+
+        private static void init() {
+        }
+    }
+
+    public enum CCAFluidTags {
+
+        FAN_PROCESSING_CATALYSTS_CHANELLING(NameSpace.MOD, "fan_processing_catalysts/channeling");
+
+        public final TagKey<Fluid> tag;
+        public final boolean alwaysDatagen;
+
+        CCAFluidTags() {
+            this(NameSpace.MOD);
+        }
+
+        CCAFluidTags(NameSpace namespace) {
+            this(namespace, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
+
+        CCAFluidTags(NameSpace namespace, String path) {
+            this(namespace, path, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
+
+        CCAFluidTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
+            this(namespace, null, optional, alwaysDatagen);
+        }
+
+        CCAFluidTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
+            ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace.id, path == null ? Lang.asId(name()) : path);
+            if (optional) {
+                tag = optionalTag(BuiltInRegistries.FLUID, id);
+            } else {
+                tag = FluidTags.create(id);
+            }
+            this.alwaysDatagen = alwaysDatagen;
+        }
+
+        @SuppressWarnings("deprecation")
+        public boolean matches(Fluid fluid) {
+            return fluid.is(tag);
+        }
+
+        public boolean matches(FluidState state) {
+            return state.is(tag);
+        }
+
+        private static void init() {
+        }
+
+    }
+
+    public static void init() {
+        CCABlockTags.init();
+        CCAItemTags.init();
+        CCAFluidTags.init();
+    }
 }

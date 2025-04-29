@@ -1,11 +1,12 @@
-package net.davio.aquaticambitions.kinetics.fan.processing;
+package net.davio.aquaticambitions.content.kinetics.fan.processing;
 
 import com.simibubi.create.api.registry.CreateBuiltInRegistries;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
 import net.createmod.catnip.theme.Color;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
-import net.davio.aquaticambitions.registry.CCATags;
+import net.davio.aquaticambitions.registry.CCATags.CCABlockTags;
+import net.davio.aquaticambitions.registry.CCATags.CCAFluidTags;
 import net.davio.aquaticambitions.registry.recipe.CCARecipeTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -48,26 +49,16 @@ public class CCAFanProcessing {
     public static class ChannelingType implements FanProcessingType {
         @Override
         public boolean isValidAt(Level level, BlockPos pos) {
-            //Check if any blockEntity in 3x3 box is an active conduit.
-            //This (and priority = 1200) allows us to prevent washing process to override channeling in the 3x3 conduit box
-            for(int i = -1; i <= 1; ++i) {
-                for(int j = -1; j <= 1; ++j) {
-                    for(int k = -1; k <= 1; ++k) {
-                        BlockPos adjacentPos = pos.offset(i, j, k);
-                        BlockEntity blockEntity = level.getBlockEntity(adjacentPos);
-                        if (blockEntity instanceof ConduitBlockEntity){
-                            if(((ConduitBlockEntity) blockEntity).isActive()){
-                                return true;
-                            }
-                        }
-                    }
-                }
+
+            if (checkForActiveConduit(level, pos)) {
+                return true;
             }
             //Check for matching tags.
-            //TODO Add config or Datapack to add tag conduit block - conduit will channel even if inactive
             FluidState fluidState = level.getFluidState(pos);
             BlockState blockState = level.getBlockState(pos);
-            return (blockState.is(CCATags.FAN_CHANNELING_PROCESSING_TAG) && fluidState.is(CCATags.FAN_CHANNELING_PROCESSING_FLUID_TAG));
+
+            return CCABlockTags.FAN_PROCESSING_CATALYSTS_CHANELLING.matches(blockState)
+                    || CCAFluidTags.FAN_PROCESSING_CATALYSTS_CHANELLING.matches(fluidState);
         }
 
         @Override
@@ -127,6 +118,25 @@ public class CCAFanProcessing {
             if (entity instanceof Player){
                 ((Player) entity).addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 260, 0, true, true));
             }
+        }
+
+        public boolean checkForActiveConduit(Level level, BlockPos pos) {
+            //Check if any blockEntity in 3x3 box is an active conduit.
+            //This (and priority = 1200) allows us to prevent washing process to override channeling in the 3x3 conduit box
+            for(int i = -1; i <= 1; ++i) {
+                for(int j = -1; j <= 1; ++j) {
+                    for(int k = -1; k <= 1; ++k) {
+                        BlockPos adjacentPos = pos.offset(i, j, k);
+                        BlockEntity blockEntity = level.getBlockEntity(adjacentPos);
+                        if (blockEntity instanceof ConduitBlockEntity){
+                            if(((ConduitBlockEntity) blockEntity).isActive()){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
     }

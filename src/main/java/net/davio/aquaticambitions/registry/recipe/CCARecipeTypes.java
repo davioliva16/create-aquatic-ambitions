@@ -3,7 +3,7 @@ package net.davio.aquaticambitions.registry.recipe;
 import com.mojang.serialization.Codec;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
-import net.davio.aquaticambitions.kinetics.fan.processing.ChannelingRecipe;
+import net.davio.aquaticambitions.content.kinetics.fan.processing.ChannelingRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.crafting.RecipeSerializer;

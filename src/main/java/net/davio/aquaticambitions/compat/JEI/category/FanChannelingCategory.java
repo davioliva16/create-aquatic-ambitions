@@ -2,7 +2,7 @@ package net.davio.aquaticambitions.compat.JEI.category;
 import com.simibubi.create.compat.jei.category.ProcessingViaFanCategory;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
 import net.davio.aquaticambitions.compat.JEI.category.animations.AnimatedConduit;
-import net.davio.aquaticambitions.kinetics.fan.processing.ChannelingRecipe;
+import net.davio.aquaticambitions.content.kinetics.fan.processing.ChannelingRecipe;
 import net.minecraft.client.gui.GuiGraphics;
 
 public class FanChannelingCategory extends ProcessingViaFanCategory.MultiOutput<ChannelingRecipe> {

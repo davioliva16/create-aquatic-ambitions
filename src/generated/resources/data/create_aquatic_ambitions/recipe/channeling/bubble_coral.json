@@ -1,0 +1,17 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:dead_bubble_coral"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:bubble_coral"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:bubble_coral"
+    }
+  ]
+}

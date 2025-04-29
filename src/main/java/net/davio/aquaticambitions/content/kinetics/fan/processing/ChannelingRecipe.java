@@ -1,4 +1,4 @@
-package net.davio.aquaticambitions.kinetics.fan.processing;
+package net.davio.aquaticambitions.content.kinetics.fan.processing;
 
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
