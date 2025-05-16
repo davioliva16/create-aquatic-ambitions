@@ -27,6 +27,7 @@ public class CCACreativeTab {
                 output.accept(CCAItems.PRISMARINE_ROD.get());
                 output.accept(CCAItems.FLINT_SHARD.get());
                 output.accept(CCAItems.POLISHED_QUARTZ_TINE.get());
+                output.accept(CCABlocks.MECHANICAL_CONDUIT.asItem());
 
             }))
             .build());

@@ -5,6 +5,7 @@ import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
 import net.createmod.catnip.theme.Color;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
+import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlockEntity;
 import net.davio.aquaticambitions.registry.CCATags.CCABlockTags;
 import net.davio.aquaticambitions.registry.CCATags.CCAFluidTags;
 import net.davio.aquaticambitions.registry.recipe.CCARecipeTypes;
@@ -31,6 +32,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
+import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,12 +55,15 @@ public class CCAFanProcessing {
             if (checkForActiveConduit(level, pos)) {
                 return true;
             }
+
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+
             //Check for matching tags.
             FluidState fluidState = level.getFluidState(pos);
             BlockState blockState = level.getBlockState(pos);
 
-            return CCABlockTags.FAN_PROCESSING_CATALYSTS_CHANELLING.matches(blockState)
-                    || CCAFluidTags.FAN_PROCESSING_CATALYSTS_CHANELLING.matches(fluidState);
+            return CCABlockTags.FAN_PROCESSING_CATALYSTS_CHANNELING.matches(blockState)
+                    || CCAFluidTags.FAN_PROCESSING_CATALYSTS_CHANNELING.matches(fluidState);
         }
 
         @Override
@@ -136,6 +141,16 @@ public class CCAFanProcessing {
                     }
                 }
             }
+
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+
+            if (blockEntity != null) {
+                if (blockEntity instanceof MechanicalConduitBlockEntity) {
+                    ConduitPowerLevel powerLevel = ((MechanicalConduitBlockEntity) blockEntity).getConduitLevelFromBlock();
+                    return powerLevel == ConduitPowerLevel.AWAKENED;
+                }
+            }
+
             return false;
         }
 

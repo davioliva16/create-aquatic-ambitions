@@ -20,7 +20,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import mezz.jei.api.runtime.IIngredientManager;
 import mezz.jei.api.runtime.IJeiRuntime;
-import net.davio.aquaticambitions.CCALang;
+import net.davio.aquaticambitions.util.CCALang;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.compat.JEI.category.FanChannelingCategory;
 import net.davio.aquaticambitions.registry.recipe.CCARecipeTypes;

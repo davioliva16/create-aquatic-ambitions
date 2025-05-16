@@ -1,9 +1,10 @@
 {
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
+	"render_type" : "minecraft:cutout",
 	"textures": {
-		"1": "entity/conduit/closed_eye",
-		"particle": "entity/conduit/cage"
+		"1": "entity/conduit/open_eye",
+		"particle": "entity/conduit/open_eye"
 	},
 	"elements": [
 		{

@@ -7,6 +7,7 @@ public class CCAPartials {
     public static final PartialModel
 
             CONDUIT_CAGE = block("conduit_cage"),
+            INACTIVE_CONDUIT = block("inactive_conduit"),
             CONDUIT_EYE = block("conduit_eye"),
             CONDUIT_WIND = block("conduit_wind");
 

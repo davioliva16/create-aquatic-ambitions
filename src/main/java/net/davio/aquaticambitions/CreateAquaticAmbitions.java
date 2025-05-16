@@ -9,10 +9,7 @@ import net.createmod.catnip.lang.FontHelper;
 import net.davio.aquaticambitions.content.kinetics.fan.processing.CCAFanProcessing;
 import net.davio.aquaticambitions.content.logistics.CCAItemAttributes;
 import net.davio.aquaticambitions.data.CCADatagen;
-import net.davio.aquaticambitions.registry.CCABlocks;
-import net.davio.aquaticambitions.registry.CCACreativeTab;
-import net.davio.aquaticambitions.registry.CCAItems;
-import net.davio.aquaticambitions.registry.CCATags;
+import net.davio.aquaticambitions.registry.*;
 import net.davio.aquaticambitions.registry.recipe.CCARecipeTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -44,6 +41,7 @@ public class CreateAquaticAmbitions
 
         CCAItems.register();
         CCABlocks.register();
+        CCABlockEntityTypes.register();
         CCACreativeTab.register(modEventBus);
 
         CCATags.init();
@@ -64,5 +62,6 @@ public class CreateAquaticAmbitions
 
     private void setup(final FMLCommonSetupEvent event) {
     }
+
 
 }

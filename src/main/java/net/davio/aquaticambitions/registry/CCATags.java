@@ -70,7 +70,7 @@ public class CCATags {
 
     public enum CCABlockTags {
 
-        FAN_PROCESSING_CATALYSTS_CHANELLING(NameSpace.MOD, "fan_processing_catalysts/channeling");
+        FAN_PROCESSING_CATALYSTS_CHANNELING(NameSpace.MOD, "fan_processing_catalysts/channeling");
 
         public final TagKey<Block> tag;
         public final boolean alwaysDatagen;
@@ -168,7 +168,29 @@ public class CCATags {
 
     public enum CCAFluidTags {
 
-        FAN_PROCESSING_CATALYSTS_CHANELLING(NameSpace.MOD, "fan_processing_catalysts/channeling");
+        CONDUIT_FUEL(NameSpace.MOD,"mechanical_conduit_fuel"),
+        GIVES_FIRE_RES(NameSpace.MOD,"conduit_effects/gives_fire_res"),
+        GIVES_HASTE(NameSpace.MOD,"conduit_effects/gives_haste"),
+        GIVES_INFESTED(NameSpace.MOD,"conduit_effects/gives_infested"),
+        GIVES_INVIS(NameSpace.MOD,"conduit_effects/gives_invis"),
+        GIVES_JUMP(NameSpace.MOD,"conduit_effects/gives_jump"),
+        GIVES_LUCK(NameSpace.MOD,"conduit_effects/gives_luck"),
+        GIVES_NIGHT_VISION(NameSpace.MOD,"conduit_effects/gives_night_vision"),
+        GIVES_OOZING(NameSpace.MOD,"conduit_effects/gives_oozing"),
+        GIVES_POISON(NameSpace.MOD,"conduit_effects/gives_poison"),
+        GIVES_REGEN(NameSpace.MOD,"conduit_effects/gives_regen"),
+        GIVES_RESISTANCE(NameSpace.MOD,"conduit_effects/gives_resistance"),
+        GIVES_SLOW_FALL(NameSpace.MOD,"conduit_effects/gives_slow_fall"),
+        GIVES_SLOWNESS(NameSpace.MOD, "conduit_effects/gives_slowness"),
+        GIVES_SPEED(NameSpace.MOD, "conduit_effects/gives_speed"),
+        GIVES_STRENGTH(NameSpace.MOD, "conduit_effects/gives_strength"),
+        GIVES_WATER_BREATHING(NameSpace.MOD, "conduit_effects/gives_water_breathing"),
+        GIVES_WEAKNESS(NameSpace.MOD, "conduit_effects/gives_weakness"),
+        GIVES_WEAVING(NameSpace.MOD, "conduit_effects/gives_weaving"),
+        GIVES_WIND(NameSpace.MOD, "conduit_effects/gives_wind"),
+        GIVES_WITHER(NameSpace.MOD, "conduit_effects/gives_wither"),
+        FAN_PROCESSING_CATALYSTS_CHANNELING(NameSpace.MOD, "fan_processing_catalysts/channeling");
+        
 
         public final TagKey<Fluid> tag;
         public final boolean alwaysDatagen;
