@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public enum CCARecipeTypes implements IRecipeTypeInfo, StringRepresentable {
+public enum CAARecipeTypes implements IRecipeTypeInfo, StringRepresentable {
     CHANNELING(ChannelingRecipe::new);
 
     public final ResourceLocation id;
@@ -39,11 +39,11 @@ public enum CCARecipeTypes implements IRecipeTypeInfo, StringRepresentable {
     public final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> serializerObject;
     public final Supplier<RecipeType<?>> type;
 
-    public static final Codec<CCARecipeTypes> CODEC = StringRepresentable.fromEnum(CCARecipeTypes::values);
+    public static final Codec<CAARecipeTypes> CODEC = StringRepresentable.fromEnum(CAARecipeTypes::values);
 
     private boolean isProcessingRecipe;
 
-    CCARecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier) {
+    CAARecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier) {
         String name = Lang.asId(name());
         id = CreateAquaticAmbitions.asResource(name);
         serializerObject =  Registers.SERIALIZER_REGISTER.register(name, serializerSupplier);
@@ -53,7 +53,7 @@ public enum CCARecipeTypes implements IRecipeTypeInfo, StringRepresentable {
         this.isProcessingRecipe = false;
     }
 
-    CCARecipeTypes(ProcessingRecipeBuilder.ProcessingRecipeFactory<?> processingRecipeFactory) {
+    CAARecipeTypes(ProcessingRecipeBuilder.ProcessingRecipeFactory<?> processingRecipeFactory) {
         this(() -> new CustomProcessingSerializer<>(processingRecipeFactory));
         this.isProcessingRecipe = true;
     }

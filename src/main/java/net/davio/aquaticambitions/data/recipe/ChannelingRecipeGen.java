@@ -7,8 +7,8 @@ import com.simibubi.create.foundation.data.recipe.ProcessingRecipeGen;
 import net.createmod.catnip.registry.RegisteredObjectsHelper;
 
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
-import net.davio.aquaticambitions.registry.CCAItems;
-import net.davio.aquaticambitions.registry.recipe.CCARecipeTypes;
+import net.davio.aquaticambitions.registry.CAAItems;
+import net.davio.aquaticambitions.registry.recipe.CAARecipeTypes;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -25,7 +25,7 @@ public class ChannelingRecipeGen extends ProcessingRecipeGen {
             .require(Items.FLINT)
             .output(.25f, Items.PRISMARINE_SHARD, 1)),
 
-    PRISMARINE_FROM_FLINT_SHARD = convert(CCAItems.FLINT_SHARD, Items.PRISMARINE_SHARD),
+    PRISMARINE_FROM_FLINT_SHARD = convert(CAAItems.FLINT_SHARD, Items.PRISMARINE_SHARD),
     PRISMARINE_CRYSTALS = convert(Items.GLOWSTONE, Items.PRISMARINE_CRYSTALS),
     HEART_OF_THE_SEA = convert(Items.ENDER_EYE, Items.HEART_OF_THE_SEA),
 
@@ -68,7 +68,7 @@ public class ChannelingRecipeGen extends ProcessingRecipeGen {
     }
 
     @Override
-    protected CCARecipeTypes getRecipeType() {
-        return CCARecipeTypes.CHANNELING;
+    protected CAARecipeTypes getRecipeType() {
+        return CAARecipeTypes.CHANNELING;
     }
 }

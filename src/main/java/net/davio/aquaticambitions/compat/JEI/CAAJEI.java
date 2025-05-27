@@ -20,10 +20,10 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import mezz.jei.api.runtime.IIngredientManager;
 import mezz.jei.api.runtime.IJeiRuntime;
-import net.davio.aquaticambitions.util.CCALang;
+import net.davio.aquaticambitions.util.CAALang;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.compat.JEI.category.FanChannelingCategory;
-import net.davio.aquaticambitions.registry.recipe.CCARecipeTypes;
+import net.davio.aquaticambitions.registry.recipe.CAARecipeTypes;
 import net.davio.aquaticambitions.content.kinetics.fan.processing.ChannelingRecipe;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
@@ -49,7 +49,7 @@ import java.util.function.Supplier;
 @SuppressWarnings({"unused", "inline", "all"})
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class CCAJEI implements IModPlugin {
+public class CAAJEI implements IModPlugin {
     private static final ResourceLocation MOD_ID = CreateAquaticAmbitions.asResource("jei_plugin");
     @Override
     public ResourceLocation getPluginUid() {
@@ -64,7 +64,7 @@ public class CCAJEI implements IModPlugin {
     private void loadCategories() {
         Categories.clear();
         CreateRecipeCategory<?> channeling = builder(ChannelingRecipe.class)
-                .addTypedRecipes(CCARecipeTypes.CHANNELING::getType)
+                .addTypedRecipes(CAARecipeTypes.CHANNELING::getType)
                 .catalystStack(ProcessingViaFanCategory.getFan("aquatic_ambitions.fan_channeling"))
                 .doubleItemIcon(AllItems.PROPELLER.get(), Items.HEART_OF_THE_SEA)
                 .emptyBackground(178, 72)
@@ -151,7 +151,7 @@ public class CCAJEI implements IModPlugin {
         }
 
         public <I extends RecipeInput, R extends Recipe<I>> CategoryBuilder<T> addTypedRecipes(Supplier<RecipeType<R>> recipeType) {
-            return addRecipeListConsumer(recipes -> CCAJEI.<T>consumeTypedRecipes(recipe -> {
+            return addRecipeListConsumer(recipes -> CAAJEI.<T>consumeTypedRecipes(recipe -> {
                 if (recipeClass.isInstance(recipe.value()))
                     //noinspection unchecked - checked by if statement above
                     recipes.add((RecipeHolder<T>) recipe);
@@ -281,7 +281,7 @@ public class CCAJEI implements IModPlugin {
 
             CreateRecipeCategory.Info<T> info = new CreateRecipeCategory.Info<>(
                     new mezz.jei.api.recipe.RecipeType<>(CreateAquaticAmbitions.asResource(name), recipeClass),
-                    CCALang.translateDirect("recipe." + name), background, icon, recipesSupplier, catalysts);
+                    CAALang.translateDirect("recipe." + name), background, icon, recipesSupplier, catalysts);
             CreateRecipeCategory<T> category = factory.create(info);
             Categories.add(category);
             return category;
@@ -360,6 +360,6 @@ public class CCAJEI implements IModPlugin {
 
     @Override
     public void onRuntimeAvailable(IJeiRuntime runtime) {
-        CCAJEI.runtime = runtime;
+        CAAJEI.runtime = runtime;
     }
 }

@@ -14,10 +14,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.common.Tags;
 
-public class CCABlocks {
+public class CAABlocks {
 
     static {
-        REGISTRATE.setCreativeTab(CCACreativeTab.MAIN_TAB);
+        REGISTRATE.setCreativeTab(CAACreativeTab.MAIN_TAB);
     }
 
     public static final BlockEntry<Block> PRISMARINE_ALLOY_BLOCK = REGISTRATE.block("prismarine_alloy_block" ,Block::new)

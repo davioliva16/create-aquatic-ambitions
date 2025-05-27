@@ -3,7 +3,7 @@ package net.davio.aquaticambitions.registry;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 
-public class CCAPartials {
+public class CAAPartials {
     public static final PartialModel
 
             CONDUIT_CAGE = block("conduit_cage"),

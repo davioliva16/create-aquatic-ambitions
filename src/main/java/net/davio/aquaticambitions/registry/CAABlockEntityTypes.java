@@ -7,12 +7,12 @@ import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitVi
 
 import static net.davio.aquaticambitions.CreateAquaticAmbitions.REGISTRATE;
 
-public class CCABlockEntityTypes {
+public class CAABlockEntityTypes {
 
     public static final BlockEntityEntry<MechanicalConduitBlockEntity> MECHANICAL_CONDUIT = REGISTRATE
             .blockEntity("mechanical_conduit",MechanicalConduitBlockEntity::new)
             .visual(() -> MechanicalConduitVisual::new, false)
-            .validBlocks(CCABlocks.MECHANICAL_CONDUIT)
+            .validBlocks(CAABlocks.MECHANICAL_CONDUIT)
             .renderer(() -> MechanicalConduitRenderer::new)
             .register();
 

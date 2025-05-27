@@ -8,10 +8,10 @@ import static com.simibubi.create.AllTags.AllItemTags.CREATE_INGOTS;
 import static com.simibubi.create.AllTags.commonItemTag;
 import static net.davio.aquaticambitions.CreateAquaticAmbitions.REGISTRATE;
 
-public class CCAItems {
+public class CAAItems {
 
     static {
-        REGISTRATE.setCreativeTab(CCACreativeTab.MAIN_TAB);
+        REGISTRATE.setCreativeTab(CAACreativeTab.MAIN_TAB);
     }
 
     public static final ItemEntry<Item>

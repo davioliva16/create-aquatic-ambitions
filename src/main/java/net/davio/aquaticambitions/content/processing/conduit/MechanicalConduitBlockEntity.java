@@ -4,14 +4,18 @@ import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
+import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.INamedIconOptions;
+import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollOptionBehaviour;
 import com.simibubi.create.foundation.utility.CreateLang;
 import dev.engine_room.flywheel.api.visualization.VisualizationManager;
 import net.createmod.catnip.animation.LerpedFloat;
+import net.createmod.catnip.lang.Lang;
 import net.createmod.catnip.lang.LangBuilder;
 import net.createmod.catnip.math.AngleHelper;
-import net.davio.aquaticambitions.util.CCALang;
-import net.davio.aquaticambitions.registry.CCABlockEntityTypes;
-import net.davio.aquaticambitions.registry.CCATags;
+import net.davio.aquaticambitions.util.CAALang;
+import net.davio.aquaticambitions.registry.CAABlockEntityTypes;
+import net.davio.aquaticambitions.registry.CAATags;
+import net.davio.aquaticambitions.registry.CAAIcons;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -28,8 +32,11 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -61,74 +68,83 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
 
     protected LerpedFloat eyeAnimation;
     protected LerpedFloat eyeAngle;
+    protected LerpedFloat cageAngle;
+
+    protected ScrollOptionBehaviour<EntitySelectionMode> entityTypeSelector;
 
     public MechanicalConduitBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
 
         //Init all possible effects - I don't know if this is best place for it -
-        // TODO fix hex values
-
         conduitEffectsMap.put("CONDUIT_POWER", new MechanicalConduitEffect(
-                "effect.minecraft.conduit_power", MobEffects.CONDUIT_POWER,0x1DC2D1,CCATags.CCAFluidTags.CONDUIT_FUEL.tag));
+                "effect.minecraft.conduit_power", MobEffects.CONDUIT_POWER,0x1DC2D1, CAATags.CAAFluidTags.CONDUIT_FUEL.tag));
         conduitEffectsMap.put("FIRE_RESISTANCE", new MechanicalConduitEffect(
-                "effect.minecraft.fire_resistance",MobEffects.FIRE_RESISTANCE,0xE49A3A, CCATags.CCAFluidTags.GIVES_FIRE_RES.tag));
+                "effect.minecraft.fire_resistance",MobEffects.FIRE_RESISTANCE,0xE49A3A, CAATags.CAAFluidTags.GIVES_FIRE_RES.tag));
         conduitEffectsMap.put("HASTE", new MechanicalConduitEffect(
-                "effect.minecraft.haste", MobEffects.DIG_SPEED,0xD9C043, CCATags.CCAFluidTags.GIVES_HASTE.tag));
+                "effect.minecraft.haste", MobEffects.DIG_SPEED,0xD9C043, CAATags.CAAFluidTags.GIVES_HASTE.tag));
         conduitEffectsMap.put("INFESTED", new MechanicalConduitEffect(
-                "effect.minecraft.infested", MobEffects.INFESTED,0x8C9B8C, CCATags.CCAFluidTags.GIVES_INFESTED.tag));
+                "effect.minecraft.infested", MobEffects.INFESTED,0x8C9B8C, CAATags.CAAFluidTags.GIVES_INFESTED.tag));
         conduitEffectsMap.put("INVISIBILITY", new MechanicalConduitEffect(
-                "effect.minecraft.invisibility", MobEffects.INVISIBILITY,0x7F8392, CCATags.CCAFluidTags.GIVES_INVIS.tag));
+                "effect.minecraft.invisibility", MobEffects.INVISIBILITY,0x7F8392, CAATags.CAAFluidTags.GIVES_INVIS.tag));
         conduitEffectsMap.put("JUMP_BOOST", new MechanicalConduitEffect(
-                "effect.minecraft.jump_boost", MobEffects.JUMP,0x23FC4D, CCATags.CCAFluidTags.GIVES_JUMP.tag));
+                "effect.minecraft.jump_boost", MobEffects.JUMP,0x23FC4D, CAATags.CAAFluidTags.GIVES_JUMP.tag));
         conduitEffectsMap.put("LUCK", new MechanicalConduitEffect(
-                "effect.minecraft.luck", MobEffects.LUCK, 0x339900, CCATags.CCAFluidTags.GIVES_LUCK.tag));
+                "effect.minecraft.luck", MobEffects.LUCK, 0x339900, CAATags.CAAFluidTags.GIVES_LUCK.tag));
         conduitEffectsMap.put("NIGHT_VISION", new MechanicalConduitEffect(
-                "effect.minecraft.night_vision", MobEffects.NIGHT_VISION,0x1F1FA1, CCATags.CCAFluidTags.GIVES_NIGHT_VISION.tag));
+                "effect.minecraft.night_vision", MobEffects.NIGHT_VISION,0x1F1FA1, CAATags.CAAFluidTags.GIVES_NIGHT_VISION.tag));
         conduitEffectsMap.put("OOZING", new MechanicalConduitEffect(
-                "effect.minecraft.oozing", MobEffects.OOZING,0x99FFA3 , CCATags.CCAFluidTags.GIVES_OOZING.tag));
+                "effect.minecraft.oozing", MobEffects.OOZING,0x99FFA3 , CAATags.CAAFluidTags.GIVES_OOZING.tag));
         conduitEffectsMap.put("POISON", new MechanicalConduitEffect(
-                "effect.minecraft.poison", MobEffects.POISON,0x4E9331, CCATags.CCAFluidTags.GIVES_POISON.tag));
+                "effect.minecraft.poison", MobEffects.POISON,0x4E9331, CAATags.CAAFluidTags.GIVES_POISON.tag));
         conduitEffectsMap.put("REGENERATION", new MechanicalConduitEffect(
-                "effect.minecraft.regeneration", MobEffects.REGENERATION,0xCD5CAB, CCATags.CCAFluidTags.GIVES_REGEN.tag));
+                "effect.minecraft.regeneration", MobEffects.REGENERATION,0xCD5CAB, CAATags.CAAFluidTags.GIVES_REGEN.tag));
         conduitEffectsMap.put("RESISTANCE", new MechanicalConduitEffect(
-                "effect.minecraft.resistance", MobEffects.DAMAGE_RESISTANCE,0x8F45ED, CCATags.CCAFluidTags.GIVES_RESISTANCE.tag));
+                "effect.minecraft.resistance", MobEffects.DAMAGE_RESISTANCE,0x8F45ED, CAATags.CAAFluidTags.GIVES_RESISTANCE.tag));
         conduitEffectsMap.put("SLOW_FALLING", new MechanicalConduitEffect(
-                "effect.minecraft.slow_falling", MobEffects.SLOW_FALLING,0xFFEFD1 , CCATags.CCAFluidTags.GIVES_SLOW_FALL.tag));
+                "effect.minecraft.slow_falling", MobEffects.SLOW_FALLING,0xFFEFD1 , CAATags.CAAFluidTags.GIVES_SLOW_FALL.tag));
         conduitEffectsMap.put("SLOWNESS", new MechanicalConduitEffect(
-                "effect.minecraft.slowness", MobEffects.MOVEMENT_SLOWDOWN,0x5A6C81, CCATags.CCAFluidTags.GIVES_SLOWNESS.tag));
+                "effect.minecraft.slowness", MobEffects.MOVEMENT_SLOWDOWN,0x5A6C81, CAATags.CAAFluidTags.GIVES_SLOWNESS.tag));
         conduitEffectsMap.put("SPEED", new MechanicalConduitEffect(
-                "effect.minecraft.speed", MobEffects.MOVEMENT_SPEED,0x7CAFC6, CCATags.CCAFluidTags.GIVES_SPEED.tag));
+                "effect.minecraft.speed", MobEffects.MOVEMENT_SPEED,0x7CAFC6, CAATags.CAAFluidTags.GIVES_SPEED.tag));
         conduitEffectsMap.put("STRENGTH", new MechanicalConduitEffect(
-                "effect.minecraft.strength", MobEffects.DAMAGE_BOOST,0xFCC500, CCATags.CCAFluidTags.GIVES_STRENGTH.tag));
+                "effect.minecraft.strength", MobEffects.DAMAGE_BOOST,0xFCC500, CAATags.CAAFluidTags.GIVES_STRENGTH.tag));
         conduitEffectsMap.put("WATER_BREATHING", new MechanicalConduitEffect(
-                "effect.minecraft.water_breathing", MobEffects.WATER_BREATHING,0x96D7BE, CCATags.CCAFluidTags.GIVES_WATER_BREATHING.tag)); //make this an achievement "Redundancies Expert"
+                "effect.minecraft.water_breathing", MobEffects.WATER_BREATHING,0x96D7BE, CAATags.CAAFluidTags.GIVES_WATER_BREATHING.tag)); //make this an achievement "Redundancies Expert"
         conduitEffectsMap.put("WEAKNESS", new MechanicalConduitEffect(
-                "effect.minecraft.weakness", MobEffects.WEAKNESS,0x484D48, CCATags.CCAFluidTags.GIVES_WEAKNESS.tag));
+                "effect.minecraft.weakness", MobEffects.WEAKNESS,0x484D48, CAATags.CAAFluidTags.GIVES_WEAKNESS.tag));
         conduitEffectsMap.put("WEAVING", new MechanicalConduitEffect(
-                "effect.minecraft.weaving", MobEffects.WEAVING,0x78695A, CCATags.CCAFluidTags.GIVES_WEAVING.tag));
+                "effect.minecraft.weaving", MobEffects.WEAVING,0x78695A, CAATags.CAAFluidTags.GIVES_WEAVING.tag));
         conduitEffectsMap.put("WIND_CHARGED", new MechanicalConduitEffect(
-                "effect.minecraft.wind_charged", MobEffects.WIND_CHARGED,0xBDC9FF, CCATags.CCAFluidTags.GIVES_WIND.tag));
+                "effect.minecraft.wind_charged", MobEffects.WIND_CHARGED,0xBDC9FF, CAATags.CAAFluidTags.GIVES_WIND.tag));
         conduitEffectsMap.put("WITHER", new MechanicalConduitEffect(
-                "effect.minecraft.wither", MobEffects.WITHER,0x352A27, CCATags.CCAFluidTags.GIVES_WITHER.tag));
+                "effect.minecraft.wither", MobEffects.WITHER,0x352A27, CAATags.CAAFluidTags.GIVES_WITHER.tag));
 
         eyeAnimation = LerpedFloat.linear();
         eyeAngle = LerpedFloat.angular();
+        cageAngle = LerpedFloat.angular();
 
         eyeAngle.startWithValue((AngleHelper.horizontalAngle(Direction.NORTH) + 180) % 360);
+        cageAngle.startWithValue((AngleHelper.horizontalAngle(Direction.NORTH) + 180) % 360);
     }
 
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
+
         tank = new SmartFluidTankBehaviour(SmartFluidTankBehaviour.INPUT, this, 1, TANK_CAPACITY,true)
                 .whenFluidUpdates(this::consumeFluid)
                 .forbidExtraction();
         behaviours.add(tank);
+
+        behaviours.add(entityTypeSelector = new ScrollOptionBehaviour<>(EntitySelectionMode.class,
+                CAALang.translateDirect("mechanical_conduit.entity_filter.title"), this,
+                new MechanicalConduitModeSlot()));
+
     }
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
-                CCABlockEntityTypes.MECHANICAL_CONDUIT.get(),
+                CAABlockEntityTypes.MECHANICAL_CONDUIT.get(),
                 (be, context) -> {
                     if (context == null || context == Direction.DOWN)
                         return be.tank.getCapability();
@@ -183,7 +199,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         for(MechanicalConduitEffect conduitEffect : conduitEffectsMap.values()) {
             if (conduitEffect.isActive()) {
                 conduitEffect.subtractTicks();
-                applyEffects(level, getBlockPos(), conduitEffect.getEffect());
+                this.applyEffects(conduitEffect.getEffect());
 
                 if (conduitEffect.getTicks() < awakenedTicksLimit) {
                     tank.allowInsertion();
@@ -192,7 +208,6 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
                 if (conduitEffect.getTicks() > maxAwakanedTicks) {
                     maxAwakanedTicks = conduitEffect.getTicks();
                 }
-
             }
 
             awakenedTicks = maxAwakanedTicks;
@@ -254,6 +269,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
             return ConduitPowerLevel.IDLE;
         }
     }
+
     @OnlyIn(Dist.CLIENT)
     private boolean shouldTickAnimation() {
         return !VisualizationManager.supportsVisualization(level);
@@ -261,7 +277,8 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
 
     @OnlyIn(Dist.CLIENT)
     public void tickAnimation() { //This is just for player tracking, everything else is done in visual class
-        float target = 0;
+        float eyeTarget = 0;
+        float cageTarget = 0;
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null && !player.isInvisible()) {
             double x;
@@ -275,15 +292,15 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
             };
             double dx = x - (getBlockPos().getX() + 0.5);
             double dz = z - (getBlockPos().getZ() + 0.5);
-            target = AngleHelper.deg(-Mth.atan2(dz, dx)) - 90;
+            eyeTarget = AngleHelper.deg(-Mth.atan2(dz, dx)) - 90;
         };
-        target = eyeAngle.getValue() + AngleHelper.getShortestAngleDiff(eyeAngle.getValue(), target);
-        eyeAngle.chase(target, .25f, LerpedFloat.Chaser.exp(5));
+        eyeTarget = eyeAngle.getValue() + AngleHelper.getShortestAngleDiff(eyeAngle.getValue(), eyeTarget);
+        eyeAngle.chase(eyeTarget, .25f, LerpedFloat.Chaser.exp(5));
         eyeAngle.tickChaser();
 
         eyeAnimation.chase(0, 0.25f, LerpedFloat.Chaser.exp(0.25f));
         eyeAnimation.tickChaser();
-    };
+    }
 
     protected void spawnParticles(ConduitPowerLevel conduitPowerLevel) {
         if (level == null)
@@ -294,28 +311,69 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         RandomSource r = level.getRandom();
 
         if (conduitPowerLevel.isAwakened() && r.nextInt(5) == 0) {
-            Vec3 vec31 = new Vec3(getBlockPos().getX()+0.5f, getBlockPos().getY()+1.25f, getBlockPos().getZ()+0.5f);
+            Vec3 vec31 = new Vec3(getBlockPos().getX()+0.5f, getBlockPos().getY()+2f, getBlockPos().getZ()+0.5f);
             float f3 = (-0.5F + r.nextFloat())*2f;
-            float f4 = (-0.75f + r.nextFloat());
+            float f4 = (-1.25f + r.nextFloat());
             float f5 = (-0.5F + r.nextFloat())*2f;
             Vec3 vec32 = new Vec3((double)f3, (double)f4, (double)f5);
             level.addParticle(ParticleTypes.NAUTILUS, vec31.x, vec31.y, vec31.z, vec32.x, vec32.y, vec32.z);
         }
     }
 
-    private static void applyEffects(Level level, BlockPos pos, Holder<MobEffect> effect) {
+    private void applyEffects(Holder<MobEffect> effect) {
         int range = 32;
-        int k = pos.getX();
-        int l = pos.getY();
-        int i1 = pos.getZ();
-        AABB aabb = (new AABB((double)k, (double)l, (double)i1, (double)(k + 1), (double)(l + 1), (double)(i1 + 1))).inflate((double)range).expandTowards((double)0.0F, (double)level.getHeight(), (double)0.0F);
-        List<Player> list = level.getEntitiesOfClass(Player.class, aabb);
+        int k = this.getBlockPos().getX();
+        int l = this.getBlockPos().getY();
+        int i1 = this.getBlockPos().getZ();
+        AABB aabb = (new AABB((double)k, (double)l, (double)i1, (double)(k + 1), (double)(l + 1), (double)(i1 + 1))).inflate((double)range).expandTowards((double)0.0F, (double)this.level.getHeight(), (double)0.0F);
+
+        List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, aabb);
         if (!list.isEmpty()) {
-            for(Player player : list) {
-                if (pos.closerThan(player.blockPosition(), (double)range)) {
-                    player.addEffect(new MobEffectInstance(effect, 619, 0, true, true));
+            for(LivingEntity entity : list) {
+                if (entityMatchesSelector(entity, entityTypeSelector.get())){
+                    if (this.getBlockPos().closerThan(entity.blockPosition(), (double)range)) {
+                        MobEffectInstance existing = entity.getEffect(effect);
+                        if (existing == null || existing.getDuration() < 25) {
+                            entity.addEffect(new MobEffectInstance(effect, 119, 0, true, true));
+                        }
+                    }
                 }
             }
+        }
+    }
+
+    public static boolean entityMatchesSelector(LivingEntity entity, EntitySelectionMode mode) {
+        if (mode == EntitySelectionMode.PLAYERS) return (entity instanceof Player);
+        else if (mode == EntitySelectionMode.MONSTERS) return (entity instanceof Enemy);
+        else if (mode == EntitySelectionMode.FRIENDLY_MOBS) return (entity instanceof PathfinderMob && !(entity instanceof Monster));
+        else if (mode == EntitySelectionMode.PLAYERS_FRIENDLY_MOBS) return (
+                (entity instanceof PathfinderMob && !(entity instanceof Monster) || (entity instanceof Player)));
+        return true;
+    }
+
+    public enum EntitySelectionMode implements INamedIconOptions {
+        EVERYONE(CAAIcons.I_EVERYONE),
+        PLAYERS(CAAIcons.I_PLAYERS),
+        FRIENDLY_MOBS(CAAIcons.I_FRIENDLY_MOBS),
+        PLAYERS_FRIENDLY_MOBS(CAAIcons.I_PLAYERS_FRIENDLY_MOBS),
+        MONSTERS(CAAIcons.I_MONSTERS);
+
+        private final String translationKey;
+        private final CAAIcons icon;
+
+        EntitySelectionMode(CAAIcons icon) {
+            this.icon = icon;
+            this.translationKey = "mechanical_conduit.selection_mode." + Lang.asId(name()); // Will end up at the create namespace
+        }
+
+        @Override
+        public CAAIcons getIcon() {
+            return icon;
+        }
+
+        @Override
+        public String getTranslationKey() {
+            return translationKey;
         }
     }
 
@@ -326,7 +384,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
             return false;
         }
 
-        CCALang.translate("tooltip.conduitcage.header").forGoggles(tooltip);
+        CAALang.translate("tooltip.conduitcage.header").forGoggles(tooltip);
 
         LangBuilder sec = CreateLang.translate("generic.unit.seconds");
 
@@ -336,16 +394,27 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
                     .withStyle(Style.EMPTY.withColor(conduitEffect.getColor()));
 
             if (conduitEffect.isActive()){
-                CCALang.text("")
+                CAALang.text("")
                     .add(effectName)
-                    .add(CCALang.text(" "))
-                    .add(CCALang.number(Mth.floor(conduitEffect.getTicks()/20f))
-                    .add(CCALang.text(" "))
-                    .add(sec)
+                    .add(CAALang.text(" "))
+                    .add(CAALang.text(tickToDuration(conduitEffect.getTicks()))
                     .style(ChatFormatting.WHITE))
                     .forGoggles(tooltip, 1);
             }
         }
         return true;
+    }
+
+    public String tickToDuration(int tickAmount) {
+        if (tickAmount>143990) return "∞";
+        int totalSeconds = tickAmount / 20;
+        int hours = totalSeconds / 3600;
+        int minutes = (totalSeconds / 60)%60;
+        int seconds = totalSeconds % 60;
+        if (hours > 0) {
+            return String.format("%02d:%02d:%02d",hours, minutes, seconds);}
+        else{
+            return String.format("%02d:%02d", minutes, seconds);
+        }
     }
 }

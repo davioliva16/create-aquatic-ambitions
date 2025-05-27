@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.compat.jei.category.animations.AnimatedKinetics;
 
 import net.createmod.catnip.animation.AnimationTickHolder;
-import net.davio.aquaticambitions.registry.CCAPartials;
+import net.davio.aquaticambitions.registry.CAAPartials;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.util.Mth;
 
@@ -29,19 +29,19 @@ public class AnimatedConduit extends AnimatedKinetics {
         matrixStack.translate(0, 0, 0);
         int scale = 24;
 
-        blockElement(CCAPartials.CONDUIT_CAGE)
+        blockElement(CAAPartials.CONDUIT_CAGE)
                 .atLocal(0,getConduitHeight(),2)
                 .rotateBlock(getConduitAngle(true),getConduitAngle(false),0)
                 .scale(scale)
                 .render(graphics);
 
-        blockElement(CCAPartials.CONDUIT_EYE)
+        blockElement(CAAPartials.CONDUIT_EYE)
                 .atLocal(0,getConduitHeight(),2)
                 .rotateBlock( 0,-22.5,0)
                 .scale(scale)
                 .render(graphics);
 
-        blockElement(CCAPartials.CONDUIT_WIND)
+        blockElement(CAAPartials.CONDUIT_WIND)
                 .atLocal(0,0,2)
                 .scale(scale)
                 .render(graphics);

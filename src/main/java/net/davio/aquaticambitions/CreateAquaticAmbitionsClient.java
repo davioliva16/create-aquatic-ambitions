@@ -1,6 +1,8 @@
 package net.davio.aquaticambitions;
 
-import net.davio.aquaticambitions.registry.CCAPartials;
+import net.createmod.ponder.foundation.PonderIndex;
+import net.davio.aquaticambitions.ponder.CAAPonderPlugin;
+import net.davio.aquaticambitions.registry.CAAPartials;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -18,6 +20,7 @@ public class CreateAquaticAmbitionsClient {
     }
 
     public static void clientInit(final FMLClientSetupEvent event) {
-        CCAPartials.init();
+        CAAPartials.init();
+        PonderIndex.addPlugin(new CAAPonderPlugin());
     }
 }

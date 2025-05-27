@@ -1,35 +1,26 @@
 package net.davio.aquaticambitions.content.processing.conduit;
 
 import com.mojang.serialization.Codec;
-import com.simibubi.create.AllItems;
 import com.simibubi.create.AllShapes;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.block.IBE;
 
 import net.createmod.catnip.lang.Lang;
-import net.davio.aquaticambitions.registry.CCABlockEntityTypes;
-import net.davio.aquaticambitions.registry.CCAShapes;
+import net.davio.aquaticambitions.registry.CAABlockEntityTypes;
+import net.davio.aquaticambitions.registry.CAAShapes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.api.distmarker.Dist;
@@ -60,7 +51,7 @@ public class MechanicalConduitBlock extends Block implements IBE<MechanicalCondu
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return CCAShapes.MECH_CONDUIT_SHAPE;
+        return CAAShapes.MECH_CONDUIT_SHAPE;
     };
 
     @Override
@@ -80,7 +71,6 @@ public class MechanicalConduitBlock extends Block implements IBE<MechanicalCondu
         world.playLocalSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F),
                 (double) ((float) pos.getZ() + 0.5F), SoundEvents.CONDUIT_AMBIENT, SoundSource.BLOCKS,
                 0.5F + random.nextFloat(), random.nextFloat() * 0.7F + 0.6F, false);
-
         }
     }
 
@@ -95,7 +85,7 @@ public class MechanicalConduitBlock extends Block implements IBE<MechanicalCondu
 
     @Override
     public BlockEntityType<? extends MechanicalConduitBlockEntity> getBlockEntityType() {
-        return CCABlockEntityTypes.MECHANICAL_CONDUIT.get();
+        return CAABlockEntityTypes.MECHANICAL_CONDUIT.get();
     }
 
 

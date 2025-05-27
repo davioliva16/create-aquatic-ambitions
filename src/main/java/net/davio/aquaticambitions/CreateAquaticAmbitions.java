@@ -6,11 +6,11 @@ import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import com.tterrag.registrate.util.RegistrateDistExecutor;
 import net.createmod.catnip.lang.FontHelper;
-import net.davio.aquaticambitions.content.kinetics.fan.processing.CCAFanProcessing;
-import net.davio.aquaticambitions.content.logistics.CCAItemAttributes;
-import net.davio.aquaticambitions.data.CCADatagen;
+import net.davio.aquaticambitions.content.kinetics.fan.processing.CAAFanProcessing;
+import net.davio.aquaticambitions.content.logistics.CAAItemAttributes;
+import net.davio.aquaticambitions.data.CAADatagen;
 import net.davio.aquaticambitions.registry.*;
-import net.davio.aquaticambitions.registry.recipe.CCARecipeTypes;
+import net.davio.aquaticambitions.registry.recipe.CAARecipeTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -39,21 +39,21 @@ public class CreateAquaticAmbitions
 
         REGISTRATE.registerEventListeners(modEventBus);
 
-        CCAItems.register();
-        CCABlocks.register();
-        CCABlockEntityTypes.register();
-        CCACreativeTab.register(modEventBus);
+        CAAItems.register();
+        CAABlocks.register();
+        CAABlockEntityTypes.register();
+        CAACreativeTab.register(modEventBus);
 
-        CCATags.init();
-        CCARecipeTypes.register(modEventBus);
-        CCAFanProcessing.register(modEventBus);
-        CCAItemAttributes.register(modEventBus);
+        CAATags.init();
+        CAARecipeTypes.register(modEventBus);
+        CAAFanProcessing.register(modEventBus);
+        CAAItemAttributes.register(modEventBus);
 
 
         RegistrateDistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CreateAquaticAmbitionsClient.onCtorClient(modEventBus));
 
         modEventBus.addListener(this::setup);
-        modEventBus.addListener(EventPriority.LOWEST, CCADatagen::gatherData);
+        modEventBus.addListener(EventPriority.LOWEST, CAADatagen::gatherData);
     }
 
     public static ResourceLocation asResource(String path) {

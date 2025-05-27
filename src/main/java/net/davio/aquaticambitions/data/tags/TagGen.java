@@ -2,7 +2,7 @@ package net.davio.aquaticambitions.data.tags;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
-import net.davio.aquaticambitions.registry.CCATags;
+import net.davio.aquaticambitions.registry.CAATags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
@@ -16,10 +16,10 @@ public class TagGen {
 
     private static void genBlockTags(RegistrateTagsProvider<Block> provIn) {
         com.simibubi.create.foundation.data.TagGen.CreateTagsProvider<Block> prov = new com.simibubi.create.foundation.data.TagGen.CreateTagsProvider<>(provIn, Block::builtInRegistryHolder);
-            prov.tag(CCATags.CCABlockTags.FAN_PROCESSING_CATALYSTS_CHANNELING.tag).add(
+            prov.tag(CAATags.CAABlockTags.FAN_PROCESSING_CATALYSTS_CHANNELING.tag).add(
                 Blocks.CONDUIT
         );
 
-        for (CCATags.CCABlockTags tag : CCATags.CCABlockTags.values()) if (tag.alwaysDatagen) prov.getOrCreateRawBuilder(tag.tag);
+        for (CAATags.CAABlockTags tag : CAATags.CAABlockTags.values()) if (tag.alwaysDatagen) prov.getOrCreateRawBuilder(tag.tag);
     }
 }

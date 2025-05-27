@@ -9,7 +9,7 @@ import net.minecraft.world.item.Items;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CCACrushingRecipeGen extends CrushingRecipeGen {
+public class CAACrushingRecipeGen extends CrushingRecipeGen {
 
     GeneratedRecipe
 
@@ -28,7 +28,7 @@ public class CCACrushingRecipeGen extends CrushingRecipeGen {
             .output(.5f, Items.LAPIS_LAZULI, 1)
             .output( .75f,  AllItems.EXP_NUGGET, 1));
 
-    public CCACrushingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+    public CAACrushingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
     }
 }

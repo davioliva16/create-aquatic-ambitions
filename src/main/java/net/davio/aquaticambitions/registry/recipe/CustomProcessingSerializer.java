@@ -7,7 +7,7 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
 
 public class CustomProcessingSerializer <T extends ProcessingRecipe<?>> extends ProcessingRecipeSerializer<T> {
 
-    public final MapCodec<T> CODEC = CCARecipeTypes.CODEC.dispatchMap(t -> (CCARecipeTypes) t.getTypeInfo(), CCARecipeTypes::processingCodec);
+    public final MapCodec<T> CODEC = CAARecipeTypes.CODEC.dispatchMap(t -> (CAARecipeTypes) t.getTypeInfo(), CAARecipeTypes::processingCodec);
 
 
     public CustomProcessingSerializer(ProcessingRecipeBuilder.ProcessingRecipeFactory<T> factory) {

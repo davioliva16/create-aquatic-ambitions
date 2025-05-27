@@ -6,9 +6,9 @@ import com.simibubi.create.foundation.recipe.RecipeApplier;
 import net.createmod.catnip.theme.Color;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlockEntity;
-import net.davio.aquaticambitions.registry.CCATags.CCABlockTags;
-import net.davio.aquaticambitions.registry.CCATags.CCAFluidTags;
-import net.davio.aquaticambitions.registry.recipe.CCARecipeTypes;
+import net.davio.aquaticambitions.registry.CAATags.CAABlockTags;
+import net.davio.aquaticambitions.registry.CAATags.CAAFluidTags;
+import net.davio.aquaticambitions.registry.recipe.CAARecipeTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -37,7 +37,7 @@ import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBl
 import java.util.List;
 import java.util.Optional;
 
-public class CCAFanProcessing {
+public class CAAFanProcessing {
 
     public static final DeferredRegister<FanProcessingType> FAN_PROCESSING_TYPES = DeferredRegister.create(CreateBuiltInRegistries.FAN_PROCESSING_TYPE, CreateAquaticAmbitions.MODID);
 
@@ -62,8 +62,8 @@ public class CCAFanProcessing {
             FluidState fluidState = level.getFluidState(pos);
             BlockState blockState = level.getBlockState(pos);
 
-            return CCABlockTags.FAN_PROCESSING_CATALYSTS_CHANNELING.matches(blockState)
-                    || CCAFluidTags.FAN_PROCESSING_CATALYSTS_CHANNELING.matches(fluidState);
+            return CAABlockTags.FAN_PROCESSING_CATALYSTS_CHANNELING.matches(blockState)
+                    || CAAFluidTags.FAN_PROCESSING_CATALYSTS_CHANNELING.matches(fluidState);
         }
 
         @Override
@@ -73,14 +73,14 @@ public class CCAFanProcessing {
 
         @Override
         public boolean canProcess(ItemStack stack, Level level) {
-            Optional<RecipeHolder<Recipe<SingleRecipeInput>>> recipe = CCARecipeTypes.CHANNELING.find(new SingleRecipeInput(stack), level);
+            Optional<RecipeHolder<Recipe<SingleRecipeInput>>> recipe = CAARecipeTypes.CHANNELING.find(new SingleRecipeInput(stack), level);
             return recipe.isPresent();
         }
 
         @Override
         @Nullable
         public List<ItemStack> process(ItemStack stack, Level level) {
-            Optional<RecipeHolder<Recipe<SingleRecipeInput>>> recipe = CCARecipeTypes.CHANNELING.find(new SingleRecipeInput(stack), level);
+            Optional<RecipeHolder<Recipe<SingleRecipeInput>>> recipe = CAARecipeTypes.CHANNELING.find(new SingleRecipeInput(stack), level);
             return recipe.map(recipeRecipeHolder -> RecipeApplier.applyRecipeOn(level, stack, recipeRecipeHolder)).orElse(null);
         }
 

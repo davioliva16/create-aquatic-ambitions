@@ -7,7 +7,7 @@ import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.math.AngleHelper;
 import net.createmod.catnip.render.CachedBuffers;
 import net.createmod.catnip.render.SuperByteBuffer;
-import net.davio.aquaticambitions.registry.CCAPartials;
+import net.davio.aquaticambitions.registry.CAAPartials;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -31,48 +31,53 @@ public class MechanicalConduitRenderer extends SafeBlockEntityRenderer<Mechanica
         Level level = be.getLevel();
         BlockState blockState = be.getBlockState();
         float animation = be.eyeAnimation.getValue(partialTicks) * .175f;
-        float horizontalAngle = AngleHelper.rad(be.eyeAngle.getValue(partialTicks));
+        float eyeAngle = AngleHelper.rad(be.eyeAngle.getValue(partialTicks));
         int hashCode = be.hashCode();
 
         renderShared(ms, null, bufferSource,
-                level, blockState, conduitLevel, animation, horizontalAngle, hashCode);
+                level, blockState, conduitLevel, animation, eyeAngle, hashCode);
     }
 
     private void renderShared(PoseStack ms, @Nullable PoseStack modelTransform, MultiBufferSource bufferSource,
-        Level level, BlockState blockState, ConduitPowerLevel conduitLevel, float animation, float horizontalAngle, int hashCode) {
+        Level level, BlockState blockState, ConduitPowerLevel conduitLevel, float animation, float playerTrackAngle, int hashCode) {
 
         float time = AnimationTickHolder.getRenderTime(level);
         float renderTick = time + (hashCode % 13) * 16f;
         float offsetMult = conduitLevel.isAwakened() ? 64 : 16;
         float offset = Mth.sin((float) ((renderTick / 16f) % (2 * Math.PI))) / offsetMult;
-        float eyeY = offset - (animation * .75f);
+        float eyeY = offset - (animation * .75f) + (conduitLevel.isAwakened()?0.2f:0);
+        float rotateYZ = Mth.DEG_TO_RAD*(time * 2f) % 360;
+        float rotateX = Mth.DEG_TO_RAD*30*(Mth.sin(((time * 2f) % 360)*Mth.DEG_TO_RAD));
 
         VertexConsumer solid = bufferSource.getBuffer(RenderType.solid());
         VertexConsumer cutout = bufferSource.getBuffer(RenderType.cutoutMipped());
 
         ms.pushPose();
 
-        SuperByteBuffer headBuffer = CachedBuffers.partial(CCAPartials.CONDUIT_EYE, blockState);
+        SuperByteBuffer headBuffer = CachedBuffers.partial(CAAPartials.CONDUIT_EYE, blockState);
         if (modelTransform != null)
             headBuffer.transform(modelTransform);
         headBuffer.translate(0, eyeY, 0);
-        draw(headBuffer, horizontalAngle, ms, bufferSource.getBuffer(RenderType.cutout()));
+        draw(headBuffer, playerTrackAngle, ms, bufferSource.getBuffer(RenderType.cutout()));
 
         if (conduitLevel.isAwakened()) {
 
-            SuperByteBuffer cageBuffer = CachedBuffers.partial(CCAPartials.CONDUIT_CAGE, blockState);
+            SuperByteBuffer cageBuffer = CachedBuffers.partial(CAAPartials.CONDUIT_CAGE, blockState);
             if (modelTransform != null)
                 cageBuffer.transform(modelTransform);
-            cageBuffer.translate(0, eyeY, 0);
-            draw(cageBuffer, horizontalAngle, ms, bufferSource.getBuffer(RenderType.cutout()));
+            cageBuffer
+                    .translate(0, eyeY, 0)
+                    .rotateXCentered(rotateX)
+                    .rotateZCentered(rotateYZ);
+            draw(cageBuffer, rotateYZ, ms, bufferSource.getBuffer(RenderType.cutout()));
 
         } else {
 
-            SuperByteBuffer inactiveConduitBuffer = CachedBuffers.partial(CCAPartials.INACTIVE_CONDUIT, blockState);
+            SuperByteBuffer inactiveConduitBuffer = CachedBuffers.partial(CAAPartials.INACTIVE_CONDUIT, blockState);
             if (modelTransform != null)
                 inactiveConduitBuffer.transform(modelTransform);
             inactiveConduitBuffer.translate(0, eyeY, 0);
-            draw(inactiveConduitBuffer, horizontalAngle, ms, bufferSource.getBuffer(RenderType.cutout()));
+            draw(inactiveConduitBuffer, playerTrackAngle, ms, bufferSource.getBuffer(RenderType.cutout()));
         }
 
         ms.popPose();

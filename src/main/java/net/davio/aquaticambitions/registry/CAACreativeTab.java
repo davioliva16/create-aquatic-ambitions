@@ -10,7 +10,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 
-public class CCACreativeTab {
+public class CAACreativeTab {
 
     private static final DeferredRegister<CreativeModeTab> REGISTER =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CreateAquaticAmbitions.MODID);
@@ -19,15 +19,15 @@ public class CCACreativeTab {
         () -> CreativeModeTab.builder()
             .title(Component.translatableWithFallback("itemGroup.create_aquatic_ambitions.base", "Create Aquatic Ambitions"))
             .withTabsBefore(AllCreativeModeTabs.PALETTES_CREATIVE_TAB .getKey())
-            .icon(CCAItems.PRISMARINE_ALLOY::asStack)
+            .icon(CAAItems.PRISMARINE_ALLOY::asStack)
             .displayItems(((itemDisplayParameters, output) -> {
 
-                output.accept(CCAItems.PRISMARINE_ALLOY.get());
-                output.accept(CCABlocks.PRISMARINE_ALLOY_BLOCK.asItem());
-                output.accept(CCAItems.PRISMARINE_ROD.get());
-                output.accept(CCAItems.FLINT_SHARD.get());
-                output.accept(CCAItems.POLISHED_QUARTZ_TINE.get());
-                output.accept(CCABlocks.MECHANICAL_CONDUIT.asItem());
+                output.accept(CAAItems.PRISMARINE_ALLOY.get());
+                output.accept(CAABlocks.PRISMARINE_ALLOY_BLOCK.asItem());
+                output.accept(CAAItems.PRISMARINE_ROD.get());
+                output.accept(CAAItems.FLINT_SHARD.get());
+                output.accept(CAAItems.POLISHED_QUARTZ_TINE.get());
+                output.accept(CAABlocks.MECHANICAL_CONDUIT.asItem());
 
             }))
             .build());

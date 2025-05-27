@@ -9,8 +9,8 @@
 	"elements": [
 		{
 			"name": "head",
-			"from": [4, 6, 4],
-			"to": [12, 14, 12],
+			"from": [5, 7, 5],
+			"to": [11, 13, 11],
 			"rotation": {"angle": 0, "axis": "y", "origin": [6, 6, 6]},
 			"faces": {
 				"north": {"uv": [0, 6, 3, 12], "texture": "#1"},

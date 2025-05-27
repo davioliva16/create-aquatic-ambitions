@@ -21,7 +21,7 @@ import net.minecraft.world.level.material.FluidState;
 
 import static net.davio.aquaticambitions.CreateAquaticAmbitions.MODID;
 
-public class CCATags {
+public class CAATags {
     public static <T> TagKey<T> optionalTag(Registry<T> registry, ResourceLocation id) {
         return TagKey.create(registry.key(), id);
     }
@@ -68,30 +68,30 @@ public class CCATags {
         }
     }
 
-    public enum CCABlockTags {
+    public enum CAABlockTags {
 
         FAN_PROCESSING_CATALYSTS_CHANNELING(NameSpace.MOD, "fan_processing_catalysts/channeling");
 
         public final TagKey<Block> tag;
         public final boolean alwaysDatagen;
 
-        CCABlockTags() {
+        CAABlockTags() {
             this(NameSpace.MOD);
         }
 
-        CCABlockTags(NameSpace namespace) {
+        CAABlockTags(NameSpace namespace) {
             this(namespace, namespace.optionalDefault, namespace.alwaysDatagenDefault);
         }
 
-        CCABlockTags(NameSpace namespace, String path) {
+        CAABlockTags(NameSpace namespace, String path) {
             this(namespace, path, namespace.optionalDefault, namespace.alwaysDatagenDefault);
         }
 
-        CCABlockTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
+        CAABlockTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
             this(namespace, null, optional, alwaysDatagen);
         }
 
-        CCABlockTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
+        CAABlockTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace.id, path == null ? Lang.asId(name()) : path);
         if (optional) {
             tag = optionalTag(BuiltInRegistries.BLOCK, id);
@@ -119,30 +119,30 @@ public class CCATags {
         }
     }
 
-    public enum CCAItemTags {
+    public enum CAAItemTags {
 
         UA_CORAL(NameSpace.MOD, "upgrade_aquatic/coral");
 
         public final TagKey<Item> tag;
         public final boolean alwaysDatagen;
 
-        CCAItemTags() {
+        CAAItemTags() {
             this(NameSpace.MOD);
         }
 
-        CCAItemTags(NameSpace namespace) {
+        CAAItemTags(NameSpace namespace) {
             this(namespace, namespace.optionalDefault, namespace.alwaysDatagenDefault);
         }
 
-        CCAItemTags(NameSpace namespace, String path) {
+        CAAItemTags(NameSpace namespace, String path) {
             this(namespace, path, namespace.optionalDefault, namespace.alwaysDatagenDefault);
         }
 
-        CCAItemTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
+        CAAItemTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
             this(namespace, null, optional, alwaysDatagen);
         }
 
-        CCAItemTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
+        CAAItemTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
             ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace.id, path == null ? Lang.asId(name()) : path);
             if (optional) {
                 tag = optionalTag(BuiltInRegistries.ITEM, id);
@@ -166,13 +166,13 @@ public class CCATags {
         }
     }
 
-    public enum CCAFluidTags {
+    public enum CAAFluidTags {
 
         CONDUIT_FUEL(NameSpace.MOD,"mechanical_conduit_fuel"),
-        GIVES_FIRE_RES(NameSpace.MOD,"conduit_effects/gives_fire_res"),
+        GIVES_FIRE_RES(NameSpace.MOD,"conduit_effects/gives_fire_resistance"),
         GIVES_HASTE(NameSpace.MOD,"conduit_effects/gives_haste"),
         GIVES_INFESTED(NameSpace.MOD,"conduit_effects/gives_infested"),
-        GIVES_INVIS(NameSpace.MOD,"conduit_effects/gives_invis"),
+        GIVES_INVIS(NameSpace.MOD,"conduit_effects/gives_invisibility"),
         GIVES_JUMP(NameSpace.MOD,"conduit_effects/gives_jump"),
         GIVES_LUCK(NameSpace.MOD,"conduit_effects/gives_luck"),
         GIVES_NIGHT_VISION(NameSpace.MOD,"conduit_effects/gives_night_vision"),
@@ -195,23 +195,23 @@ public class CCATags {
         public final TagKey<Fluid> tag;
         public final boolean alwaysDatagen;
 
-        CCAFluidTags() {
+        CAAFluidTags() {
             this(NameSpace.MOD);
         }
 
-        CCAFluidTags(NameSpace namespace) {
+        CAAFluidTags(NameSpace namespace) {
             this(namespace, namespace.optionalDefault, namespace.alwaysDatagenDefault);
         }
 
-        CCAFluidTags(NameSpace namespace, String path) {
+        CAAFluidTags(NameSpace namespace, String path) {
             this(namespace, path, namespace.optionalDefault, namespace.alwaysDatagenDefault);
         }
 
-        CCAFluidTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
+        CAAFluidTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
             this(namespace, null, optional, alwaysDatagen);
         }
 
-        CCAFluidTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
+        CAAFluidTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
             ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace.id, path == null ? Lang.asId(name()) : path);
             if (optional) {
                 tag = optionalTag(BuiltInRegistries.FLUID, id);
@@ -232,12 +232,11 @@ public class CCATags {
 
         private static void init() {
         }
-
     }
 
     public static void init() {
-        CCABlockTags.init();
-        CCAItemTags.init();
-        CCAFluidTags.init();
+        CAABlockTags.init();
+        CAAItemTags.init();
+        CAAFluidTags.init();
     }
 }

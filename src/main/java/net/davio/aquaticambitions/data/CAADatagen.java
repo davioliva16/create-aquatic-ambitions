@@ -4,8 +4,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.simibubi.create.foundation.utility.FilesHelper;
 import com.tterrag.registrate.providers.RegistrateDataProvider;
-import net.davio.aquaticambitions.data.recipe.CCACrushingRecipeGen;
-import net.davio.aquaticambitions.data.recipe.CCAMixingRecipeGen;
+import net.davio.aquaticambitions.data.recipe.CAACrushingRecipeGen;
+import net.davio.aquaticambitions.data.recipe.CAAMixingRecipeGen;
 import net.davio.aquaticambitions.data.recipe.ChannelingRecipeGen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -20,7 +20,7 @@ import java.util.function.BiConsumer;
 import static net.davio.aquaticambitions.CreateAquaticAmbitions.MODID;
 import static net.davio.aquaticambitions.CreateAquaticAmbitions.REGISTRATE;
 
-public class CCADatagen {
+public class CAADatagen {
     public static void gatherData(GatherDataEvent event) {
 
         DataGenerator generator = event.getGenerator();
@@ -29,8 +29,8 @@ public class CCADatagen {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
         generator.addProvider(event.includeServer(), new ChannelingRecipeGen(output, lookupProvider));
-        generator.addProvider(event.includeServer(), new CCACrushingRecipeGen(output, lookupProvider));
-        generator.addProvider(event.includeServer(), new CCAMixingRecipeGen(output, lookupProvider));
+        generator.addProvider(event.includeServer(), new CAACrushingRecipeGen(output, lookupProvider));
+        generator.addProvider(event.includeServer(), new CAAMixingRecipeGen(output, lookupProvider));
 
         event.getGenerator().addProvider(true, REGISTRATE.setDataProvider(new RegistrateDataProvider(REGISTRATE, MODID, event)));
     }
