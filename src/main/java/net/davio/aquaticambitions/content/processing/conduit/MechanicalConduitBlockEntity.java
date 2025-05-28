@@ -23,6 +23,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -37,6 +38,7 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -158,10 +160,10 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         FluidStack fluidStack = tank.getPrimaryHandler().getFluid();
 
         for(MechanicalConduitEffect conduitEffect : conduitEffectsMap.values()) {
-            if (fluidStack.is(conduitEffect.getFluidTag())) {
+            if (fluidStack.is(conduitEffect.getFluidTag()) || potionHasEffect(fluidStack, conduitEffect)) // or NBT matches create:potion
+                {
                 conduitEffect.addTicks(fluidStack.getAmount());
             }
-
             if (conduitEffect.getTicks() > awakenedTicksLimit) {
                 tank.forbidInsertion();
             }
@@ -172,6 +174,19 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         notifyUpdate();
         updateBlockState();
         sendData();
+    }
+
+    private boolean potionHasEffect(FluidStack fluidStack, MechanicalConduitEffect conduitEffect) {
+        PotionContents potionContents = fluidStack.get(DataComponents.POTION_CONTENTS);
+        if (potionContents == null) {
+            return false;
+        }
+        for(MobEffectInstance effect :potionContents.getAllEffects()) {
+            if (effect.is(conduitEffect.getEffect())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
