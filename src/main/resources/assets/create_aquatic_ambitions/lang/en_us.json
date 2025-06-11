@@ -1,8 +1,34 @@
 {
-  "create.recipe.aquatic_ambitions.fan_channeling": "Conduit Channeling",
+  "itemGroup.create_aquatic_ambitions":"Create: Aquatic Ambitions",
+
+  "block.create_aquatic_ambitions.prismarine_alloy_block": "Prismarine Alloy Block",
+  "block.create_aquatic_ambitions.mechanical_conduit": "Conduit Cage",
+
   "item.create_aquatic_ambitions.prismarine_alloy": "Prismarine Alloy",
   "item.create_aquatic_ambitions.prismarine_rod": "Prismarine Rod",
   "item.create_aquatic_ambitions.flint_shard": "Flint Shard",
   "item.create_aquatic_ambitions.polished_quartz_tine": "Polished Quartz Tine",
-  "block.create_aquatic_ambitions.prismarine_alloy_block": "Prismarine Alloy Block"
+
+  "create_aquatic_ambitions.recipe.aquatic_ambitions.fan_channeling": "Conduit Channeling",
+
+  "create_aquatic_ambitions.mechanical_conduit.entity_filter.title": "Entity Filter",
+  "create.mechanical_conduit.selection_mode.everyone": "Everyone",
+  "create.mechanical_conduit.selection_mode.players": "Players",
+  "create.mechanical_conduit.selection_mode.friendly_mobs": "Friendly Mobs",
+  "create.mechanical_conduit.selection_mode.players_friendly_mobs": "Players and Friendly Mobs",
+  "create.mechanical_conduit.selection_mode.monsters": "Monsters",
+
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.header": "Awakening Conduit Cages",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_1": "Conduit Cages can be used as more compact version of the conduit's prismarine ring",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_2": "Fluids can be pumped into the conduit cage through its bottom face",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_3": "Pumping a fluid into a conduit cage will awaken it",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.header": "Processing Items with the Conduit Cage",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_1": "Conduits Cages can also be used for fan processing",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_2": "Air passing through an Conduit Cage will create a Channeling Setup",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_3": "Items caught in the Channeling stream will be processed",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.header": "Providing effects via Conduit Cages",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_1": "Awakened Conduit Cages can affect entities nearby",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_2": "Conduit Cage awakened with water will provide the Conduit Power effect",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_3": "Different fluids will provide different effects",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_4": "The mode slot allows you to select which entities will be affected"
 }

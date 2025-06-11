@@ -1,4 +1,4 @@
-package net.davio.aquaticambitions.entry;
+package net.davio.aquaticambitions.registry.recipe;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -8,7 +8,7 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.createmod.catnip.lang.Lang;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
-import net.davio.aquaticambitions.kinetics.fan.processing.ChannelingRecipe;
+import net.davio.aquaticambitions.content.kinetics.fan.processing.ChannelingRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -24,21 +24,21 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public enum CCARecipeTypes implements IRecipeTypeInfo {
+public enum CAARecipeTypes implements IRecipeTypeInfo {
     CHANNELING(ChannelingRecipe::new);
 
     private final ResourceLocation id;
     private final RegistryObject<RecipeSerializer<?>> serializerObject;
     private final Supplier<RecipeType<?>> type;
 
-    CCARecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier) {
+    CAARecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier) {
         String name = Lang.asId(name());
         id = CreateAquaticAmbitions.asResource(name);
         serializerObject = Registers.SERIALIZER_REGISTER.register(name, serializerSupplier);
         @Nullable RegistryObject<RecipeType<?>> typeObject = Registers.TYPE_REGISTER.register(name, () -> RecipeType.simple(id));
         type = typeObject;
     }
-    CCARecipeTypes(ProcessingRecipeBuilder.ProcessingRecipeFactory<?> processingFactory) {
+    CAARecipeTypes(ProcessingRecipeBuilder.ProcessingRecipeFactory<?> processingFactory) {
         this(() -> new ProcessingRecipeSerializer<>(processingFactory));
     }
 

@@ -1,22 +1,23 @@
 package net.davio.aquaticambitions;
 
-import com.mojang.logging.LogUtils;
+import com.simibubi.create.api.registry.CreateBuiltInRegistries;
+import com.simibubi.create.api.registry.CreateRegistries;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import net.davio.aquaticambitions.entry.*;
+import net.createmod.catnip.lang.LangBuilder;
+import net.davio.aquaticambitions.content.logistics.CAAItemAttributes;
+import net.davio.aquaticambitions.registry.*;
+import net.davio.aquaticambitions.registry.recipe.CAAFanProcessingTypes;
+import net.davio.aquaticambitions.registry.recipe.CAARecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegisterEvent;
-import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(CreateAquaticAmbitions.MODID)
@@ -26,47 +27,42 @@ public class CreateAquaticAmbitions {
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateAquaticAmbitions.MODID);
 
     public CreateAquaticAmbitions() {
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        onCtor();
+    }
 
-        eventBus.addListener(CreateAquaticAmbitions::onRegister);
+    public static void onCtor() {
+        ModLoadingContext modLoadingContext = ModLoadingContext.get();
 
-        REGISTRATE.registerEventListeners(eventBus);
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
-        CCATags.setRegister();
-        CCACreativeModeTab.register(eventBus);
-        CCABlocks.register();
-        CCAItems.register();
-        CCARecipeTypes.register(eventBus);
-        CCAPartials.init();
+        REGISTRATE.registerEventListeners(modEventBus);
 
-        eventBus.addListener(this::commonSetup);
+        CAAItems.register();
+        CAABlocks.register();
+        CAABlockEntityTypes.register();
+        CAACreativeModeTab.register(modEventBus);
 
-        MinecraftForge.EVENT_BUS.register(this);
+        CAATags.init();
+        CAARecipeTypes.register(modEventBus);
+        CAAItemAttributes.register(modEventBus);
+        CAAPartials.init();
 
-        eventBus.addListener(this::addCreative);
+        modEventBus.addListener(CreateAquaticAmbitions::init);
+        modEventBus.addListener(CreateAquaticAmbitions::onRegister);
+
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CreateAquaticAmbitionsClient.onCtorClient(modEventBus, forgeEventBus));
+    }
+
+    private static void init(final FMLCommonSetupEvent event) {
     }
 
     public static void onRegister(final RegisterEvent event) {
-        CCAFanProcessingTypes.init();
-    }
-    private void commonSetup(final FMLCommonSetupEvent event) {
+        CAAFanProcessingTypes.init();
     }
 
-    // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-    }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-    }
-
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-        }
+    public static LangBuilder lang() {
+        return new LangBuilder(MODID);
     }
 
     public static ResourceLocation asResource(String path) {

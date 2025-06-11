@@ -20,8 +20,8 @@ import mezz.jei.api.registration.IRecipeTransferRegistration;
 import mezz.jei.api.runtime.IIngredientManager;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.compat.jei.category.FanChannelingCategory;
-import net.davio.aquaticambitions.entry.CCARecipeTypes;
-import net.davio.aquaticambitions.kinetics.fan.processing.ChannelingRecipe;
+import net.davio.aquaticambitions.registry.recipe.CAARecipeTypes;
+import net.davio.aquaticambitions.content.kinetics.fan.processing.ChannelingRecipe;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -44,7 +44,7 @@ import static com.simibubi.create.compat.jei.CreateJEI.consumeTypedRecipes;
 @SuppressWarnings({"unused", "inline", "all"})
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class CCAJEI implements IModPlugin {
+public class CAAJEI implements IModPlugin {
     private static final ResourceLocation MOD_ID = new ResourceLocation(CreateAquaticAmbitions.MODID, "jei_plugin");
     @Override
     public ResourceLocation getPluginUid() {
@@ -57,7 +57,7 @@ public class CCAJEI implements IModPlugin {
     private void loadCategories() {
         Categories.clear();
         CreateRecipeCategory<?> channeling = builder(ChannelingRecipe.class)
-                .addTypedRecipes(CCARecipeTypes.CHANNELING::getType)
+                .addTypedRecipes(CAARecipeTypes.CHANNELING::getType)
                 .catalystStack(ProcessingViaFanCategory.getFan("aquatic_ambitions.fan_channeling"))
                 .doubleItemIcon(AllItems.PROPELLER.get(), Items.HEART_OF_THE_SEA)
                 .emptyBackground(178, 72)

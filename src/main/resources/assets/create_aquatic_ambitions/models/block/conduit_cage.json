@@ -1,6 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
+	"render_type" : "minecraft:cutout",
 	"textures": {
 		"0": "entity/conduit/cage",
 		"particle": "entity/conduit/cage"

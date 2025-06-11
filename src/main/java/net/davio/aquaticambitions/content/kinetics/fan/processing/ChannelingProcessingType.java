@@ -1,10 +1,13 @@
-package net.davio.aquaticambitions.kinetics.fan.processing;
+package net.davio.aquaticambitions.content.kinetics.fan.processing;
 
 import com.simibubi.create.foundation.recipe.RecipeApplier;
 import net.createmod.catnip.theme.Color;
-import net.davio.aquaticambitions.entry.CCARecipeTypes;
-import net.davio.aquaticambitions.entry.CCATags;
-import net.davio.aquaticambitions.kinetics.fan.processing.ChannelingRecipe.ChannelingWrapper;
+import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlockEntity;
+import net.davio.aquaticambitions.registry.recipe.CAARecipeTypes;
+import net.davio.aquaticambitions.registry.CAATags.CAABlockTags;
+import net.davio.aquaticambitions.registry.CAATags.CAAFluidTags;
+import net.davio.aquaticambitions.content.kinetics.fan.processing.ChannelingRecipe.ChannelingWrapper;
+import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -29,33 +32,23 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class ChannellingProcessingType implements FanProcessingType {
+public class ChannelingProcessingType implements FanProcessingType {
 
         private static final ChannelingWrapper CHANNELING_WRAPPER = new ChannelingWrapper();
 
         @Override
         public boolean isValidAt(Level level, BlockPos pos) {
-            //Check if any blockEntity in 3x3 box is an active conduit.
-            //This (and priority = 1200) allows us to prevent washing process to override channeling in the 3x3 conduit box
-            for(int i = -1; i <= 1; ++i) {
-                for(int j = -1; j <= 1; ++j) {
-                    for(int k = -1; k <= 1; ++k) {
-                        BlockPos adjacentPos = pos.offset(i, j, k);
-                        //Check for Active Conduit
-                        BlockEntity blockEntity = level.getBlockEntity(adjacentPos);
-                        if (blockEntity instanceof ConduitBlockEntity){
-                           if(((ConduitBlockEntity) blockEntity).isActive()){
-                               return true;
-                           }
-                        }
-                    }
-                }
+
+            if (checkForActiveConduit(level, pos)) {
+                return true;
             }
+
             //Check for matching tags.
-            //TODO Add config or Datapack to add tag conduit block - conduit will channel even if inactive
             FluidState fluidState = level.getFluidState(pos);
             BlockState blockState = level.getBlockState(pos);
-            return (blockState.is(CCATags.FAN_CHANNELING_PROCESSING_TAG) && fluidState.is(CCATags.FAN_CHANNELING_PROCESSING_FLUID_TAG));
+
+            return CAABlockTags.FAN_PROCESSING_CATALYSTS_CHANNELING.matches(blockState)
+                    || CAAFluidTags.FAN_PROCESSING_CATALYSTS_CHANNELING.matches(fluidState);
         }
 
         @Override
@@ -66,14 +59,14 @@ public class ChannellingProcessingType implements FanProcessingType {
         @Override
         public boolean canProcess(ItemStack stack, Level level) {
             CHANNELING_WRAPPER.setItem(0, stack);
-            Optional<ChannelingRecipe> recipe = CCARecipeTypes.CHANNELING.find(CHANNELING_WRAPPER,level);
+            Optional<ChannelingRecipe> recipe = CAARecipeTypes.CHANNELING.find(CHANNELING_WRAPPER,level);
             return recipe.isPresent();
         }
 
         @Override
         public @Nullable List<ItemStack> process(ItemStack stack, Level level) {
             CHANNELING_WRAPPER.setItem(0,stack);
-            Optional<ChannelingRecipe> recipe = CCARecipeTypes.CHANNELING.find(CHANNELING_WRAPPER,level);
+            Optional<ChannelingRecipe> recipe = CAARecipeTypes.CHANNELING.find(CHANNELING_WRAPPER,level);
             return recipe.map(channelingRecipe -> RecipeApplier.applyRecipeOn(level, stack, channelingRecipe)).orElse(null);
         }
 
@@ -105,6 +98,36 @@ public class ChannellingProcessingType implements FanProcessingType {
             if (random.nextFloat() < 1 / 64f)
                 particleAccess.spawnExtraParticle(ParticleTypes.BUBBLE_POP, .125f);
         }
+
+    public boolean checkForActiveConduit(Level level, BlockPos pos) {
+        //Check if any blockEntity in 3x3 box is an active conduit.
+        //This (and priority = 1200) allows us to prevent washing process to override channeling in the 3x3 conduit box
+        for(int i = -1; i <= 1; ++i) {
+            for(int j = -1; j <= 1; ++j) {
+                for(int k = -1; k <= 1; ++k) {
+                    BlockPos adjacentPos = pos.offset(i, j, k);
+                    BlockEntity blockEntity = level.getBlockEntity(adjacentPos);
+                    if (blockEntity instanceof ConduitBlockEntity){
+                        if(((ConduitBlockEntity) blockEntity).isActive()){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+
+        if (blockEntity != null) {
+            if (blockEntity instanceof MechanicalConduitBlockEntity) {
+                ConduitPowerLevel powerLevel = ((MechanicalConduitBlockEntity) blockEntity).getConduitLevelFromBlock();
+                return powerLevel == ConduitPowerLevel.AWAKENED;
+            }
+        }
+
+        return false;
+    }
+
 
         @Override
         public void affectEntity(Entity entity, Level level) {

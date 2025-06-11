@@ -1,4 +1,4 @@
-package net.davio.aquaticambitions.entry;
+package net.davio.aquaticambitions.registry;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.tags.TagKey;
@@ -8,10 +8,10 @@ import static net.davio.aquaticambitions.CreateAquaticAmbitions.REGISTRATE;
 import static com.simibubi.create.AllTags.AllItemTags.CREATE_INGOTS;
 import static com.simibubi.create.AllTags.forgeItemTag;
 
-public class CCAItems {
+public class CAAItems {
 
     static {
-        REGISTRATE.setCreativeTab(CCACreativeModeTab.CREATIVE_TAB);
+        REGISTRATE.setCreativeTab(CAACreativeModeTab.CREATIVE_TAB);
     }
 
     public static final ItemEntry<Item> PRISMARINE_ALLOY = taggedIngredient("prismarine_alloy", CREATE_INGOTS.tag);
