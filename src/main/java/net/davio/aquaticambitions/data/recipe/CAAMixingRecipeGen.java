@@ -1,7 +1,7 @@
 package net.davio.aquaticambitions.data.recipe;
 
 import com.simibubi.create.AllItems;
-import com.simibubi.create.foundation.data.recipe.MixingRecipeGen;
+import com.simibubi.create.api.data.recipe.MixingRecipeGen;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.registry.CAAItems;
 import net.minecraft.core.HolderLookup;
@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture;
 public class CAAMixingRecipeGen extends MixingRecipeGen {
 
     public CAAMixingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries);
+        super(output, registries, CreateAquaticAmbitions.MODID);
     }
 
     GeneratedRecipe
@@ -22,5 +22,4 @@ public class CAAMixingRecipeGen extends MixingRecipeGen {
             .require(Blocks.PRISMARINE)
             .require(AllItems.COPPER_NUGGET)
             .output(CAAItems.PRISMARINE_ALLOY, 1));
-
-}
+    }

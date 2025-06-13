@@ -6,11 +6,9 @@ import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import com.tterrag.registrate.util.RegistrateDistExecutor;
 import net.createmod.catnip.lang.FontHelper;
-import net.davio.aquaticambitions.content.kinetics.fan.processing.CAAFanProcessing;
 import net.davio.aquaticambitions.content.logistics.CAAItemAttributes;
 import net.davio.aquaticambitions.data.CAADatagen;
 import net.davio.aquaticambitions.registry.*;
-import net.davio.aquaticambitions.registry.recipe.CAARecipeTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -27,6 +25,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 public class CreateAquaticAmbitions
 {
     public static final String MODID = "create_aquatic_ambitions";
+    public static final String NAME = "Create: Aquatic Ambitions";
 
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID)
             .defaultCreativeTab((ResourceKey<CreativeModeTab>) null);
@@ -45,8 +44,8 @@ public class CreateAquaticAmbitions
         CAACreativeTab.register(modEventBus);
 
         CAATags.init();
-        CAARecipeTypes.register(modEventBus);
-        CAAFanProcessing.register(modEventBus);
+        CAARecipes.register(modEventBus);
+        CAAFanProcessingTypes.register(modEventBus);
         CAAItemAttributes.register(modEventBus);
 
 

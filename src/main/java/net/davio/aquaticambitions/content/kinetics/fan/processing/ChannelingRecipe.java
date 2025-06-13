@@ -1,18 +1,19 @@
 package net.davio.aquaticambitions.content.kinetics.fan.processing;
 
-import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
-import net.davio.aquaticambitions.registry.recipe.CAARecipeTypes;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeParams;
+import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
+import net.davio.aquaticambitions.registry.CAARecipes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class ChannelingRecipe extends ProcessingRecipe<SingleRecipeInput> {
+public class ChannelingRecipe extends StandardProcessingRecipe<SingleRecipeInput> {
 
-    public ChannelingRecipe(ProcessingRecipeBuilder.ProcessingRecipeParams params) {
-        super(CAARecipeTypes.CHANNELING, params);
+    public ChannelingRecipe(ProcessingRecipeParams params) {
+        super(CAARecipes.CHANNELING, params);
     }
 
     @Override
@@ -32,5 +33,8 @@ public class ChannelingRecipe extends ProcessingRecipe<SingleRecipeInput> {
         return 12;
     }
 
+    public static StandardProcessingRecipe.Builder<ChannelingRecipe> builder(ResourceLocation id) {
+        return new StandardProcessingRecipe.Builder<>(ChannelingRecipe::new, id);
+    }
 }
 

@@ -3,8 +3,11 @@ import net.createmod.catnip.lang.Lang;
 import net.createmod.catnip.lang.LangBuilder;
 import net.createmod.catnip.lang.LangNumberFormat;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
+import net.minecraft.Util;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -55,6 +58,14 @@ public class CAALang extends Lang {
 
     public static LangBuilder text(String text) {
         return builder().text(text);
+    }
+
+    public static LangBuilder description(String category, ResourceLocation location, Object... args) {
+        return builder().add(Component.translatable(Util.makeDescriptionId(category, location), args));
+    }
+
+    public static LangBuilder description(String category, ResourceLocation location, String suffix, Object... args) {
+        return builder().add(Component.translatable(Util.makeDescriptionId(category, location) + "." + suffix, args));
     }
 
     @Deprecated // Use while implementing and replace all references with Lang.translate
