@@ -1,12 +1,10 @@
 package net.davio.aquaticambitions.content.kinetics.fan.processing;
 
-import com.simibubi.create.api.registry.CreateBuiltInRegistries;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
 import net.createmod.catnip.theme.Color;
-import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlockEntity;
-import net.davio.aquaticambitions.registry.CAARecipes;
+import net.davio.aquaticambitions.registry.CAARecipeTypes;
 import net.davio.aquaticambitions.registry.CAATags.CAABlockTags;
 import net.davio.aquaticambitions.registry.CAATags.CAAFluidTags;
 import net.minecraft.core.BlockPos;
@@ -18,8 +16,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -27,15 +23,11 @@ import net.minecraft.world.level.block.entity.ConduitBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
 
 import java.util.List;
-import java.util.Optional;
 
 public class ChannelingFanProcessingType implements FanProcessingType {
 
@@ -66,7 +58,7 @@ public class ChannelingFanProcessingType implements FanProcessingType {
         var recipeManager = level.getRecipeManager();
         var input = new SingleRecipeInput(stack);
         return recipeManager
-                .getRecipeFor(CAARecipes.CHANNELING.getType(), input, level)
+                .getRecipeFor(CAARecipeTypes.CHANNELING.getType(), input, level)
                 .isPresent();
     }
 
@@ -75,7 +67,7 @@ public class ChannelingFanProcessingType implements FanProcessingType {
         var recipeManager = level.getRecipeManager();
         var input = new SingleRecipeInput(stack);
         return recipeManager
-                .getRecipeFor(CAARecipes.CHANNELING.getType(), input, level)
+                .getRecipeFor(CAARecipeTypes.CHANNELING.getType(), input, level)
                 .map(recipe -> RecipeApplier.applyRecipeOn(level, stack, recipe))
                 .orElse(null);
     }

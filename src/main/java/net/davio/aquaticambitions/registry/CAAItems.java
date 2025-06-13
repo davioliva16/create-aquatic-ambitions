@@ -18,7 +18,7 @@ public class CAAItems {
         PRISMARINE_ALLOY = taggedIngredient("prismarine_alloy", CREATE_INGOTS.tag),
         PRISMARINE_ROD = taggedIngredient("prismarine_rod",commonItemTag("rods")),
         POLISHED_QUARTZ_TINE = taggedIngredient("polished_quartz_tine",commonItemTag("gems/quartz")),
-        FLINT_SHARD = ingredient("flint_shard");
+        SUSPICIOUS_ROCK = ingredient("suspicious_rock");
 
     @SafeVarargs
     private static ItemEntry<Item> taggedIngredient(String name, TagKey<Item>... tags) {

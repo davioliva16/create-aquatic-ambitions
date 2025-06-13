@@ -9,22 +9,19 @@ import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.compat.JEI.CAAJEI;
 import net.davio.aquaticambitions.compat.JEI.category.animations.AnimatedConduit;
 import net.davio.aquaticambitions.content.kinetics.fan.processing.ChannelingRecipe;
-import net.davio.aquaticambitions.registry.CAARecipes;
+import net.davio.aquaticambitions.registry.CAARecipeTypes;
 import net.davio.aquaticambitions.util.CAALang;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
-import org.checkerframework.checker.units.qual.C;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FanChannelingCategory extends ProcessingViaFanCategory<ChannelingRecipe> {
 
-    public static final mezz.jei.api.recipe.RecipeType<RecipeHolder<ChannelingRecipe>> TYPE = mezz.jei.api.recipe.RecipeType.createRecipeHolderType(CAARecipes.CHANNELING.getId());
+    public static final mezz.jei.api.recipe.RecipeType<RecipeHolder<ChannelingRecipe>> TYPE = mezz.jei.api.recipe.RecipeType.createRecipeHolderType(CAARecipeTypes.CHANNELING.getId());
     private final AnimatedConduit conduit = new AnimatedConduit();
 
     public static FanChannelingCategory create() {
@@ -53,6 +50,6 @@ public class FanChannelingCategory extends ProcessingViaFanCategory<ChannelingRe
 
     private static List<RecipeHolder<ChannelingRecipe>> getAllRecipes() {
         var manager = CAAJEI.getRecipeManager();
-        return manager.getAllRecipesFor(CAARecipes.CHANNELING.getType());
+        return manager.getAllRecipesFor(CAARecipeTypes.CHANNELING.getType());
     }
 }

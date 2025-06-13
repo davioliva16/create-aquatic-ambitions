@@ -4,7 +4,7 @@ import com.simibubi.create.api.registry.CreateBuiltInRegistries;
 import com.simibubi.create.content.logistics.item.filter.attribute.ItemAttributeType;
 import com.simibubi.create.content.logistics.item.filter.attribute.SingletonItemAttribute;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
-import net.davio.aquaticambitions.registry.CAARecipes;
+import net.davio.aquaticambitions.registry.CAARecipeTypes;
 import net.minecraft.world.item.ItemStack;
 import java.util.function.BiPredicate;
 
@@ -25,7 +25,7 @@ public class CAAItemAttributes {
     //Register attribute using DeferredHolder
     public static final DeferredHolder<ItemAttributeType, ItemAttributeType> CAN_BE_CHANNELED =
             ITEM_ATTRIBUTE_TYPES.register("can_be_channeled",
-                    () -> singleton("can_be_channeled", (s, w) -> testRecipe(s, w, CAARecipes.CHANNELING.getType()))
+                    () -> singleton("can_be_channeled", (s, w) -> testRecipe(s, w, CAARecipeTypes.CHANNELING.getType()))
             );
 
     // Utility method to test for a recipe

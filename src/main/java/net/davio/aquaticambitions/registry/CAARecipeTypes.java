@@ -93,7 +93,7 @@ public enum CAARecipeTypes implements IRecipeTypeInfo, StringRepresentable {
 
     @Override
     public @NotNull String getSerializedName() {return id.toString();}
-    
+
     private static class Registers {
         private static final DeferredRegister<RecipeSerializer<?>> SERIALIZER_REGISTER = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, CreateAquaticAmbitions.MODID);
         private static final DeferredRegister<RecipeType<?>> TYPE_REGISTER = DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, CreateAquaticAmbitions.MODID);

@@ -1,4 +1,4 @@
-package net.davio.aquaticambitions.data.tags;
+package net.davio.aquaticambitions.foundation.data.tags;
 
 
 import com.simibubi.create.foundation.data.TagGen;
@@ -7,13 +7,9 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 
 import net.davio.aquaticambitions.registry.CAATags;
-import net.minecraft.tags.TagEntry;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.Fluids;
 
 import static net.davio.aquaticambitions.CreateAquaticAmbitions.REGISTRATE;

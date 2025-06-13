@@ -1,14 +1,14 @@
 package net.davio.aquaticambitions.api.data.recipe;
 
-import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.api.data.recipe.StandardProcessingRecipeGen;
-import com.simibubi.create.content.kinetics.fan.processing.HauntingRecipe;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.createmod.catnip.registry.RegisteredObjectsHelper;
+import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.content.kinetics.fan.processing.ChannelingRecipe;
-import net.davio.aquaticambitions.registry.CAARecipes;
+import net.davio.aquaticambitions.registry.CAARecipeTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
@@ -28,13 +28,21 @@ public  abstract class ChannelingDataGen extends StandardProcessingRecipeGen<Cha
                         .output(result.get()));
     }
 
+    public GeneratedRecipe coralRevival(Item deadCoral, Supplier<ItemLike> coral) {
+        return create(CreateAquaticAmbitions.asResource(RegisteredObjectsHelper.getKeyOrThrow(coral.get().asItem()).getPath()),
+                b -> b
+                        .require(deadCoral)
+                        .output(coral.get(), 1)
+                        .output(0.25f, coral.get(), 1));
+    }
+
     public ChannelingDataGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, String defaultNamespace) {
         super(output, registries, defaultNamespace);
     }
 
     @Override
     protected IRecipeTypeInfo getRecipeType() {
-        return CAARecipes.CHANNELING.getType();
+        return CAARecipeTypes.CHANNELING;
     }
 
 }

@@ -2,7 +2,7 @@ package net.davio.aquaticambitions.content.kinetics.fan.processing;
 
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeParams;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
-import net.davio.aquaticambitions.registry.CAARecipes;
+import net.davio.aquaticambitions.registry.CAARecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
@@ -13,7 +13,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class ChannelingRecipe extends StandardProcessingRecipe<SingleRecipeInput> {
 
     public ChannelingRecipe(ProcessingRecipeParams params) {
-        super(CAARecipes.CHANNELING, params);
+        super(CAARecipeTypes.CHANNELING, params);
     }
 
     @Override

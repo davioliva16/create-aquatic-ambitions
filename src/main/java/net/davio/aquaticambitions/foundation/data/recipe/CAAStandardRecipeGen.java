@@ -1,11 +1,28 @@
-package net.davio.aquaticambitions.data.recipe;
+package net.davio.aquaticambitions.foundation.data.recipe;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
+import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
+import com.simibubi.create.foundation.data.recipe.CreateStandardRecipeGen;
+import net.davio.aquaticambitions.registry.CAABlocks;
+import net.davio.aquaticambitions.registry.CAAItems;
+import net.neoforged.neoforge.common.Tags;
+import org.jetbrains.annotations.Nullable;
 
 import com.google.common.base.Supplier;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.simibubi.create.AllBlocks;
-import com.simibubi.create.AllItems;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.Create;
 import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
@@ -17,7 +34,6 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import net.createmod.catnip.registry.RegisteredObjectsHelper;
-import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
@@ -43,28 +59,78 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.NotCondition;
-import org.jetbrains.annotations.Nullable;
-
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
-import java.util.function.UnaryOperator;
 
 public class CAAStandardRecipeGen extends BaseRecipeProvider {
-
     final List<GeneratedRecipe> all = new ArrayList<>();
 
     private CAAStandardRecipeGen.Marker MATERIALS = enterFolder("materials");
 
     GeneratedRecipe
-            VERIDIUM = create(AllPaletteStoneTypes.VERIDIUM.getBaseBlock()::get).withSuffix("_from_ore")
-            .viaCookingTag(() -> AllTags.commonItemTag("ores/zinc"))
-            .rewardXP(1)
-            .inBlastFurnace();
+
+    PRISMARINE_ALLOY_FROM_BLOCK = create(CAAItems.PRISMARINE_ALLOY).withSuffix("_from_block")
+        .returns(9)
+        .unlockedBy(CAARecipeProvider.I::prismarineAlloy)
+        .viaShapeless(b -> b.requires(CAABlocks.PRISMARINE_ALLOY_BLOCK.get())),
+
+    PRISMARINE_ALLOY_BLOCK = create(CAABlocks.PRISMARINE_ALLOY_BLOCK).unlockedBy(CAARecipeProvider.I::prismarineAlloy)
+        .viaShaped(b -> b.define('C', CAARecipeProvider.I.prismarineAlloy())
+            .pattern("CCC")
+            .pattern("CCC")
+            .pattern("CCC")),
+
+    PRISMARINE_ALLOY = create(CAAItems.PRISMARINE_ALLOY).unlockedBy(CAARecipeProvider.I::copperNugget)
+        .viaShaped(b -> b.define('A', Items.PRISMARINE)
+                .define('B', AllItems.COPPER_NUGGET)
+                .pattern("BA")
+                .pattern("AB")),
+
+    BRAIN_CORAL = create(() -> Items.BRAIN_CORAL_BLOCK).unlockedBy(CAARecipeProvider.I::brainCoral)
+        .viaShaped(b -> b.define('#', Items.BRAIN_CORAL)
+                .pattern("##")
+                .pattern("##")),
+
+    FIRE_CORAL = create(() -> Items.FIRE_CORAL_BLOCK).unlockedBy(CAARecipeProvider.I::brainCoral)
+        .viaShaped(b -> b.define('#', Items.FIRE_CORAL)
+                .pattern("##")
+                .pattern("##")),
+
+    BUBBLE_CORAL = create(() -> Items.BUBBLE_CORAL_BLOCK).unlockedBy(CAARecipeProvider.I::bubbleCoral)
+        .viaShaped(b -> b.define('#', Items.BUBBLE_CORAL)
+                .pattern("##")
+                .pattern("##")),
+
+    HORN_CORAL = create(() -> Items.HORN_CORAL_BLOCK).unlockedBy(CAARecipeProvider.I::hornCoral)
+        .viaShaped(b -> b.define('#', Items.HORN_CORAL)
+                .pattern("##")
+                .pattern("##")),
+
+    TUBE_CORAL = create(() -> Items.TUBE_CORAL_BLOCK).unlockedBy(CAARecipeProvider.I::tubeCoral)
+        .viaShaped(b -> b.define('#', Items.TUBE_CORAL)
+                .pattern("##")
+                .pattern("##")),
+
+    MECHANICAL_CONDUIT = create(CAABlocks.MECHANICAL_CONDUIT).unlockedBy(CAARecipeProvider.I::conduit)
+            .viaShaped(b -> b.define('A', Items.CONDUIT.asItem())
+                    .define('I', CAARecipeProvider.I.prismarineAlloy())
+                    .define('U', AllBlocks.FLUID_PIPE)
+                    .pattern(" I ")
+                    .pattern("IAI")
+                    .pattern(" U ")),
+
+    TRIDENT = create(() -> Items.TRIDENT).unlockedBy(CAARecipeProvider.I::prismarineAlloy)
+            .viaShaped(b -> b.define('A', CAAItems.POLISHED_QUARTZ_TINE.get())
+                    .define('I', CAAItems.PRISMARINE_ROD.get())
+                    .define('U', AllBlocks.FLUID_PIPE)
+                    .pattern("VV ")
+                    .pattern("VI")
+                    .pattern("  I"));
+
+    private CAAStandardRecipeGen.Marker COOKING = enterFolder("/");
+
+    GeneratedRecipe
+
+    VERIDIUM = create(() -> Items.PRISMARINE).viaCooking(() -> AllPaletteStoneTypes.VERIDIUM.getBaseBlock().get().asItem())
+    .inFurnace();
 
     static class Marker {
     }
@@ -384,9 +450,6 @@ public class CAAStandardRecipeGen extends BaseRecipeProvider {
             }
         }
     }
-
-    @Override
-    public String getName() {return CreateAquaticAmbitions.NAME+ "' Standard Recipes";}
 
     public CAAStandardRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, Create.ID);
