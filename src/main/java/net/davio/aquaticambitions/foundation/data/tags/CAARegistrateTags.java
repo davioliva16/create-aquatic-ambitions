@@ -1,6 +1,7 @@
 package net.davio.aquaticambitions.foundation.data.tags;
 
 
+import com.simibubi.create.AllFluids;
 import com.simibubi.create.foundation.data.TagGen;
 
 import com.tterrag.registrate.providers.ProviderType;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.common.NeoForgeMod;
 
 import static net.davio.aquaticambitions.CreateAquaticAmbitions.REGISTRATE;
 
@@ -38,9 +40,12 @@ public class CAARegistrateTags {
 
         prov.tag(CAATags.CAAFluidTags.CONDUIT_FUEL.tag)
                 .add(Fluids.WATER);
+        prov.tag(CAATags.CAAFluidTags.CLEARS_EFFECTS.tag)
+                .add(NeoForgeMod.MILK.get());
+        prov.tag(CAATags.CAAFluidTags.GIVES_HASTE.tag)
+                .add(AllFluids.TEA.get());
 
         prov.tag(CAATags.CAAFluidTags.GIVES_FIRE_RES.tag);
-        prov.tag(CAATags.CAAFluidTags.GIVES_HASTE.tag);
         prov.tag(CAATags.CAAFluidTags.GIVES_INFESTED.tag);
         prov.tag(CAATags.CAAFluidTags.GIVES_INVIS.tag);
         prov.tag(CAATags.CAAFluidTags.GIVES_JUMP.tag);

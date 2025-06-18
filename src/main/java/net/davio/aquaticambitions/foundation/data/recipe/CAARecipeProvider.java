@@ -1,8 +1,6 @@
 package net.davio.aquaticambitions.foundation.data.recipe;
 
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
-import com.simibubi.create.AllTags;
 import com.simibubi.create.api.data.recipe.ProcessingRecipeGen;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.registry.CAAItems;
@@ -13,13 +11,8 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.neoforged.neoforge.common.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +32,12 @@ public class CAARecipeProvider extends RecipeProvider {
     }
 
     public static void registerAllProcessing(DataGenerator gen, PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        GENERATORS.add(new CAACrushingRecipeGen(output, registries));
-        GENERATORS.add(new CAAMillingRecipeGen(output, registries));
-        GENERATORS.add(new CAAPolishingRecipeGen(output, registries));
-        GENERATORS.add(new CAAMixingRecipeGen(output, registries));
-        GENERATORS.add(new CAAChannelingDataGen(output, registries));
+        GENERATORS.add(new CAACrushingRecipeGen(output, registries, CreateAquaticAmbitions.MODID));
+        GENERATORS.add(new CAAMillingRecipeGen(output, registries, CreateAquaticAmbitions.MODID));
+        GENERATORS.add(new CAAWashingDataGen(output, registries, CreateAquaticAmbitions.MODID));
+        GENERATORS.add(new CAACompactingRecipeGen(output, registries, CreateAquaticAmbitions.MODID));
+        GENERATORS.add(new CAAMixingRecipeGen(output, registries, CreateAquaticAmbitions.MODID));
+        GENERATORS.add(new CAAChannelingRecipeGen(output, registries, CreateAquaticAmbitions.MODID));
 
         gen.addProvider(true, new DataProvider() {
 

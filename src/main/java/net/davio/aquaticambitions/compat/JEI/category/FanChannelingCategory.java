@@ -19,13 +19,13 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 
 import java.util.List;
 
-public class FanChannelingCategory extends ProcessingViaFanCategory<ChannelingRecipe> {
+public class FanChannelingCategory extends ProcessingViaFanCategory.MultiOutput<ChannelingRecipe> {
 
     public static final mezz.jei.api.recipe.RecipeType<RecipeHolder<ChannelingRecipe>> TYPE = mezz.jei.api.recipe.RecipeType.createRecipeHolderType(CAARecipeTypes.CHANNELING.getId());
     private final AnimatedConduit conduit = new AnimatedConduit();
 
     public static FanChannelingCategory create() {
-        var id = CreateAquaticAmbitions.asResource("fan_sanding");
+        var id = CreateAquaticAmbitions.asResource("fan_channeling");
         var title = CAALang.description("recipe", id).component();
         var background = new EmptyBackground(178, 72);
         var icon = new DoubleItemIcon(AllItems.PROPELLER::asStack, () -> new ItemStack(Items.HEART_OF_THE_SEA));

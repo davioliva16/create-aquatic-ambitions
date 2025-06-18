@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "create_aquatic_ambitions:prismarine_alloy"
+    }
+  },
+  "pattern": [
+    "I",
+    "I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_aquatic_ambitions:prismarine_alloy_rod"
+  }
+}

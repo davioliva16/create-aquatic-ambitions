@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "create_aquatic_ambitions:block/mechanical_conduit"
+      "model": "create_aquatic_ambitions:block/mechanical_conduit/block"
     }
   }
 }

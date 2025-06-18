@@ -12,19 +12,15 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
-import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
-import com.simibubi.create.foundation.data.recipe.CreateStandardRecipeGen;
+import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.registry.CAABlocks;
 import net.davio.aquaticambitions.registry.CAAItems;
-import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.base.Supplier;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.simibubi.create.AllTags;
-import com.simibubi.create.Create;
 import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
 import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
 import com.simibubi.create.foundation.data.recipe.CompatMetals;
@@ -78,6 +74,11 @@ public class CAAStandardRecipeGen extends BaseRecipeProvider {
             .pattern("CCC")
             .pattern("CCC")),
 
+    PRISMARINE_ROD = create(CAAItems.PRISMARINE_ROD).unlockedBy(CAARecipeProvider.I::prismarineAlloy)
+            .viaShaped(b -> b.define('I', CAARecipeProvider.I.prismarineAlloy())
+                    .pattern("I")
+                    .pattern("I")),
+
     PRISMARINE_ALLOY = create(CAAItems.PRISMARINE_ALLOY).unlockedBy(CAARecipeProvider.I::copperNugget)
         .viaShaped(b -> b.define('A', Items.PRISMARINE)
                 .define('B', AllItems.COPPER_NUGGET)
@@ -111,25 +112,26 @@ public class CAAStandardRecipeGen extends BaseRecipeProvider {
 
     MECHANICAL_CONDUIT = create(CAABlocks.MECHANICAL_CONDUIT).unlockedBy(CAARecipeProvider.I::conduit)
             .viaShaped(b -> b.define('A', Items.CONDUIT.asItem())
-                    .define('I', CAARecipeProvider.I.prismarineAlloy())
+                    .define('I', CAAItems.PRISMARINE_ROD)
+                    .define('P', CAARecipeProvider.I.prismarineAlloy())
                     .define('U', AllBlocks.FLUID_PIPE)
-                    .pattern(" I ")
+                    .pattern("III")
                     .pattern("IAI")
-                    .pattern(" U ")),
+                    .pattern("PUP")),
+
 
     TRIDENT = create(() -> Items.TRIDENT).unlockedBy(CAARecipeProvider.I::prismarineAlloy)
-            .viaShaped(b -> b.define('A', CAAItems.POLISHED_QUARTZ_TINE.get())
+            .viaShaped(b -> b.define('A', CAAItems.SPIKY_SHELL.get())
                     .define('I', CAAItems.PRISMARINE_ROD.get())
-                    .define('U', AllBlocks.FLUID_PIPE)
-                    .pattern("VV ")
-                    .pattern("VI")
-                    .pattern("  I"));
+                    .pattern(" AA")
+                    .pattern(" IA")
+                    .pattern("I  "));
 
     private CAAStandardRecipeGen.Marker COOKING = enterFolder("/");
 
     GeneratedRecipe
 
-    VERIDIUM = create(() -> Items.PRISMARINE).viaCooking(() -> AllPaletteStoneTypes.VERIDIUM.getBaseBlock().get().asItem())
+    VERIDIUM = create(() -> AllPaletteStoneTypes.VERIDIUM.baseBlock.get()).viaCooking(() -> Items.PRISMARINE)
     .inFurnace();
 
     static class Marker {
@@ -156,7 +158,7 @@ public class CAAStandardRecipeGen extends BaseRecipeProvider {
 
     GeneratedRecipe createSpecial(Function<CraftingBookCategory, Recipe<?>> builder, String recipeType,
                                   String path) {
-        ResourceLocation location = Create.asResource(recipeType + "/" + currentFolder + "/" + path);
+        ResourceLocation location = CreateAquaticAmbitions.asResource(recipeType + "/" + currentFolder + "/" + path);
         return register(consumer -> {
             SpecialRecipeBuilder b = SpecialRecipeBuilder.special(builder);
             b.save(consumer, location.toString());
@@ -245,7 +247,7 @@ public class CAAStandardRecipeGen extends BaseRecipeProvider {
     @Override
     protected void buildRecipes(RecipeOutput output) {
         all.forEach(c -> c.register(output));
-        Create.LOGGER.info("{} registered {} recipe{}", getName(), all.size(), all.size() == 1 ? "" : "s");
+        CreateAquaticAmbitions.LOGGER.info("{} registered {} recipe{}", getName(), all.size(), all.size() == 1 ? "" : "s");
     }
 
     protected GeneratedRecipe register(GeneratedRecipe recipe) {
@@ -356,11 +358,11 @@ public class CAAStandardRecipeGen extends BaseRecipeProvider {
         }
 
         private ResourceLocation createSimpleLocation(String recipeType) {
-            return Create.asResource(recipeType + "/" + getRegistryName().getPath() + suffix);
+            return CreateAquaticAmbitions.asResource(recipeType + "/" + getRegistryName().getPath() + suffix);
         }
 
         private ResourceLocation createLocation(String recipeType) {
-            return Create.asResource(recipeType + "/" + path + "/" + getRegistryName().getPath() + suffix);
+            return CreateAquaticAmbitions.asResource(recipeType + "/" + path + "/" + getRegistryName().getPath() + suffix);
         }
 
         private ResourceLocation getRegistryName() {
@@ -452,7 +454,7 @@ public class CAAStandardRecipeGen extends BaseRecipeProvider {
     }
 
     public CAAStandardRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, Create.ID);
+        super(output, registries, CreateAquaticAmbitions.MODID);
     }
 
     @ParametersAreNonnullByDefault

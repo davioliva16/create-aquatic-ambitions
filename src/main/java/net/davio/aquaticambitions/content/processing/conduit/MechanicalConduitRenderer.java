@@ -81,12 +81,11 @@ public class MechanicalConduitRenderer extends SafeBlockEntityRenderer<Mechanica
         }
 
         ms.popPose();
-
     }
 
     private static void draw(SuperByteBuffer buffer, float horizontalAngle, PoseStack ms, VertexConsumer vc) {
         buffer.rotateCentered(horizontalAngle, Direction.UP)
-                .light(LightTexture.FULL_BRIGHT)
+                .light(LightTexture.FULL_BLOCK)
                 .renderInto(ms, vc);
     };
 }

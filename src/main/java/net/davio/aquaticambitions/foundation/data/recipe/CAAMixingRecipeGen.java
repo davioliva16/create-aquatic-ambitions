@@ -18,7 +18,7 @@ public class CAAMixingRecipeGen extends MixingRecipeGen {
             .require(AllItems.COPPER_NUGGET)
             .output(CAAItems.PRISMARINE_ALLOY, 1));
 
-    public CAAMixingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+    public CAAMixingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, String defaultNamespace) {
         super(output, registries, CreateAquaticAmbitions.MODID);
     }
 }

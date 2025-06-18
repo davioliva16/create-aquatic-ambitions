@@ -50,10 +50,10 @@ public class MechanicalConduitScenes {
         Selection pump = util.select().position(pumpPos);
 
         Selection fluidStuff = util.select().fromTo(1, 1, 2, 0, 3, 4);
-        Selection bottomPipe = util.select().position(2,1,2); //Save selection before pipe is replaced - idk if this is how that works
+        Selection bottomPipe = util.select().position(2,1,2);
 
         Selection kinetics1 = util.select().fromTo(cog1Pos, cog2Pos);
-        Selection kinetics2 = util.select().position(cogLargePos); //Save selection before pipe is replaced - idk if this is how that works
+        Selection kinetics2 = util.select().position(cogLargePos);
 
         ElementLink<WorldSectionElement> conduitSelection =
                 scene.world().showIndependentSection(util.select().position(conduitPos), Direction.DOWN);
@@ -285,6 +285,8 @@ public class MechanicalConduitScenes {
 
         scene.world().modifyBlock(conduitPos, s -> s.setValue(MechanicalConduitBlock.CONDUIT_POWER_LEVEL,
                 MechanicalConduitBlock.ConduitPowerLevel.AWAKENED), false);
+
+        scene.effects().indicateSuccess(conduitPos);
 
         scene.idle(10);
 

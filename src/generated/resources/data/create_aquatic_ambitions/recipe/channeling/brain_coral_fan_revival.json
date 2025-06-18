@@ -1,0 +1,17 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:dead_brain_coral_fan"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:brain_coral_fan"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:brain_coral_fan"
+    }
+  ]
+}

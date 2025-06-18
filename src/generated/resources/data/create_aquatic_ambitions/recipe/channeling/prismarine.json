@@ -1,0 +1,14 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:flint"
+    }
+  ],
+  "results": [
+    {
+      "chance": 0.33,
+      "id": "minecraft:prismarine_shard"
+    }
+  ]
+}

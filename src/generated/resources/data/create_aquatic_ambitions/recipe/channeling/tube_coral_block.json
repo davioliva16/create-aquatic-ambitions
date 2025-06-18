@@ -2,7 +2,7 @@
   "type": "create_aquatic_ambitions:channeling",
   "ingredients": [
     {
-      "item": "minecraft:dead_tube_coral"
+      "item": "minecraft:dead_tube_coral_block"
     }
   ],
   "results": [

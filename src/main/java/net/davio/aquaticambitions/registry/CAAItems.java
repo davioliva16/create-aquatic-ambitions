@@ -16,8 +16,9 @@ public class CAAItems {
 
     public static final ItemEntry<Item>
         PRISMARINE_ALLOY = taggedIngredient("prismarine_alloy", CREATE_INGOTS.tag),
-        PRISMARINE_ROD = taggedIngredient("prismarine_rod",commonItemTag("rods")),
-        POLISHED_QUARTZ_TINE = taggedIngredient("polished_quartz_tine",commonItemTag("gems/quartz")),
+        PRISMARINE_ROD = taggedIngredient("prismarine_alloy_rod",commonItemTag("rods")),
+        CALCIUM_RICH_POWDER = ingredient("calcium_rich_powder"),
+        SPIKY_SHELL = ingredient("spiky_shell"),
         SUSPICIOUS_ROCK = ingredient("suspicious_rock");
 
     @SafeVarargs

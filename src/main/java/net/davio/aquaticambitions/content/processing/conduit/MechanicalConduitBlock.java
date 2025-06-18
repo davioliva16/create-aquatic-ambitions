@@ -5,10 +5,12 @@ import com.simibubi.create.AllShapes;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.block.IBE;
 
+import com.simibubi.create.foundation.block.ProperWaterloggedBlock;
 import net.createmod.catnip.lang.Lang;
 import net.davio.aquaticambitions.registry.CAABlockEntityTypes;
 import net.davio.aquaticambitions.registry.CAAShapes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -16,43 +18,58 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 
-public class MechanicalConduitBlock extends Block implements IBE<MechanicalConduitBlockEntity>, IWrenchable {
+public class MechanicalConduitBlock extends Block implements IBE<MechanicalConduitBlockEntity>, IWrenchable, ProperWaterloggedBlock {
 
     public static final EnumProperty<ConduitPowerLevel> CONDUIT_POWER_LEVEL = EnumProperty.create("conduit", ConduitPowerLevel.class);
 
     public MechanicalConduitBlock(Properties properties) {
         super(properties);
-        registerDefaultState(defaultBlockState().setValue(CONDUIT_POWER_LEVEL, ConduitPowerLevel.IDLE)
+        registerDefaultState(defaultBlockState().setValue(CONDUIT_POWER_LEVEL, ConduitPowerLevel.IDLE).setValue(WATERLOGGED, false)
         );
     }
 
     @Override
     protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
+        builder.add(WATERLOGGED);
         builder.add(CONDUIT_POWER_LEVEL);
     }
 
     @Override
+    public FluidState getFluidState(BlockState pState) {
+        return fluidState(pState);
+    }
+
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockState defaultState = defaultBlockState();
-        return defaultState.setValue(CONDUIT_POWER_LEVEL, ConduitPowerLevel.IDLE);
+        BlockState defaultState = defaultBlockState().setValue(CONDUIT_POWER_LEVEL, ConduitPowerLevel.IDLE);;
+        return withWater(defaultState, context);
     }
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter level, BlockPos pos, CollisionContext context) {
         return CAAShapes.MECH_CONDUIT_SHAPE;
     };
+
+    @Override
+    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState,
+        LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
+        updateWater(pLevel, pState, pCurrentPos);
+        return pState;
+    }
 
     @Override
     public VoxelShape getCollisionShape(BlockState blockState, BlockGetter level, BlockPos pos, CollisionContext context) {

@@ -14,10 +14,11 @@ public class CAAMillingRecipeGen extends MillingRecipeGen {
     GeneratedRecipe
 
     SUSPICIOUS_ROCK =  create(() -> AllPaletteStoneTypes.LIMESTONE.getBaseBlock().get(), b -> b.duration(50)
-            .output(.1f, Items.BONE)
+            .output(CAAItems.CALCIUM_RICH_POWDER,1)
+            .output(0.5f,CAAItems.CALCIUM_RICH_POWDER,1)
             .output(.05f, CAAItems.SUSPICIOUS_ROCK));
 
-    public CAAMillingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+    public CAAMillingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, String defaultNamespace) {
         super(output, registries, CreateAquaticAmbitions.MODID);
     }
 }

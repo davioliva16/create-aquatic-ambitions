@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "upgrade_aquatic"
+    }
+  ],
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "type": "neoforge:compound",
+      "ingredients": [
+        {
+          "item": "upgrade_aquatic:dead_finger_coral_block"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "upgrade_aquatic:finger_coral_block"
+    }
+  ]
+}

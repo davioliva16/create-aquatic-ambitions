@@ -1,22 +1,33 @@
 {
   "itemGroup.create_aquatic_ambitions":"Create: Aquatic Ambitions",
 
-  "block.create_aquatic_ambitions.prismarine_alloy_block": "Prismarine Alloy Block",
   "block.create_aquatic_ambitions.mechanical_conduit": "Conduit Cage",
 
   "item.create_aquatic_ambitions.prismarine_alloy": "Prismarine Alloy",
   "item.create_aquatic_ambitions.prismarine_rod": "Prismarine Rod",
-  "item.create_aquatic_ambitions.flint_shard": "Flint Shard",
-  "item.create_aquatic_ambitions.polished_quartz_tine": "Polished Quartz Tine",
+  "item.create_aquatic_ambitions.nautilus_shard": "Nautilus Shard",
+  "item.create_aquatic_ambitions.suspicious_rock": "Suspicious Rock",
+  "item.create_aquatic_ambitions.spiky_shell": "Spiky Shell",
+  "item.create_aquatic_ambitions.calcium_rich_powder": "Calcium Rich Powder",
 
-  "create_aquatic_ambitions.recipe.aquatic_ambitions.fan_channeling": "Conduit Channeling",
+  "recipe.create_aquatic_ambitions.fan_channeling": "Conduit Channeling",
+
+  "create_aquatic_ambitions.tooltip.conduitcage.header" : "Conduit Cage Information",
+  "tooltip.create_aquatic_ambitions.effect.cleansing" : "Cleansing",
 
   "create_aquatic_ambitions.mechanical_conduit.entity_filter.title": "Entity Filter",
-  "create.mechanical_conduit.selection_mode.everyone": "Everyone",
-  "create.mechanical_conduit.selection_mode.players": "Players",
-  "create.mechanical_conduit.selection_mode.friendly_mobs": "Friendly Mobs",
-  "create.mechanical_conduit.selection_mode.players_friendly_mobs": "Players and Friendly Mobs",
-  "create.mechanical_conduit.selection_mode.monsters": "Monsters",
+  "mechanical_conduit.selection_mode.everyone": "Everyone",
+  "mechanical_conduit.selection_mode.players": "Players",
+  "mechanical_conduit.selection_mode.friendly_mobs": "Friendly Mobs",
+  "mechanical_conduit.selection_mode.players_friendly_mobs": "Players and Friendly Mobs",
+  "mechanical_conduit.selection_mode.monsters": "Monsters",
+
+
+  "create_aquatic_ambitions.ponder.conduit_processing.header": "Processing Items with a Conduit Setup",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_1": "Awakened Conduits can be used for fan processing",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_2": "Air Passing through an Conduit's waters will create a Channeling Setup",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_3": "Extra layers of water will dillute the Conduit's Power, thus creating a Washing Setup instead",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_4": "Items caught in the Channeling stream will be processed",
 
   "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.header": "Awakening Conduit Cages",
   "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_1": "Conduit Cages can be used as more compact version of the conduit's prismarine ring",

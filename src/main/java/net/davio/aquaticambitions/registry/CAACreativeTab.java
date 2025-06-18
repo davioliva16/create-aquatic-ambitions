@@ -25,8 +25,10 @@ public class CAACreativeTab {
                 output.accept(CAAItems.PRISMARINE_ALLOY.get());
                 output.accept(CAABlocks.PRISMARINE_ALLOY_BLOCK.asItem());
                 output.accept(CAAItems.PRISMARINE_ROD.get());
-                output.accept(CAAItems.POLISHED_QUARTZ_TINE.get());
                 output.accept(CAABlocks.MECHANICAL_CONDUIT.asItem());
+                output.accept(CAAItems.SUSPICIOUS_ROCK.get());
+                output.accept(CAAItems.SPIKY_SHELL.get());
+                output.accept(CAAItems.CALCIUM_RICH_POWDER.get());
 
             }))
             .build());

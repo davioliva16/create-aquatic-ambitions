@@ -1,5 +1,6 @@
 package net.davio.aquaticambitions;
 
+import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
@@ -19,13 +20,14 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(CreateAquaticAmbitions.MODID)
-public class CreateAquaticAmbitions
-{
+public class CreateAquaticAmbitions {
     public static final String MODID = "create_aquatic_ambitions";
-    public static final String NAME = "Create: Aquatic Ambitions";
+
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID)
             .defaultCreativeTab((ResourceKey<CreativeModeTab>) null);
@@ -52,6 +54,7 @@ public class CreateAquaticAmbitions
         RegistrateDistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CreateAquaticAmbitionsClient.onCtorClient(modEventBus));
 
         modEventBus.addListener(this::setup);
+        modEventBus.addListener(EventPriority.HIGHEST, CAADatagen::gatherDataHighPriority);
         modEventBus.addListener(EventPriority.LOWEST, CAADatagen::gatherData);
     }
 

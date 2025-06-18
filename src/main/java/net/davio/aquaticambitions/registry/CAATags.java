@@ -169,6 +169,7 @@ public class CAATags {
     public enum CAAFluidTags {
 
         CONDUIT_FUEL(NameSpace.MOD,"mechanical_conduit_fuel"),
+        CLEARS_EFFECTS(NameSpace.MOD,"conduit_effects/clears_effects"),
         GIVES_FIRE_RES(NameSpace.MOD,"conduit_effects/gives_fire_resistance"),
         GIVES_HASTE(NameSpace.MOD,"conduit_effects/gives_haste"),
         GIVES_INFESTED(NameSpace.MOD,"conduit_effects/gives_infested"),
