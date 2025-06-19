@@ -152,3 +152,7 @@ publishing {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
+
+tasks.named("processResources", Copy).configure {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

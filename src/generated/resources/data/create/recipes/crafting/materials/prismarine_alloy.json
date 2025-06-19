@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:prismarine"
+    },
+    "B": {
+      "item": "create:copper_nugget"
+    }
+  },
+  "pattern": [
+    "BA",
+    "AB"
+  ],
+  "result": {
+    "item": "create_aquatic_ambitions:prismarine_alloy"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,18 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:sponge"
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "minecraft:wet_sponge"
+    },
+    {
+      "chance": 0.25,
+      "item": "minecraft:wet_sponge"
+    }
+  ]
+}

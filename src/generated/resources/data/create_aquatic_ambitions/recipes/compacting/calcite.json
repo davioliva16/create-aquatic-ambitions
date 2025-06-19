@@ -1,0 +1,21 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {
+      "item": "minecraft:gravel"
+    },
+    {
+      "item": "create_aquatic_ambitions:calcium_rich_powder"
+    },
+    {
+      "amount": 100,
+      "fluid": "minecraft:lava",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:calcite"
+    }
+  ]
+}

@@ -48,6 +48,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -116,6 +117,10 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
                 "effect.minecraft.weakness", MobEffects.WEAKNESS,0x484D48, CAATags.CAAFluidTags.GIVES_WEAKNESS.tag));
         conduitEffectsMap.put("WITHER", new MechanicalConduitEffect(
                 "effect.minecraft.wither", MobEffects.WITHER,0x352A27, CAATags.CAAFluidTags.GIVES_WITHER.tag));
+
+        //MILK
+        conduitEffectsMap.put("CLEAR", new MechanicalConduitEffect(
+                "tooltip.create_aquatic_ambitions.effect.cleansing", null,0xFFFFFF, Tags.Fluids.MILK));
 
         eyeAnimation = LerpedFloat.linear();
         eyeAngle = LerpedFloat.angular();
@@ -227,7 +232,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         for(MechanicalConduitEffect conduitEffect : conduitEffectsMap.values()) {
             if (conduitEffect.isActive()) {
                 conduitEffect.subtractTicks();
-                this.applyEffects(conduitEffect.getEffect());
+                this.applyEffects(conduitEffect.getEffect(), conduitEffect.getFluidTag() == Tags.Fluids.MILK);
 
                 if (conduitEffect.getTicks() < awakenedTicksLimit) {
                     tank.allowInsertion();
@@ -348,7 +353,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         }
     }
 
-    private void applyEffects(MobEffect effect) {
+    private void applyEffects(MobEffect effect, boolean clearEffectsInstead) {
         int range = 32;
         int k = this.getBlockPos().getX();
         int l = this.getBlockPos().getY();
@@ -360,9 +365,18 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
             for(LivingEntity entity : list) {
                 if (entityMatchesSelector(entity, entityTypeSelector.get())){
                     if (this.getBlockPos().closerThan(entity.blockPosition(), (double)range)) {
-                        MobEffectInstance existing = entity.getEffect(effect);
-                        if (existing == null || existing.getDuration() < 25) {
-                            entity.addEffect(new MobEffectInstance(effect, 119, 0, true, true));
+                        // For Milk
+                        if (clearEffectsInstead) {
+                            entity.removeAllEffects();
+                        } else if (effect == null) {
+                            return;
+                        }
+                        // For anything else
+                        else {
+                            MobEffectInstance existing = entity.getEffect(effect);
+                            if (existing == null || existing.getDuration() < 25) {
+                                entity.addEffect(new MobEffectInstance(effect, 119, 0, true, true));
+                            }
                         }
                     }
                 }

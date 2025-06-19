@@ -1,0 +1,23 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "upgrade_aquatic"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "upgrade_aquatic:dead_branch_coral"
+    }
+  ],
+  "results": [
+    {
+      "item": "upgrade_aquatic:branch_coral"
+    },
+    {
+      "chance": 0.25,
+      "item": "upgrade_aquatic:branch_coral"
+    }
+  ]
+}

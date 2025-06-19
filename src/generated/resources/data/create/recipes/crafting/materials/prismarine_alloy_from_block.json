@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "create_aquatic_ambitions:prismarine_alloy_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "create_aquatic_ambitions:prismarine_alloy"
+  }
+}

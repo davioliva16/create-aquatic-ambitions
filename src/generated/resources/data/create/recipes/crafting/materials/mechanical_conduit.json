@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:conduit"
+    },
+    "I": {
+      "item": "create_aquatic_ambitions:prismarine_alloy_rod"
+    },
+    "P": {
+      "item": "create_aquatic_ambitions:prismarine_alloy"
+    },
+    "U": {
+      "item": "create:fluid_pipe"
+    }
+  },
+  "pattern": [
+    "III",
+    "IAI",
+    "PUP"
+  ],
+  "result": {
+    "item": "create_aquatic_ambitions:mechanical_conduit"
+  },
+  "show_notification": true
+}

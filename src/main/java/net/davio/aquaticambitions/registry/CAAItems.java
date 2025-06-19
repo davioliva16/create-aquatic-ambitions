@@ -11,14 +11,16 @@ import static com.simibubi.create.AllTags.forgeItemTag;
 public class CAAItems {
 
     static {
-        REGISTRATE.setCreativeTab(CAACreativeModeTab.CREATIVE_TAB);
+        REGISTRATE.setCreativeTab(CAACreativeTab.CREATIVE_TAB);
     }
 
-    public static final ItemEntry<Item> PRISMARINE_ALLOY = taggedIngredient("prismarine_alloy", CREATE_INGOTS.tag);
-    public static final ItemEntry<Item> PRISMARINE_ROD = taggedIngredient("prismarine_rod",forgeItemTag("rods"));
+    public static final ItemEntry<Item>
+        PRISMARINE_ALLOY = taggedIngredient("prismarine_alloy", CREATE_INGOTS.tag),
+        PRISMARINE_ALLOY_ROD = taggedIngredient("prismarine_alloy_rod",forgeItemTag("rods")),
+        CALCIUM_RICH_POWDER = normalIngredient("calcium_rich_powder"),
+        SPIKY_SHELL = normalIngredient("spiky_shell"),
+        SUSPICIOUS_ROCK = normalIngredient("suspicious_rock");
 
-    public static final ItemEntry<Item> POLISHED_QUARTZ_TINE = taggedIngredient("polished_quartz_tine",forgeItemTag("gems/quartz"));
-    public static final ItemEntry<Item> FLINT_SHARD = normalIngredient("flint_shard");
     @SafeVarargs
     private static ItemEntry<Item> taggedIngredient(String name, TagKey<Item>... tags) {
         return REGISTRATE.item(name, Item::new)
@@ -29,7 +31,6 @@ public class CAAItems {
         return REGISTRATE.item(name, Item::new)
                 .register();
     }
-
 
     public static void register() {};
 }

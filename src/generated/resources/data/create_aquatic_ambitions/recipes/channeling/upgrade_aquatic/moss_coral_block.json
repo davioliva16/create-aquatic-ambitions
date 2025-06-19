@@ -1,0 +1,19 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "upgrade_aquatic"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "upgrade_aquatic:dead_moss_coral_block"
+    }
+  ],
+  "results": [
+    {
+      "item": "upgrade_aquatic:moss_coral_block"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "create:limestone"
+    }
+  ],
+  "processingTime": 50,
+  "results": [
+    {
+      "item": "create_aquatic_ambitions:calcium_rich_powder"
+    },
+    {
+      "chance": 0.5,
+      "item": "create_aquatic_ambitions:calcium_rich_powder"
+    },
+    {
+      "chance": 0.05,
+      "item": "create_aquatic_ambitions:suspicious_rock"
+    }
+  ]
+}

@@ -29,7 +29,7 @@ logoFile="icon.png"
 [[dependencies.create_aquatic_ambitions]]
     modId="create"
     mandatory=true
-    versionRange="[6.0.1,)"
+    versionRange="[6.0.6,)"
     ordering="NONE"
     side="BOTH"
 

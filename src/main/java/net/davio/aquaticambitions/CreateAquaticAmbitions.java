@@ -1,16 +1,16 @@
 package net.davio.aquaticambitions;
 
-import com.simibubi.create.api.registry.CreateBuiltInRegistries;
-import com.simibubi.create.api.registry.CreateRegistries;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.createmod.catnip.lang.LangBuilder;
 import net.davio.aquaticambitions.content.logistics.CAAItemAttributes;
+import net.davio.aquaticambitions.foundation.data.CAADatagen;
 import net.davio.aquaticambitions.registry.*;
-import net.davio.aquaticambitions.registry.recipe.CAAFanProcessingTypes;
-import net.davio.aquaticambitions.registry.recipe.CAARecipeTypes;
+import net.davio.aquaticambitions.registry.CAAFanProcessingTypes;
+import net.davio.aquaticambitions.registry.CAARecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -41,7 +41,7 @@ public class CreateAquaticAmbitions {
         CAAItems.register();
         CAABlocks.register();
         CAABlockEntityTypes.register();
-        CAACreativeModeTab.register(modEventBus);
+        CAACreativeTab.register(modEventBus);
 
         CAATags.init();
         CAARecipeTypes.register(modEventBus);
@@ -50,6 +50,8 @@ public class CreateAquaticAmbitions {
 
         modEventBus.addListener(CreateAquaticAmbitions::init);
         modEventBus.addListener(CreateAquaticAmbitions::onRegister);
+
+        modEventBus.addListener(EventPriority.LOWEST, CAADatagen::gatherData);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CreateAquaticAmbitionsClient.onCtorClient(modEventBus, forgeEventBus));
     }

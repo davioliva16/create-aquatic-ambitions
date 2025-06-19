@@ -1,0 +1,33 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "minecraft:nautilus_shell"
+    }
+  ],
+  "processingTime": 150,
+  "results": [
+    {
+      "count": 3,
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "chance": 0.75,
+      "count": 2,
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "count": 3,
+      "item": "create:experience_nugget"
+    },
+    {
+      "chance": 0.5,
+      "count": 2,
+      "item": "create:experience_nugget"
+    },
+    {
+      "chance": 0.125,
+      "item": "create_aquatic_ambitions:spiky_shell"
+    }
+  ]
+}

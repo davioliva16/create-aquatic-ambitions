@@ -1,0 +1,23 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "create_aquatic_ambitions:suspicious_rock"
+    }
+  ],
+  "results": [
+    {
+      "chance": 0.5,
+      "count": 2,
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "chance": 0.33,
+      "item": "minecraft:bone"
+    },
+    {
+      "chance": 0.05,
+      "item": "minecraft:nautilus_shell"
+    }
+  ]
+}

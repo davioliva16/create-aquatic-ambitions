@@ -20,7 +20,7 @@ import mezz.jei.api.registration.IRecipeTransferRegistration;
 import mezz.jei.api.runtime.IIngredientManager;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.compat.jei.category.FanChannelingCategory;
-import net.davio.aquaticambitions.registry.recipe.CAARecipeTypes;
+import net.davio.aquaticambitions.registry.CAARecipeTypes;
 import net.davio.aquaticambitions.content.kinetics.fan.processing.ChannelingRecipe;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;

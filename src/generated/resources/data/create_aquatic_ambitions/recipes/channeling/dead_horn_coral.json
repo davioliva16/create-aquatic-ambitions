@@ -1,0 +1,18 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:dead_horn_coral"
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "minecraft:horn_coral"
+    },
+    {
+      "chance": 0.25,
+      "item": "minecraft:horn_coral"
+    }
+  ]
+}

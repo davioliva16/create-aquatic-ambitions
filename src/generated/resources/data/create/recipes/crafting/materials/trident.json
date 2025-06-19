@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "create_aquatic_ambitions:spiky_shell"
+    },
+    "I": {
+      "item": "create_aquatic_ambitions:prismarine_alloy_rod"
+    }
+  },
+  "pattern": [
+    " AA",
+    " IA",
+    "I  "
+  ],
+  "result": {
+    "item": "minecraft:trident"
+  },
+  "show_notification": true
+}

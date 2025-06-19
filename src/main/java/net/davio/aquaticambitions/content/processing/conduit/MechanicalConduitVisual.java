@@ -40,7 +40,7 @@ public class MechanicalConduitVisual extends AbstractBlockEntityVisual<Mechanica
         eye = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(CAAPartials.CONDUIT_EYE))
                 .createInstance();
 
-        eye.light(LightTexture.FULL_BRIGHT);
+        eye.light(LightTexture.FULL_BLOCK);
 
         animate(partialTick);
     }
@@ -84,7 +84,7 @@ public class MechanicalConduitVisual extends AbstractBlockEntityVisual<Mechanica
                 inactiveConduit = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(CAAPartials.INACTIVE_CONDUIT))
                         .createInstance();
 
-                inactiveConduit.light(LightTexture.FULL_BRIGHT);
+                inactiveConduit.light(LightTexture.FULL_BLOCK);
 
                 if (cage != null) {
                     cage.delete();
@@ -107,6 +107,7 @@ public class MechanicalConduitVisual extends AbstractBlockEntityVisual<Mechanica
 
         float eyeAngle = AngleHelper.rad(blockEntity.eyeAngle.getValue(partialTicks));
 
+        if (eye != null) {
         eye.setIdentityTransform()
                 .translate(getVisualPosition())
                 .translateY(mainY + (isActive? activeYOffset : 0))
@@ -114,6 +115,7 @@ public class MechanicalConduitVisual extends AbstractBlockEntityVisual<Mechanica
                 .rotateY(eyeAngle)
                 .translateBack(Translate.CENTER)
                 .setChanged();
+        }
 
         if (cage != null) {
             cage.setIdentityTransform()
