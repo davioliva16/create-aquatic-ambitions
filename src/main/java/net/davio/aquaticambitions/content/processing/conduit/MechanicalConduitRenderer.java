@@ -39,30 +39,43 @@ public class MechanicalConduitRenderer extends SafeBlockEntityRenderer<Mechanica
     }
 
     private void renderShared(PoseStack ms, @Nullable PoseStack modelTransform, MultiBufferSource bufferSource,
-        Level level, BlockState blockState, ConduitPowerLevel conduitLevel, float animation, float playerTrackAngle, int hashCode) {
+                              Level level, BlockState blockState, ConduitPowerLevel conduitLevel, float animation, float playerTrackAngle, int hashCode) {
 
         float time = AnimationTickHolder.getRenderTime(level);
         float renderTick = time + (hashCode % 13) * 16f;
         float offsetMult = conduitLevel.isAwakened() ? 64 : 16;
         float offset = Mth.sin((float) ((renderTick / 16f) % (2 * Math.PI))) / offsetMult;
-        float eyeY = offset - (animation * .75f) + (conduitLevel.isAwakened()?0.2f:0);
-        float rotateYZ = Mth.DEG_TO_RAD*(time * 2f) % 360;
-        float rotateX = Mth.DEG_TO_RAD*30*(Mth.sin(((time * 2f) % 360)*Mth.DEG_TO_RAD));
+        float eyeY = offset - (animation * .75f) + (conduitLevel.isAwakened() ? 0.2f : 0);
+        float rotateYZ = Mth.DEG_TO_RAD * (time * 2f) % 360;
+        float rotateX = Mth.DEG_TO_RAD * 30 * (Mth.sin(((time * 2f) % 360) * Mth.DEG_TO_RAD));
 
         VertexConsumer solid = bufferSource.getBuffer(RenderType.solid());
         VertexConsumer cutout = bufferSource.getBuffer(RenderType.cutoutMipped());
 
         ms.pushPose();
 
-        SuperByteBuffer headBuffer = CachedBuffers.partial(CAAPartials.CONDUIT_EYE, blockState);
+        var eyeModel = CAAPartials.CONDUIT_EYE;
+        var cageModel = CAAPartials.CONDUIT_CAGE;
+        var inactiveModel = CAAPartials.INACTIVE_CONDUIT;
+
+        if (eyeModel == null) {
+            ms.popPose();
+            return;
+        }
+
+        SuperByteBuffer eyeBuffer = CachedBuffers.partial(eyeModel, blockState);
         if (modelTransform != null)
-            headBuffer.transform(modelTransform);
-        headBuffer.translate(0, eyeY, 0);
-        draw(headBuffer, playerTrackAngle, ms, bufferSource.getBuffer(RenderType.cutout()));
+            eyeBuffer.transform(modelTransform);
+        eyeBuffer.translate(0, eyeY, 0);
+        draw(eyeBuffer, playerTrackAngle, ms, bufferSource.getBuffer(RenderType.cutout()));
 
         if (conduitLevel.isAwakened()) {
+            if (cageModel == null) {
+                ms.popPose();
+                return;
+            }
 
-            SuperByteBuffer cageBuffer = CachedBuffers.partial(CAAPartials.CONDUIT_CAGE, blockState);
+            SuperByteBuffer cageBuffer = CachedBuffers.partial(cageModel, blockState);
             if (modelTransform != null)
                 cageBuffer.transform(modelTransform);
             cageBuffer
@@ -72,8 +85,11 @@ public class MechanicalConduitRenderer extends SafeBlockEntityRenderer<Mechanica
             draw(cageBuffer, rotateYZ, ms, bufferSource.getBuffer(RenderType.cutout()));
 
         } else {
-
-            SuperByteBuffer inactiveConduitBuffer = CachedBuffers.partial(CAAPartials.INACTIVE_CONDUIT, blockState);
+            if (inactiveModel == null) {
+                ms.popPose();
+                return;
+            }
+            SuperByteBuffer inactiveConduitBuffer = CachedBuffers.partial(inactiveModel, blockState);
             if (modelTransform != null)
                 inactiveConduitBuffer.transform(modelTransform);
             inactiveConduitBuffer.translate(0, eyeY, 0);

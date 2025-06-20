@@ -41,7 +41,7 @@ public class MechanicalConduitVisual extends AbstractBlockEntityVisual<Mechanica
         eye = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(CAAPartials.CONDUIT_EYE))
                 .createInstance();
 
-        eye.light(LightTexture.FULL_SKY);
+        eye.light(LightTexture.FULL_BLOCK);
 
         animate(partialTick);
     }
@@ -85,7 +85,7 @@ public class MechanicalConduitVisual extends AbstractBlockEntityVisual<Mechanica
                 inactiveConduit = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(CAAPartials.INACTIVE_CONDUIT))
                         .createInstance();
 
-                inactiveConduit.light(LightTexture.FULL_SKY);
+                inactiveConduit.light(LightTexture.FULL_BLOCK);
 
                 if (cage != null) {
                     cage.delete();
