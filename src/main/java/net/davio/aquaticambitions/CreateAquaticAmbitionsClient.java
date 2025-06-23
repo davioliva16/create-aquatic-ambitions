@@ -14,6 +14,7 @@ public class CreateAquaticAmbitionsClient {
 
     public CreateAquaticAmbitionsClient() {
         CAAPartials.init();
+        PonderIndex.addPlugin(new CAAPonderPlugin());
     }
 
     public static void onCtorClient(IEventBus modEventBus) {
@@ -24,6 +25,6 @@ public class CreateAquaticAmbitionsClient {
     }
 
     public static void clientInit(final FMLClientSetupEvent event) {
-        PonderIndex.addPlugin(new CAAPonderPlugin());
+        //PonderIndex.addPlugin(new CAAPonderPlugin());
     }
 }

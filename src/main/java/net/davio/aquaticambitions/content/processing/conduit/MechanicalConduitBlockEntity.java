@@ -166,7 +166,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         for(MechanicalConduitEffect conduitEffect : conduitEffectsMap.values()) {
             if (fluidStack.is(conduitEffect.getFluidTag()) || potionHasEffect(fluidStack, conduitEffect)) // or NBT matches create:potion
                 {
-                conduitEffect.addTicks(29*fluidStack.getAmount());
+                conduitEffect.addTicks(36*fluidStack.getAmount());
             }
             if (conduitEffect.getTicks() > awakenedTicksLimit) {
                 tank.forbidInsertion();

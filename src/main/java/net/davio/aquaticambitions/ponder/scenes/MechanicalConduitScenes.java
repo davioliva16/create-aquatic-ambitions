@@ -266,6 +266,7 @@ public class MechanicalConduitScenes {
         scene.idle(10);
 
         ElementLink<ParrotElement> flappyBirb = scene.special().createBirb(util.vector().topOf(birbPos), ParrotPose.FlappyPose::new);
+        scene.special().moveParrot(flappyBirb, util.vector().of(0, 0, 0), 1);
 
         scene.overlay().showText(70)
                 .text("Conduit Cages can affect entities nearby")
