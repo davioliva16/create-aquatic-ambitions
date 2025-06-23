@@ -24,7 +24,7 @@ public class CAAChannelingRecipeGen extends ChannelingRecipeGen {
             .output(.1f, CAAItems.SPIKY_SHELL, 1)
             .output(.5f, Items.NAUTILUS_SHELL, 1)),
 
-    PRISMARINE_CRYSTALS = convert(Items.GLOWSTONE, Items.PRISMARINE_CRYSTALS),
+    PRISMARINE_CRYSTALS = convert(Items.GLOWSTONE_DUST, Items.PRISMARINE_CRYSTALS),
     HEART_OF_THE_SEA = convert(Items.ENDER_EYE, Items.HEART_OF_THE_SEA),
 
     EXPOSED_COPPER = convert(Items.COPPER_BLOCK, Items.EXPOSED_COPPER),

@@ -2,7 +2,7 @@
   "type": "create_aquatic_ambitions:channeling",
   "ingredients": [
     {
-      "item": "minecraft:glowstone"
+      "item": "minecraft:glowstone_dust"
     }
   ],
   "results": [
