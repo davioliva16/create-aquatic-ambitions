@@ -5,7 +5,7 @@
   "block.create_aquatic_ambitions.mechanical_conduit": "Conduit Cage",
 
   "item.create_aquatic_ambitions.prismarine_alloy": "Prismarine Alloy",
-  "item.create_aquatic_ambitions.prismarine_rod": "Prismarine Rod",
+  "item.create_aquatic_ambitions.prismarine_alloy_rod": "Prismarine Alloy Rod",
   "item.create_aquatic_ambitions.nautilus_shard": "Nautilus Shard",
   "item.create_aquatic_ambitions.suspicious_rock": "Suspicious Rock",
   "item.create_aquatic_ambitions.spiky_shell": "Spiky Shell",
@@ -15,6 +15,8 @@
 
   "create_aquatic_ambitions.tooltip.conduitcage.header" : "Conduit Cage Information",
   "tooltip.create_aquatic_ambitions.effect.cleansing" : "Cleansing",
+
+  "create.item_attributes.can_be_channeled" : "can be Channeled",
 
   "create_aquatic_ambitions.mechanical_conduit.entity_filter.title": "Entity Filter",
   "mechanical_conduit.selection_mode.everyone": "Everyone",

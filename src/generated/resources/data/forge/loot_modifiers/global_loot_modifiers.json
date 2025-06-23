@@ -1,0 +1,25 @@
+{
+  "entries": [
+    "create_aquatic_ambitions:dead_bubble_coral_silkless",
+    "create_aquatic_ambitions:brain_coral_fan_silkless",
+    "create_aquatic_ambitions:fire_coral_silkless",
+    "create_aquatic_ambitions:dead_fire_coral_silkless",
+    "create_aquatic_ambitions:dead_tube_coral_silkless",
+    "create_aquatic_ambitions:bubble_coral_silkless",
+    "create_aquatic_ambitions:tube_coral_silkless",
+    "create_aquatic_ambitions:dead_bubble_fan_coral_fan_silkless",
+    "create_aquatic_ambitions:dead_brain_coral_fan_silkless",
+    "create_aquatic_ambitions:dead_horn_coral_fan_silkless",
+    "create_aquatic_ambitions:tube_coral_fan_silkless",
+    "create_aquatic_ambitions:dead_horn_coral_silkless",
+    "create_aquatic_ambitions:bubble_fan_coral_fan_silkless",
+    "create_aquatic_ambitions:fire_coral_fan_silkless",
+    "create_aquatic_ambitions:dead_tube_coral_fan_silkless",
+    "create_aquatic_ambitions:brain_coral_silkless",
+    "create_aquatic_ambitions:dead_brain_coral_silkless",
+    "create_aquatic_ambitions:dead_fire_coral_fan_silkless",
+    "create_aquatic_ambitions:horn_coral_fan_silkless",
+    "create_aquatic_ambitions:horn_coral_silkless"
+  ],
+  "replace": false
+}

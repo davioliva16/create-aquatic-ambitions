@@ -4,10 +4,13 @@ package net.davio.aquaticambitions.foundation.data.tags;
 import com.simibubi.create.AllFluids;
 import com.simibubi.create.foundation.data.TagGen;
 
+import com.simibubi.create.foundation.data.recipe.Mods;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 
 import net.davio.aquaticambitions.registry.CAATags;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
@@ -30,7 +33,74 @@ public class CAARegistrateTags {
         TagGen.CreateTagsProvider<Block> prov = new TagGen.CreateTagsProvider<>(provIn, Block::builtInRegistryHolder);
 
         prov.tag(CAATags.CAABlockTags.FAN_PROCESSING_CATALYSTS_CHANNELING.tag);
-            //If config enables it, add conduit block and conduit cage here to let them channel while inactive
+
+        prov.tag(BlockTags.LEAVES)
+                .addOptional(new ResourceLocation("minecraft","brain_coral"))
+                .addOptional(new ResourceLocation("minecraft","bubble_coral"))
+                .addOptional(new ResourceLocation("minecraft","fire_coral"))
+                .addOptional(new ResourceLocation("minecraft","horn_coral"))
+                .addOptional(new ResourceLocation("minecraft","tube_coral"))
+                .addOptional(new ResourceLocation("minecraft","brain_coral_fan"))
+                .addOptional(new ResourceLocation("minecraft","bubble_coral_fan"))
+                .addOptional(new ResourceLocation("minecraft","fire_coral_fan"))
+                .addOptional(new ResourceLocation("minecraft","horn_coral_fan"))
+                .addOptional(new ResourceLocation("minecraft","tube_coral_fan"))
+
+                .addOptional(new ResourceLocation("minecraft","dead_brain_coral"))
+                .addOptional(new ResourceLocation("minecraft","dead_bubble_coral"))
+                .addOptional(new ResourceLocation("minecraft","dead_fire_coral"))
+                .addOptional(new ResourceLocation("minecraft","dead_horn_coral"))
+                .addOptional(new ResourceLocation("minecraft","dead_tube_coral"))
+                .addOptional(new ResourceLocation("minecraft","dead_brain_coral_fan"))
+                .addOptional(new ResourceLocation("minecraft","dead_bubble_coral_fan"))
+                .addOptional(new ResourceLocation("minecraft","dead_fire_coral_fan"))
+                .addOptional(new ResourceLocation("minecraft","dead_horn_coral_fan"))
+                .addOptional(new ResourceLocation("minecraft","dead_tube_coral_fan"))
+        //Upgrade Aquatic
+                // Live corals
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "acan_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "branch_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "chrome_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "finger_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "moss_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "petal_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "pillow_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "rock_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "silk_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "star_coral"))
+                // Live coral fans
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "acan_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "branch_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "chrome_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "finger_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "moss_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "petal_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "pillow_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "rock_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "silk_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "star_coral_fan"))
+                // Dead corals
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_acan_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_branch_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_chrome_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_finger_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_moss_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_petal_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_pillow_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_rock_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_silk_coral"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_star_coral"))
+                // Dead coral fans
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_acan_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_branch_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_chrome_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_finger_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_moss_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_petal_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_pillow_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_rock_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_silk_coral_fan"))
+                .addOptional(new ResourceLocation(Mods.UA.getId(), "dead_star_coral_fan"));
     }
 
     private static void genFluidTags(RegistrateTagsProvider<Fluid> provIn) {

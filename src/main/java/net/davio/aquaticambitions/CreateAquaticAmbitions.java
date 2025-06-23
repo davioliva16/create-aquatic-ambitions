@@ -4,6 +4,7 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.createmod.catnip.lang.LangBuilder;
 import net.davio.aquaticambitions.content.logistics.CAAItemAttributes;
 import net.davio.aquaticambitions.foundation.data.CAADatagen;
+import net.davio.aquaticambitions.foundation.loot.CAALootModifiers;
 import net.davio.aquaticambitions.registry.*;
 import net.davio.aquaticambitions.registry.CAAFanProcessingTypes;
 import net.davio.aquaticambitions.registry.CAARecipeTypes;
@@ -46,7 +47,7 @@ public class CreateAquaticAmbitions {
         CAATags.init();
         CAARecipeTypes.register(modEventBus);
         CAAItemAttributes.register(modEventBus);
-        CAAPartials.init();
+        CAALootModifiers.register(modEventBus);
 
         modEventBus.addListener(CreateAquaticAmbitions::init);
         modEventBus.addListener(CreateAquaticAmbitions::onRegister);

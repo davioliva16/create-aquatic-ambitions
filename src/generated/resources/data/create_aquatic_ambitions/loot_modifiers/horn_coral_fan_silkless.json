@@ -1,0 +1,30 @@
+{
+  "type": "create_aquatic_ambitions:add_item",
+  "conditions": [
+    {
+      "condition": "minecraft:inverted",
+      "term": {
+        "condition": "minecraft:match_tool",
+        "predicate": {
+          "enchantments": [
+            {
+              "enchantment": "minecraft:silk_touch",
+              "levels": {
+                "min": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "block": "minecraft:horn_coral_fan",
+      "condition": "minecraft:block_state_property"
+    },
+    {
+      "chance": 1.0,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "minecraft:horn_coral_fan"
+}
