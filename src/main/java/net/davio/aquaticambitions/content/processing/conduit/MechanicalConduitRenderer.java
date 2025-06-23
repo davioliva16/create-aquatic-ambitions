@@ -22,7 +22,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class MechanicalConduitRenderer extends SafeBlockEntityRenderer<MechanicalConduitBlockEntity> {
 
-    public MechanicalConduitRenderer(BlockEntityRendererProvider.Context context) {};
+    public MechanicalConduitRenderer(BlockEntityRendererProvider.Context context) {
+    };
 
     @Override
     protected void renderSafe(MechanicalConduitBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {

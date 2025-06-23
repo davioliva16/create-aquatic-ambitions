@@ -4,10 +4,15 @@ package net.davio.aquaticambitions.foundation.data.tags;
 import com.simibubi.create.AllFluids;
 import com.simibubi.create.foundation.data.TagGen;
 
+import com.simibubi.create.foundation.data.recipe.Mods;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 
+import com.tterrag.registrate.providers.loot.RegistrateLootTableProvider;
 import net.davio.aquaticambitions.registry.CAATags;
+import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
@@ -21,6 +26,7 @@ public class CAARegistrateTags {
         REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, CAARegistrateTags::genItemTags);
         REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, CAARegistrateTags::genBlockTags);
         REGISTRATE.addDataGenerator(ProviderType.FLUID_TAGS, CAARegistrateTags::genFluidTags);
+
     }
 
     private static void genItemTags(RegistrateTagsProvider<Item> provIn) {
@@ -32,7 +38,74 @@ public class CAARegistrateTags {
         TagGen.CreateTagsProvider<Block> prov = new TagGen.CreateTagsProvider<>(provIn, Block::builtInRegistryHolder);
 
         prov.tag(CAATags.CAABlockTags.FAN_PROCESSING_CATALYSTS_CHANNELING.tag);
-            //If config enables it, add conduit block and conduit cage here to let them channel while inactive
+
+        prov.tag(BlockTags.LEAVES)
+                .addOptional(ResourceLocation.withDefaultNamespace("brain_coral"))
+                .addOptional(ResourceLocation.withDefaultNamespace("bubble_coral"))
+                .addOptional(ResourceLocation.withDefaultNamespace("fire_coral"))
+                .addOptional(ResourceLocation.withDefaultNamespace("horn_coral"))
+                .addOptional(ResourceLocation.withDefaultNamespace("tube_coral"))
+                .addOptional(ResourceLocation.withDefaultNamespace("brain_coral_fan"))
+                .addOptional(ResourceLocation.withDefaultNamespace("bubble_coral_fan"))
+                .addOptional(ResourceLocation.withDefaultNamespace("fire_coral_fan"))
+                .addOptional(ResourceLocation.withDefaultNamespace("horn_coral_fan"))
+                .addOptional(ResourceLocation.withDefaultNamespace("tube_coral_fan"))
+
+                .addOptional(ResourceLocation.withDefaultNamespace("dead_brain_coral"))
+                .addOptional(ResourceLocation.withDefaultNamespace("dead_bubble_coral"))
+                .addOptional(ResourceLocation.withDefaultNamespace("dead_fire_coral"))
+                .addOptional(ResourceLocation.withDefaultNamespace("dead_horn_coral"))
+                .addOptional(ResourceLocation.withDefaultNamespace("dead_tube_coral"))
+                .addOptional(ResourceLocation.withDefaultNamespace("dead_brain_coral_fan"))
+                .addOptional(ResourceLocation.withDefaultNamespace("dead_bubble_coral_fan"))
+                .addOptional(ResourceLocation.withDefaultNamespace("dead_fire_coral_fan"))
+                .addOptional(ResourceLocation.withDefaultNamespace("dead_horn_coral_fan"))
+                .addOptional(ResourceLocation.withDefaultNamespace("dead_tube_coral_fan"))
+        //Upgrade Aquatic
+                // Live corals
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "acan_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "branch_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "chrome_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "finger_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "moss_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "petal_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "pillow_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "rock_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "silk_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "star_coral"))
+                // Live coral fans
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "acan_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "branch_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "chrome_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "finger_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "moss_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "petal_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "pillow_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "rock_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "silk_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "star_coral_fan"))
+                // Dead corals
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_acan_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_branch_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_chrome_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_finger_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_moss_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_petal_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_pillow_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_rock_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_silk_coral"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_star_coral"))
+                // Dead coral fans
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_acan_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_branch_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_chrome_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_finger_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_moss_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_petal_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_pillow_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_rock_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_silk_coral_fan"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Mods.UA.getId(), "dead_star_coral_fan"));
     }
 
     private static void genFluidTags(RegistrateTagsProvider<Fluid> provIn) {
@@ -66,6 +139,5 @@ public class CAARegistrateTags {
         prov.tag(CAATags.CAAFluidTags.GIVES_WITHER.tag);
         prov.tag(CAATags.CAAFluidTags.FAN_PROCESSING_CATALYSTS_CHANNELING.tag);
     }
-
 }
 

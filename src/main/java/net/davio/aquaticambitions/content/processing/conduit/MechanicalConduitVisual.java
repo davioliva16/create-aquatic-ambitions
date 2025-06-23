@@ -85,8 +85,6 @@ public class MechanicalConduitVisual extends AbstractBlockEntityVisual<Mechanica
                 inactiveConduit = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(CAAPartials.INACTIVE_CONDUIT))
                         .createInstance();
 
-                inactiveConduit.light(LightTexture.FULL_BLOCK);
-
                 if (cage != null) {
                     cage.delete();
                     cage = null;

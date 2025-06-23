@@ -12,6 +12,10 @@ import net.neoforged.neoforge.common.NeoForge;
 @Mod(value = CreateAquaticAmbitions.MODID, dist = Dist.CLIENT)
 public class CreateAquaticAmbitionsClient {
 
+    public CreateAquaticAmbitionsClient() {
+        CAAPartials.init();
+    }
+
     public static void onCtorClient(IEventBus modEventBus) {
 
         IEventBus neoEventBus = NeoForge.EVENT_BUS;
@@ -20,7 +24,6 @@ public class CreateAquaticAmbitionsClient {
     }
 
     public static void clientInit(final FMLClientSetupEvent event) {
-        CAAPartials.init();
         PonderIndex.addPlugin(new CAAPonderPlugin());
     }
 }

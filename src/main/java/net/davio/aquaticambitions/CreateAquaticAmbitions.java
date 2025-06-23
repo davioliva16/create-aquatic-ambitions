@@ -9,6 +9,7 @@ import com.tterrag.registrate.util.RegistrateDistExecutor;
 import net.createmod.catnip.lang.FontHelper;
 import net.davio.aquaticambitions.content.logistics.CAAItemAttributes;
 import net.davio.aquaticambitions.foundation.data.CAADatagen;
+import net.davio.aquaticambitions.foundation.loot.CAALootModifiers;
 import net.davio.aquaticambitions.registry.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -50,6 +51,7 @@ public class CreateAquaticAmbitions {
         CAAFanProcessingTypes.register(modEventBus);
         CAAItemAttributes.register(modEventBus);
 
+        CAALootModifiers.register(modEventBus);
 
         RegistrateDistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CreateAquaticAmbitionsClient.onCtorClient(modEventBus));
 
