@@ -1,9 +1,48 @@
 {
   "itemGroup.create_aquatic_ambitions": "Create: Aquatic Ambitions",
-  "create_aquatic_ambitions.recipe.aquatic_ambitions.fan_channeling": "Каналирование морского источника",
+
+  "block.create_aquatic_ambitions.mechanical_conduit": "Клетка морского источника",
+  "block.create_aquatic_ambitions.prismarine_alloy_block": "Блок призмаринового сплава",
+  "block.create_aquatic_ambitions.fake_active_conduit": "Фальшивый активный морской источник",
+
   "item.create_aquatic_ambitions.prismarine_alloy": "Призмариновый сплав",
-  "item.create_aquatic_ambitions.prismarine_rod": "Призмариновый стержень",
-  "item.create_aquatic_ambitions.flint_shard": "Осколок кремня",
-  "item.create_aquatic_ambitions.polished_quartz_tine": "Зубец из полированного кварца",
-  "block.create_aquatic_ambitions.prismarine_alloy_block": "Блок призмаринового сплава"
+  "item.create_aquatic_ambitions.prismarine_alloy_rod": "Стержень из призмаринового сплава",
+  "item.create_aquatic_ambitions.nautilus_shard": "Осколок наутилуса",
+  "item.create_aquatic_ambitions.suspicious_rock": "Подозрительный камень",
+  "item.create_aquatic_ambitions.spiky_shell": "Колючая раковина",
+  "item.create_aquatic_ambitions.calcium_rich_powder": "Порошок, богатый кальцием",
+
+  "recipe.create_aquatic_ambitions.fan_channeling": "Каналирование морским источником",
+
+  "create_aquatic_ambitions.tooltip.conduitcage.header": "Информация о клетке морского источника",
+  "tooltip.create_aquatic_ambitions.effect.cleansing": "Очищение",
+
+  "create.item_attributes.can_be_channeled": "можно каналировать",
+
+  "create_aquatic_ambitions.mechanical_conduit.entity_filter.title": "Фильтр сущностей",
+  "mechanical_conduit.selection_mode.everyone": "Все",
+  "mechanical_conduit.selection_mode.players": "Игроки",
+  "mechanical_conduit.selection_mode.friendly_mobs": "Дружелюбные мобы",
+  "mechanical_conduit.selection_mode.players_friendly_mobs": "Игроки и дружелюбные мобы",
+  "mechanical_conduit.selection_mode.monsters": "Монстры",
+
+  "create_aquatic_ambitions.ponder.conduit_processing.header": "Обработкой предметов морским источником",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_1": "Активированные морские источники можно использовать для обработки вентиляторами",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_2": "Проходя через воды морского источника воздух создаёт каналирующую установку",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_3": "Дополнительные слои воды ослабляют силу морского источника, создавая систему установку",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_4": "Предметы в каналирующем потоке будут обработаны",
+
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.header": "Активацией клеток морского источника",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_1": "Клетки морского источника — компактная замена призмариновому кольцу",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_2": "Жидкости можно закачивать через нижнюю грань клетки",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_3": "Закачка жидкости активирует клетку морского источника",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.header": "Обработкой предметов клеткой морского источника",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_1": "Клетки морского источника также пригодны для обработки вентиляторами",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_2": "Воздух через клетку создаёт каналирующую установку",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_3": "Предметы в канальном потоке будут обработаны",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.header": "Эффектами клеток морского источника",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_1": "Активированные клетки влияют на близлежащих существ",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_2": "Клетка с водой даёт эффект силы источника",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_3": "Разные жидкости дают разные эффекты",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_4": "Слот режима выбирает, на кого действуют эффекты"
 }
