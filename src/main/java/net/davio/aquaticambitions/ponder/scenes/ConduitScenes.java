@@ -7,6 +7,7 @@ import net.createmod.ponder.api.PonderPalette;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.createmod.ponder.api.scene.Selection;
+import net.davio.aquaticambitions.util.CAALang;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -58,7 +59,7 @@ public class ConduitScenes {
                 .attachKeyFrame()
                 .pointAt(util.vector().centerOf(conduitPos))
                 .placeNearTarget()
-                .text("Awakened Conduits can be used for fan processing");
+                .text(CAALang.translateDirect("ponder.conduit_processing.text_1").getString());
 
         scene.idle(70);
 
@@ -72,7 +73,7 @@ public class ConduitScenes {
                 .colored(PonderPalette.MEDIUM)
                 .pointAt(util.vector().centerOf(0, 2, 2))
                 .placeNearTarget()
-                .text("Air Passing through an Conduit Cage will create a Channeling Setup");
+                .text(CAALang.translateDirect("ponder.conduit_processing.text_2").getString());
 
         scene.idle(70);
 
@@ -85,7 +86,7 @@ public class ConduitScenes {
                 .colored(PonderPalette.RED)
                 .pointAt(util.vector().centerOf(0, 2, 2))
                 .placeNearTarget()
-                .text("Extra layers of water will dillute the Conduit's Power, thus creating a Washing Setup instead");
+                .text(CAALang.translateDirect("ponder.conduit_processing.text_3").getString());
 
         scene.idle(70);
 
@@ -114,7 +115,7 @@ public class ConduitScenes {
                 .attachKeyFrame()
                 .pointAt(util.vector().topOf(util.grid().at(depotPos.getX(), depotPos.getY(), depotPos.getZ())))
                 .placeNearTarget()
-                .text("Items caught in the Channeling stream will be processed");
+                .text(CAALang.translateDirect("ponder.conduit_processing.text_4").getString());
 
         scene.idle(90);
 
