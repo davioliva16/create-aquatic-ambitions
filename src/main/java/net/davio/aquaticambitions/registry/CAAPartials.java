@@ -17,6 +17,5 @@ public class CAAPartials {
     }
 
     public static void init() {
-        // init static fields
     }
 }
