@@ -9,7 +9,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class CreateAquaticAmbitionsClient {
 
     public CreateAquaticAmbitionsClient() {
-        CAAPartials.init();
     }
 
     public static void onCtorClient(IEventBus modEventBus, IEventBus forgeEventBus) {

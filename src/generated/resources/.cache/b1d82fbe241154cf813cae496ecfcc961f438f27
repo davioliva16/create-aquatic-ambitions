@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-23T14:12:30.4121973	Registrate Provider for create_aquatic_ambitions [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-07-03T13:18:40.12603	Registrate Provider for create_aquatic_ambitions [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 3abd0dfd66d4dde488996e580b7946586f77d34f assets/create_aquatic_ambitions/blockstates/fake_active_conduit.json
 02b36a44b03d49062cedf72c3f69c143b304b219 assets/create_aquatic_ambitions/blockstates/mechanical_conduit.json
 96ae3def74c73b3e8a1441ee22d8654a0df24c1c assets/create_aquatic_ambitions/blockstates/prismarine_alloy_block.json
@@ -18,7 +18,7 @@ f17a1cee89cf81ad22da8b677bb6284265e09a0f data/create_aquatic_ambitions/loot_tabl
 712d1beb1bc7ca24ecb1a4b5dc520c39916e6324 data/create_aquatic_ambitions/loot_tables/blocks/prismarine_alloy_block.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/blocks/fan_processing_catalysts/channeling.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_fire_resistance.json
-46ef14d0211e7ea2a643287a1ad8290c598b8aba data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_haste.json
+1b98dce4157670db67c153c14846aaf4e110c6e3 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_haste.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_infested.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_invisibility.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_jump.json
@@ -28,6 +28,7 @@ f17a1cee89cf81ad22da8b677bb6284265e09a0f data/create_aquatic_ambitions/loot_tabl
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_poison.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_regen.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_resistance.json
+185abfff217f4cf8f9a9b4a7710cbebcd46fc415 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_saturation.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_slowness.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_slow_fall.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_speed.json
@@ -37,6 +38,7 @@ f17a1cee89cf81ad22da8b677bb6284265e09a0f data/create_aquatic_ambitions/loot_tabl
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_weaving.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_wind.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/conduit_effects/gives_wither.json
+db6195d77bd598771b111d12750ba39f41fe35c7 data/create_aquatic_ambitions/tags/fluids/conduit_effects/sets_on_fire.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/create_aquatic_ambitions/tags/fluids/fan_processing_catalysts/channeling.json
 cf3608bd187922aeb48c566c19e8482b0dca34c7 data/create_aquatic_ambitions/tags/fluids/mechanical_conduit_fuel.json
 6bfcba3af98befde4a53652bb4856c78218d86a3 data/forge/tags/blocks/storage_blocks/prismarine.json

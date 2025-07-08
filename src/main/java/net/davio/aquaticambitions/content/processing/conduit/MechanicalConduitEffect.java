@@ -1,11 +1,13 @@
 package net.davio.aquaticambitions.content.processing.conduit;
 
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 
 public class MechanicalConduitEffect {
 
-    private int ticks;
+    private float ticks;
+    private int amplifier;
     private final String langKey;
     private final MobEffect effect;
     private final int hexColor;
@@ -14,6 +16,7 @@ public class MechanicalConduitEffect {
 
     public MechanicalConduitEffect(String langKey, MobEffect effect, int hexColor, TagKey fluidTag) {
         this.ticks = 0;
+        this.amplifier = 0;
         this.langKey = langKey;
         this.effect = effect;
         this.hexColor = hexColor;
@@ -21,7 +24,7 @@ public class MechanicalConduitEffect {
     }
 
     public int getTicks(){
-        return ticks;
+        return Mth.floor(ticks);
     }
 
     public void setTicks(int newTicks) { //Used to update client side
@@ -32,12 +35,25 @@ public class MechanicalConduitEffect {
         return ticks > 0f;
     }
 
-    public void addTicks(int amount){
+    public void addTicks(float amount){
         ticks += amount;
     }
 
     public void subtractTicks(){
         ticks --;
+        if (ticks < 0f) ticks = 0f;
+    }
+
+    public int getAmplifier() {return amplifier;}
+
+    public void setAmplifier(int newAmplifier) {
+        if (newAmplifier > this.amplifier) {
+            amplifier = newAmplifier;
+        }
+    }
+
+    public void resetAmplifier() {
+        amplifier = 0;
     }
 
     public String getLangKey(){

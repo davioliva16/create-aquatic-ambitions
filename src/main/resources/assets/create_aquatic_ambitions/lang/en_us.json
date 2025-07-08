@@ -12,9 +12,11 @@
   "item.create_aquatic_ambitions.calcium_rich_powder": "Calcium Rich Powder",
 
   "create_aquatic_ambitions.recipe.aquatic_ambitions.fan_channeling": "Conduit Channeling",
+  "create.recipe.aquatic_ambitions.fan_channeling": "Conduit Channeling",
 
   "create_aquatic_ambitions.tooltip.conduitcage.header" : "Conduit Cage Information",
   "tooltip.create_aquatic_ambitions.effect.cleansing" : "Cleansing",
+  "tooltip.create_aquatic_ambitions.effect.burning" : "Burning",
 
   "create.item_attributes.can_be_channeled" : "can be Channeled",
 

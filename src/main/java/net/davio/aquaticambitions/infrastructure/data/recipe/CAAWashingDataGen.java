@@ -1,0 +1,23 @@
+package net.davio.aquaticambitions.infrastructure.data.recipe;
+
+import com.simibubi.create.api.data.recipe.WashingRecipeGen;
+import net.davio.aquaticambitions.CreateAquaticAmbitions;
+import net.davio.aquaticambitions.registry.CAAItems;
+import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.Items;
+
+public class CAAWashingDataGen extends WashingRecipeGen {
+
+    GeneratedRecipe
+
+    WASHING_SUS_ROCK =  create(CreateAquaticAmbitions.asResource("suspicious_rock"), b -> b
+        .require(CAAItems.SUSPICIOUS_ROCK)
+        .output(0.5f, Items.BONE_MEAL, 2)
+        .output(.33f, Items.BONE, 1)
+        .output(.05f, Items.NAUTILUS_SHELL, 1));
+
+
+    public CAAWashingDataGen(PackOutput output, String defaultNamespace) {
+        super(output, CreateAquaticAmbitions.MODID);
+    }
+}

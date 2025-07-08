@@ -1,0 +1,23 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "upgrade_aquatic"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "upgrade_aquatic:dead_prismarine_coral_fan"
+    }
+  ],
+  "results": [
+    {
+      "item": "upgrade_aquatic:prismarine_coral_fan"
+    },
+    {
+      "chance": 0.25,
+      "item": "upgrade_aquatic:prismarine_coral_fan"
+    }
+  ]
+}

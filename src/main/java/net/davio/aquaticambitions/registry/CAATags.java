@@ -183,6 +183,8 @@ public class CAATags {
         GIVES_WEAVING(NameSpace.MOD, "conduit_effects/gives_weaving"),
         GIVES_WIND(NameSpace.MOD, "conduit_effects/gives_wind"),
         GIVES_WITHER(NameSpace.MOD, "conduit_effects/gives_wither"),
+        GIVES_SATURATION(NameSpace.MOD, "conduit_effects/gives_saturation"),
+        SETS_ON_FIRE(NameSpace.MOD, "conduit_effects/sets_on_fire"),
         FAN_PROCESSING_CATALYSTS_CHANNELING(NameSpace.MOD, "fan_processing_catalysts/channeling");
 
 
