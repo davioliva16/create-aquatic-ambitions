@@ -17,6 +17,7 @@ import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.createmod.ponder.api.scene.Selection;
 import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock;
 import net.davio.aquaticambitions.registry.CAAIcons;
+import net.davio.aquaticambitions.util.CAALang;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -73,7 +74,7 @@ public class MechanicalConduitScenes {
                 .attachKeyFrame()
                 .pointAt(util.vector().centerOf(util.grid().at(2, 1, 2)))
                 .placeNearTarget()
-                .text("Conduit Cages can be used as more compact version of the conduit's prismarine ring");
+                .text(CAALang.translateDirect("ponder.mechanical_conduit_awaken.text_1").getString());
 
         scene.idle(70);
 
@@ -94,7 +95,7 @@ public class MechanicalConduitScenes {
                 .attachKeyFrame()
                 .pointAt(util.vector().centerOf(util.grid().at(1, 1, 2)))
                 .placeNearTarget()
-                .text("Fluids can be pumped into the conduit cage through its bottom face");
+                .text(CAALang.translateDirect("ponder.mechanical_conduit_awaken.text_2").getString());
 
         scene.idle(70);
 
@@ -121,7 +122,7 @@ public class MechanicalConduitScenes {
                 .attachKeyFrame()
                 .pointAt(util.vector().centerOf(util.grid().at(2, 2, 2)))
                 .placeNearTarget()
-                .text("Pumping a fluid into a conduit cage will awaken it");
+                .text(CAALang.translateDirect("ponder.mechanical_conduit_awaken.text_3").getString());
 
         scene.idle(70);
 
@@ -169,7 +170,7 @@ public class MechanicalConduitScenes {
                 .attachKeyFrame()
                 .pointAt(util.vector().centerOf(util.grid().at(2, 2, 2)))
                 .placeNearTarget()
-                .text("Conduits Cages can also be used for fan processing");
+                .text(CAALang.translateDirect("ponder.mechanical_conduit_processing.text_1").getString());
 
         scene.idle(80);
 
@@ -205,7 +206,7 @@ public class MechanicalConduitScenes {
                 .colored(PonderPalette.MEDIUM)
                 .pointAt(util.vector().centerOf(0, 2, 2))
                 .placeNearTarget()
-                .text("Air Passing through an Conduit Cage will create a Channeling Setup");
+                .text(CAALang.translateDirect("ponder.mechanical_conduit_processing.text_2").getString());
 
         scene.idle(80);
 
@@ -226,7 +227,7 @@ public class MechanicalConduitScenes {
                 .attachKeyFrame()
                 .pointAt(util.vector().topOf(util.grid().at(depotPos.getX(), depotPos.getY(), depotPos.getZ())))
                 .placeNearTarget()
-                .text("Items caught in the Channeling stream will be processed");
+                .text(CAALang.translateDirect("ponder.mechanical_conduit_processing.text_3").getString());
 
         scene.idle(90);
 
@@ -287,7 +288,7 @@ public class MechanicalConduitScenes {
         ElementLink<ParrotElement> flappyBirb = scene.special().createBirb(util.vector().topOf(birbPos), ParrotPose.FlappyPose::new);
 
         scene.overlay().showText(70)
-                .text("Conduit Cages can affect entities nearby")
+                .text(CAALang.translateDirect("ponder.mechanical_conduit_effects.text_1").getString())
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(birbPos).add(0,0.3f,0));
 
@@ -312,7 +313,7 @@ public class MechanicalConduitScenes {
         Vec3 itemVec = util.vector().topOf(birbPos).add(0, 0.3, 0);
 
         scene.overlay().showText(70)
-                .text("Pumping water into a Conduit Cage will provide the Conduit Power Effect to nearby entities")
+                .text(CAALang.translateDirect("ponder.mechanical_conduit_effects.text_2").getString())
                 .placeNearTarget()
                 .attachKeyFrame()
                 .pointAt(util.vector().topOf(tankStart).add(0,0,0));
@@ -348,7 +349,7 @@ public class MechanicalConduitScenes {
         }
 
         scene.overlay().showText(70)
-                .text("Different fluids will provide different effects")
+                .text(CAALang.translateDirect("ponder.mechanical_conduit_effects.text_3").getString())
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(tankStart).add(0,0,0));
 
@@ -368,7 +369,7 @@ public class MechanicalConduitScenes {
                 .pointAt(filterPos)
                 .placeNearTarget()
                 .attachKeyFrame()
-                .text("The mode slot allows you to select which entities will be affected");
+                .text(CAALang.translateDirect("ponder.mechanical_conduit_effects.text_4").getString());
 
         scene.idle(80);
 
