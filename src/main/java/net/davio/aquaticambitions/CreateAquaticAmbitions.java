@@ -30,35 +30,30 @@ public class CreateAquaticAmbitions {
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateAquaticAmbitions.MODID);
 
     public CreateAquaticAmbitions() {
-        onCtor();
-    }
-
-    public static void onCtor() {
-        ModLoadingContext modLoadingContext = ModLoadingContext.get();
-
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
-        REGISTRATE.registerEventListeners(modEventBus);
+        CAAConfigs.register(ModLoadingContext.get());
 
+        registerEntries(modEventBus);
+        modEventBus.addListener(CreateAquaticAmbitions::onRegister);
+        modEventBus.register(this);
+
+        modEventBus.addListener(EventPriority.LOWEST, CAADatagen::gatherData);
+
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> CreateAquaticAmbitionsClient::new);
+    }
+
+    private void registerEntries(IEventBus modEventBus) {
         CAAItems.register();
         CAABlocks.register();
         CAABlockEntityTypes.register();
-        CAACreativeTab.register(modEventBus);
-
         CAATags.init();
         CAARecipeTypes.register(modEventBus);
         CAAItemAttributes.register(modEventBus);
         CAALootModifiers.register(modEventBus);
-
-        CAAConfigs.register(modLoadingContext);
-
-        modEventBus.addListener(CreateAquaticAmbitions::init);
-        modEventBus.addListener(CreateAquaticAmbitions::onRegister);
-
-        modEventBus.addListener(EventPriority.LOWEST, CAADatagen::gatherData);
-
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CreateAquaticAmbitionsClient.onCtorClient(modEventBus, forgeEventBus));
+        CAACreativeTab.register(modEventBus);
+        REGISTRATE.registerEventListeners(modEventBus);
     }
 
     private static void init(final FMLCommonSetupEvent event) {
