@@ -2,10 +2,10 @@
   "itemGroup.create_aquatic_ambitions": "Create: Aquatic Ambitions",
 
   "block.create_aquatic_ambitions.mechanical_conduit": "Gaiola de Aqueduto",
-  "block.create_aquatic_ambitions.prismarine_alloy_block": "Bloco de Liga de Prismarina",
+  "block.create_aquatic_ambitions.prismarine_alloy_block": "Bloco de Liga de Prismarinho",
 
-  "item.create_aquatic_ambitions.prismarine_alloy": "Liga de Prismarina",
-  "item.create_aquatic_ambitions.prismarine_alloy_rod": "Haste de Liga de Prismarina",
+  "item.create_aquatic_ambitions.prismarine_alloy": "Liga de Prismarinho",
+  "item.create_aquatic_ambitions.prismarine_alloy_rod": "Haste de Liga de Prismarinho",
   "item.create_aquatic_ambitions.nautilus_shard": "Fragmento de Náutilo",
   "item.create_aquatic_ambitions.suspicious_rock": "Rocha Suspeita",
   "item.create_aquatic_ambitions.spiky_shell": "Concha Espinhosa",
@@ -32,7 +32,7 @@
   "create_aquatic_ambitions.ponder.conduit_processing.text_4": "Itens capturados no fluxo de Canalização serão processados",
 
   "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.header": "Despertando Gaiolas de Aqueduto",
-  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_1": "As Gaiolas do Aqueduto podem ser usadas como uma versão mais compacta do anel de prismarina do aqueduto.",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_1": "As Gaiolas do Aqueduto podem ser usadas como uma versão mais compacta do anel de Prismarinho do aqueduto.",
   "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_2": "Fluidos podem ser bombeados para dentro da gaiola através da face inferior",
   "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_3": "Bombear um fluido despertará a gaiola",
   "create_aquatic_ambitions.ponder.mechanical_conduit_processing.header": "Processando Itens com a Gaiola de Aqueduto",
