@@ -15,6 +15,7 @@
 
   "create_aquatic_ambitions.tooltip.conduitcage.header" : "Conduit Cage Information",
   "tooltip.create_aquatic_ambitions.effect.cleansing" : "Cleansing",
+  "tooltip.create_aquatic_ambitions.effect.burning" : "Burning",
 
   "create.item_attributes.can_be_channeled" : "can be Channeled",
 

@@ -1,5 +1,6 @@
 package net.davio.aquaticambitions.content.processing.conduit;
 
+import com.simibubi.create.AllFluids;
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
@@ -12,6 +13,8 @@ import net.createmod.catnip.animation.LerpedFloat;
 import net.createmod.catnip.lang.Lang;
 import net.createmod.catnip.lang.LangBuilder;
 import net.createmod.catnip.math.AngleHelper;
+import net.davio.aquaticambitions.infrastructure.config.CAAConfig;
+import net.davio.aquaticambitions.infrastructure.config.CAAServerConfig;
 import net.davio.aquaticambitions.util.CAALang;
 import net.davio.aquaticambitions.registry.CAABlockEntityTypes;
 import net.davio.aquaticambitions.registry.CAATags;
@@ -52,6 +55,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,6 +84,17 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         //Init all possible effects - I don't know if this is best place for it -
         conduitEffectsMap.put("CONDUIT_POWER", new MechanicalConduitEffect(
                 "effect.minecraft.conduit_power", MobEffects.CONDUIT_POWER,0x1DC2D1, CAATags.CAAFluidTags.CONDUIT_FUEL.tag));
+
+        //MILK
+        conduitEffectsMap.put("CLEAR", new MechanicalConduitEffect(
+                "tooltip.create_aquatic_ambitions.effect.cleansing", null,0xFFFFFF, CAATags.CAAFluidTags.CLEARS_EFFECTS.tag));
+        //LAVA
+        conduitEffectsMap.put("BURNING", new MechanicalConduitEffect(
+                "tooltip.create_aquatic_ambitions.effect.burning", null,0xE2AA22, CAATags.CAAFluidTags.SETS_ON_FIRE.tag));
+
+        //Potions and other effects
+        conduitEffectsMap.put("SATURATION", new MechanicalConduitEffect(
+                "effect.minecraft.saturation", MobEffects.SATURATION,0xF82421, CAATags.CAAFluidTags.GIVES_SATURATION.tag));
         conduitEffectsMap.put("FIRE_RESISTANCE", new MechanicalConduitEffect(
                 "effect.minecraft.fire_resistance",MobEffects.FIRE_RESISTANCE,0xE49A3A, CAATags.CAAFluidTags.GIVES_FIRE_RES.tag));
         conduitEffectsMap.put("HASTE", new MechanicalConduitEffect(
@@ -120,10 +135,6 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
                 "effect.minecraft.wind_charged", MobEffects.WIND_CHARGED,0xBDC9FF, CAATags.CAAFluidTags.GIVES_WIND.tag));
         conduitEffectsMap.put("WITHER", new MechanicalConduitEffect(
                 "effect.minecraft.wither", MobEffects.WITHER,0x352A27, CAATags.CAAFluidTags.GIVES_WITHER.tag));
-
-        //MILK
-        conduitEffectsMap.put("CLEAR", new MechanicalConduitEffect(
-                "tooltip.create_aquatic_ambitions.effect.cleansing", null,0xFFFFFF, CAATags.CAAFluidTags.CLEARS_EFFECTS.tag));
 
         eyeAnimation = LerpedFloat.linear();
         eyeAngle = LerpedFloat.angular();
@@ -166,7 +177,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         for(MechanicalConduitEffect conduitEffect : conduitEffectsMap.values()) {
             if (fluidStack.is(conduitEffect.getFluidTag()) || potionHasEffect(fluidStack, conduitEffect)) // or NBT matches create:potion
                 {
-                conduitEffect.addTicks(36*fluidStack.getAmount());
+                conduitEffect.addTicks(getConversionRate(fluidStack)*fluidStack.getAmount());
             }
             if (conduitEffect.getTicks() > awakenedTicksLimit) {
                 tank.forbidInsertion();
@@ -187,6 +198,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         }
         for(MobEffectInstance effect :potionContents.getAllEffects()) {
             if (effect.is(conduitEffect.getEffect())) {
+                conduitEffect.setAmplifier(effect.getAmplifier());
                 return true;
             }
         }
@@ -218,7 +230,16 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         for(MechanicalConduitEffect conduitEffect : conduitEffectsMap.values()) {
             if (conduitEffect.isActive()) {
                 conduitEffect.subtractTicks();
-                this.applyEffects(conduitEffect.getEffect(), conduitEffect.getFluidTag() == CAATags.CAAFluidTags.CLEARS_EFFECTS.tag);
+
+                //Handle effects
+                if (conduitEffect.getFluidTag() == CAATags.CAAFluidTags.CLEARS_EFFECTS.tag) {
+                    this.clearEffects();
+                } else if (conduitEffect.getFluidTag() == CAATags.CAAFluidTags.SETS_ON_FIRE.tag) {
+                    this.setOnFire();
+                }
+                else {
+                    this.applyEffects(conduitEffect.getEffect(), conduitEffect.getAmplifier());
+                }
 
                 if (conduitEffect.getTicks() < awakenedTicksLimit) {
                     tank.allowInsertion();
@@ -226,6 +247,11 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
 
                 if (conduitEffect.getTicks() > maxAwakanedTicks) {
                     maxAwakanedTicks = conduitEffect.getTicks();
+                }
+
+            } else {
+                if (conduitEffect.getAmplifier() > 0) {
+                    conduitEffect.resetAmplifier();
                 }
             }
 
@@ -297,7 +323,6 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     @OnlyIn(Dist.CLIENT)
     public void tickAnimation() { //This is just for player tracking, everything else is done in visual class
         float eyeTarget = 0;
-        float cageTarget = 0;
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null && !player.isInvisible()) {
             double x;
@@ -339,36 +364,78 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         }
     }
 
-    private void applyEffects(Holder<MobEffect> effect, boolean clearEffectsInstead) {
-        int range = 32;
-        int k = this.getBlockPos().getX();
-        int l = this.getBlockPos().getY();
-        int i1 = this.getBlockPos().getZ();
-        AABB aabb = (new AABB((double)k, (double)l, (double)i1, (double)(k + 1), (double)(l + 1), (double)(i1 + 1))).inflate((double)range).expandTowards((double)0.0F, (double)this.level.getHeight(), (double)0.0F);
+    private void applyEffects(Holder<MobEffect> effect, int amplifier  ) {
+        int range = CAAConfig.server().conduitCage.conduitCageRange.get();
+        List<LivingEntity> list = getLivingEntities(range);
 
-        List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, aabb);
         if (!list.isEmpty()) {
             for(LivingEntity entity : list) {
                 if (entityMatchesSelector(entity, entityTypeSelector.get())){
                     if (this.getBlockPos().closerThan(entity.blockPosition(), (double)range)) {
-                        // For Milk
-                        if (clearEffectsInstead) {
-                            entity.removeAllEffects();
-                        } else if (effect == null) {
-                            return;
-                        }
-                        // For anything else
-                        else {
-                            MobEffectInstance existing = entity.getEffect(effect);
-                            if (existing == null || existing.getDuration() < 25) {
-                                entity.addEffect(new MobEffectInstance(effect, 119, 0, true, true));
-                            }
+                        MobEffectInstance existing = entity.getEffect(effect);
+                        if (existing == null || existing.getDuration() < 25) {
+                            entity.addEffect(new MobEffectInstance(effect, 119, amplifier, true, true));
                         }
                     }
                 }
             }
         }
     }
+
+    private void clearEffects() {
+        int range = CAAConfig.server().conduitCage.conduitCageRange.get();
+
+        List<LivingEntity> list = getLivingEntities(range);
+        if (!list.isEmpty()) {
+            for(LivingEntity entity : list) {
+                if (entityMatchesSelector(entity, entityTypeSelector.get())){
+                    if (this.getBlockPos().closerThan(entity.blockPosition(), (double)range)) {
+                        entity.removeAllEffects();
+                    }
+                }
+            }
+        }
+    }
+
+    private void setOnFire() {
+        int range = CAAConfig.server().conduitCage.conduitCageRange.get();
+
+        List<LivingEntity> list = getLivingEntities(range);
+        if (!list.isEmpty()) {
+            for(LivingEntity entity : list) {
+                if (entityMatchesSelector(entity, entityTypeSelector.get())){
+                    if (this.getBlockPos().closerThan(entity.blockPosition(), (double)range)) {
+                        entity.setRemainingFireTicks(5*20);
+                    }
+                }
+            }
+        }
+    }
+
+    public List<LivingEntity> getLivingEntities(int range) {
+        int k = this.getBlockPos().getX();
+        int l = this.getBlockPos().getY();
+        int i1 = this.getBlockPos().getZ();
+        AABB aabb = (new AABB((double)k, (double)l, (double)i1, (double)(k + 1), (double)(l + 1), (double)(i1 + 1))).inflate((double)range).expandTowards((double)0.0F, (double)this.level.getHeight(), (double)0.0F);
+        List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, aabb);
+        return list;
+    }
+
+    public float getConversionRate(FluidStack fluidStack) {
+
+        float conversionRate;
+
+        if (CAATags.CAAFluidTags.CONDUIT_FUEL.matches(fluidStack.getFluid())) {
+            conversionRate  = CAAConfig.server().conduitCage.waterAwakenConversionRate.get()*20/1000f;
+        } else if (fluidStack.getFluid().isSame(AllFluids.POTION.get())) {
+            conversionRate = CAAConfig.server().conduitCage.potionAwakenConversionRate.get()*20/1000f;
+        } else {
+            conversionRate = CAAConfig.server().conduitCage.fluidAwakenConversionRate.get()*20/1000f;
+        }
+
+        return conversionRate;
+    }
+
 
     public static boolean entityMatchesSelector(LivingEntity entity, EntitySelectionMode mode) {
         if (mode == EntitySelectionMode.PLAYERS) return (entity instanceof Player);

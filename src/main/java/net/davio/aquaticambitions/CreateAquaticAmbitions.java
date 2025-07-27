@@ -8,8 +8,10 @@ import com.simibubi.create.foundation.item.TooltipModifier;
 import com.tterrag.registrate.util.RegistrateDistExecutor;
 import net.createmod.catnip.lang.FontHelper;
 import net.davio.aquaticambitions.content.logistics.CAAItemAttributes;
-import net.davio.aquaticambitions.foundation.data.CAADatagen;
-import net.davio.aquaticambitions.foundation.loot.CAALootModifiers;
+import net.davio.aquaticambitions.infrastructure.BuiltInDatapackRegistrar;
+import net.davio.aquaticambitions.infrastructure.config.CAAConfig;
+import net.davio.aquaticambitions.infrastructure.data.CAADatagen;
+import net.davio.aquaticambitions.infrastructure.loot.CAALootModifiers;
 import net.davio.aquaticambitions.registry.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -41,23 +43,26 @@ public class CreateAquaticAmbitions {
 
         REGISTRATE.registerEventListeners(modEventBus);
 
-        CAAItems.register();
         CAABlocks.register();
         CAABlockEntityTypes.register();
+        CAAItems.register();
         CAACreativeTab.register(modEventBus);
-
         CAATags.init();
         CAARecipeTypes.register(modEventBus);
         CAAFanProcessingTypes.register(modEventBus);
         CAAItemAttributes.register(modEventBus);
-
         CAALootModifiers.register(modEventBus);
-
         RegistrateDistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CreateAquaticAmbitionsClient.onCtorClient(modEventBus));
 
         modEventBus.addListener(this::setup);
+        modEventBus.addListener(BuiltInDatapackRegistrar::registerPackRepository);
         modEventBus.addListener(EventPriority.HIGHEST, CAADatagen::gatherDataHighPriority);
         modEventBus.addListener(EventPriority.LOWEST, CAADatagen::gatherData);
+        modEventBus.register(new CAAConfig(modContainer));
+    }
+
+    private void registerEntries(IEventBus modEventBus) {
+
     }
 
     public static ResourceLocation asResource(String path) {
