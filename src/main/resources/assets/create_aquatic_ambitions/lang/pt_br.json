@@ -15,6 +15,7 @@
 
   "create_aquatic_ambitions.tooltip.conduitcage.header": "Informações da Gaiola de Aqueduto",
   "tooltip.create_aquatic_ambitions.effect.cleansing": "Purificação",
+  "tooltip.create_aquatic_ambitions.effect.burning" : "Em Chamas",
 
   "create.item_attributes.can_be_channeled": "pode ser Canalizado",
 
