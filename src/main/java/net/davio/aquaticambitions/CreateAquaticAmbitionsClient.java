@@ -13,12 +13,13 @@ public class CreateAquaticAmbitionsClient {
     public CreateAquaticAmbitionsClient() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         CAAPartials.init();
+        PonderIndex.addPlugin(new CAAPonderPlugin());
         modEventBus.register(this);
 
     }
 
     @SubscribeEvent
     public static void setup(final FMLClientSetupEvent event) {
-        PonderIndex.addPlugin(new CAAPonderPlugin());
+        //PonderIndex.addPlugin(new CAAPonderPlugin()); - I'm not sure why calling ponder here did not work
     }
 }

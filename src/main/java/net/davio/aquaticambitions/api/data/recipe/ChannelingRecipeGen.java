@@ -27,7 +27,7 @@ public  abstract class ChannelingRecipeGen extends ProcessingRecipeGen {
     }
 
     public GeneratedRecipe coralRevival(Supplier<ItemLike> deadCoral, Supplier<ItemLike> coral) {
-        return create(deadCoral, b -> b.output(coral.get(), 9)
+        return create(deadCoral, b -> b.output(coral.get(), 1)
                 .output(0.25f, coral.get(), 1));
     }
 

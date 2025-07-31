@@ -15,6 +15,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -31,7 +32,6 @@ public class CreateAquaticAmbitions {
 
     public CreateAquaticAmbitions() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
         CAAConfigs.register(ModLoadingContext.get());
 
@@ -56,7 +56,8 @@ public class CreateAquaticAmbitions {
         REGISTRATE.registerEventListeners(modEventBus);
     }
 
-    private static void init(final FMLCommonSetupEvent event) {
+    @SubscribeEvent
+    public static void setup(final FMLCommonSetupEvent event) {
     }
 
     public static void onRegister(final RegisterEvent event) {
