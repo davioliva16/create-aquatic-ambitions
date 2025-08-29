@@ -3,3 +3,4 @@
 /run-data
 /.gradle
 /src/generated/resources/.cache
+/.idea
