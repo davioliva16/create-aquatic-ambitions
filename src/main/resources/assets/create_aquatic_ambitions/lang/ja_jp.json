@@ -1,0 +1,48 @@
+{
+  "itemGroup.create_aquatic_ambitions": "Create: Aquatic Ambitions",
+
+  "block.create_aquatic_ambitions.mechanical_conduit": "コンジットケージ",
+  "block.create_aquatic_ambitions.prismarine_alloy_block": "プリズマリン合金ブロック",
+
+  "item.create_aquatic_ambitions.prismarine_alloy": "プリズマリン合金",
+  "item.create_aquatic_ambitions.prismarine_alloy_rod": "プリズマリン合金ロッド",
+  "item.create_aquatic_ambitions.nautilus_shard": "オウムガイの欠片",
+  "item.create_aquatic_ambitions.suspicious_rock": "怪しげな岩",
+  "item.create_aquatic_ambitions.spiky_shell": "とげとげしい殻",
+  "item.create_aquatic_ambitions.calcium_rich_powder": "カルシウム豊富な粉末",
+
+  "recipe.create_aquatic_ambitions.fan_channeling": "一括コンジットチャネリング",
+
+  "create_aquatic_ambitions.tooltip.conduitcage.header": "コンジットケージ情報",
+  "tooltip.create_aquatic_ambitions.effect.cleansing": "洗浄",
+  "tooltip.create_aquatic_ambitions.effect.burning": "燃焼",
+
+  "create.item_attributes.can_be_channeled": "チャネリング可能",
+
+  "create_aquatic_ambitions.mechanical_conduit.entity_filter.title": "エンティティフィルター",
+  "mechanical_conduit.selection_mode.everyone": "全て",
+  "mechanical_conduit.selection_mode.players": "プレイヤー",
+  "mechanical_conduit.selection_mode.friendly_mobs": "友好モブ",
+  "mechanical_conduit.selection_mode.players_friendly_mobs": "プレイヤーと友好モブ",
+  "mechanical_conduit.selection_mode.monsters": "モンスター",
+
+  "create_aquatic_ambitions.ponder.conduit_processing.header": "コンジットによるアイテム加工",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_1": "起動したコンジットはファン加工に使用できます",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_2": "コンジットの水を通過する空気はチャネリング気流になります",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_3": "水の層が増えるとコンジットの力が希釈され、代わりに洗浄気流に変化します",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_4": "チャネリング気流に当てられたアイテムは加工されます",
+
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.header": "コンジットケージの起動",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_1": "コンジットケージはコンジットのよりコンパクトなバージョンとして使えます",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_2": "液体は底面からコンジットケージに注入できます",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_3": "液体をコンジットケージに注入すると起動します",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.header": "コンジットケージによるアイテム加工",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_1": "コンジットケージもファン加工に使えます",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_2": "コンジットケージを通過する空気はチャネリング気流になります",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_3": "チャネリング気流に当てられたアイテムは加工されます",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.header": "コンジットケージによる効果付与",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_1": "起動したコンジットケージは近くのエンティティに効果を与えます",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_2": "水で起動したコンジットケージは近くのエンティティにコンジットパワーを与えます",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_3": "液体によって異なる効果が得られます",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_4": "設定パネルで効果を受けるエンティティを選択できます"
+}
