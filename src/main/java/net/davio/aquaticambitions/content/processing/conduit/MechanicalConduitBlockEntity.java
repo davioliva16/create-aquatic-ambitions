@@ -210,6 +210,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     @Override
     public void tick() {
         super.tick();
+        if (this.level == null) return;
 
         if (level.isClientSide) {
             if (shouldTickAnimation()) {
@@ -296,6 +297,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     }
 
     public void setConduitLevelOfBlock(ConduitPowerLevel conduitPowerLevel) {
+        if (this.level == null) return;
         ConduitPowerLevel inBlockState = getConduitLevelFromBlock();
         if (inBlockState == conduitPowerLevel)
             return;
@@ -409,12 +411,12 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     }
 
     public List<LivingEntity> getLivingEntities(int range) {
+        if (this.level == null) return List.of();
         int k = this.getBlockPos().getX();
         int l = this.getBlockPos().getY();
         int i1 = this.getBlockPos().getZ();
-        AABB aabb = (new AABB((double)k, (double)l, (double)i1, (double)(k + 1), (double)(l + 1), (double)(i1 + 1))).inflate((double)range).expandTowards((double)0.0F, (double)this.level.getHeight(), (double)0.0F);
-        List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, aabb);
-        return list;
+        AABB aabb = (new AABB(k, l, i1, k + 1, l + 1, i1 + 1)).inflate(range).expandTowards(0.0F, this.level.getHeight(), 0.0F);
+        return this.level.getEntitiesOfClass(LivingEntity.class, aabb);
     }
 
     public float getConversionRate(FluidStack fluidStack) {
