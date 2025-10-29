@@ -4,5 +4,5 @@ This is a Create Mod Add On that lets you automate prismarine and copper without
 
 Made by DaviO
 -----------------------------------------------------------------------------------------------------------------
-This mod requires create 6.0.2 or newer to work correctly
-JEI is reccommended but not required! 
+This mod requires Create 6.0.7 or newer to work correctly
+JEI is recommended but not required! 
