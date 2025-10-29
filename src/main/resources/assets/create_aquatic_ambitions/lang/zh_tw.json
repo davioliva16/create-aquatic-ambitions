@@ -12,6 +12,8 @@
   "item.create_aquatic_ambitions.calcium_rich_powder": "高鈣粉",
 
   "recipe.create_aquatic_ambitions.fan_channeling": "海靈導入",
+  "recipe.create_aquatic_ambitions.fan_channeling.fan": "海靈導入",
+
 
   "create_aquatic_ambitions.tooltip.conduitcage.header" : "海靈籠訊息",
   "tooltip.create_aquatic_ambitions.effect.cleansing" : "淨化",
