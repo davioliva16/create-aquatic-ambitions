@@ -23,11 +23,8 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
 import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
-import com.simibubi.create.foundation.data.recipe.CompatMetals;
-import com.simibubi.create.foundation.data.recipe.Mods;
 import com.simibubi.create.foundation.mixin.accessor.MappedRegistryAccessor;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import net.createmod.catnip.registry.RegisteredObjectsHelper;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -172,19 +169,19 @@ public class CAAStandardRecipeGen extends BaseRecipeProvider {
                 .inBlastFurnace();
     }
 
-    GeneratedRecipe blastModdedCrushedMetal(ItemEntry<? extends Item> ingredient, CompatMetals metal) {
-        for (Mods mod : metal.getMods()) {
-            String metalName = metal.getName(mod);
-            ResourceLocation ingot = mod.ingotOf(metalName);
-            String modId = mod.getId();
-            create(ingot).withSuffix("_compat_" + modId)
-                    .whenModLoaded(modId)
-                    .viaCooking(ingredient::get)
-                    .rewardXP(.1f)
-                    .inBlastFurnace();
-        }
-        return null;
-    }
+//    GeneratedRecipe blastModdedCrushedMetal(ItemEntry<? super Item> ingredient, CommonMetal metal) {
+//        for (Mods mod : metal.getMods()) { //TODO find a new getMods() function
+//            String metalName = metal.getName(mod);
+//            ResourceLocation ingot = mod.ingotOf(metalName);
+//            String modId = mod.getId();
+//            create(ingot).withSuffix("_compat_" + modId)
+//                    .whenModLoaded(modId)
+//                    .viaCooking(ingredient::get)
+//                    .rewardXP(.1f)
+//                    .inBlastFurnace();
+//        }
+//        return null;
+//    }
 
     GeneratedRecipe recycleGlass(BlockEntry<? extends Block> ingredient) {
         return create(() -> Blocks.GLASS).withSuffix("_from_" + ingredient.getId()
@@ -245,7 +242,7 @@ public class CAAStandardRecipeGen extends BaseRecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput output) {
+    public void buildRecipes(RecipeOutput output) {
         all.forEach(c -> c.register(output));
         CreateAquaticAmbitions.LOGGER.info("{} registered {} recipe{}", getName(), all.size(), all.size() == 1 ? "" : "s");
     }
