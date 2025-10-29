@@ -50,6 +50,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import org.jetbrains.annotations.Contract;
 
 import java.util.HashMap;
 import java.util.List;
@@ -432,13 +433,15 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     }
 
 
+    @Contract(pure = true)
     public static boolean entityMatchesSelector(LivingEntity entity, EntitySelectionMode mode) {
-        if (mode == EntitySelectionMode.PLAYERS) return (entity instanceof Player);
-        else if (mode == EntitySelectionMode.MONSTERS) return (entity instanceof Enemy);
-        else if (mode == EntitySelectionMode.FRIENDLY_MOBS) return (entity instanceof PathfinderMob && !(entity instanceof Monster));
-        else if (mode == EntitySelectionMode.PLAYERS_FRIENDLY_MOBS) return (
-                (entity instanceof PathfinderMob && !(entity instanceof Monster) || (entity instanceof Player)));
-        return true;
+        return switch (mode) {
+            case EVERYONE -> true;
+            case PLAYERS -> entity instanceof Player;
+            case MONSTERS -> entity instanceof Enemy;
+            case FRIENDLY_MOBS -> entity instanceof PathfinderMob && !(entity instanceof Monster);
+            case PLAYERS_FRIENDLY_MOBS -> entity instanceof PathfinderMob && !(entity instanceof Monster) || (entity instanceof Player);
+        };
     }
 
     public enum EntitySelectionMode implements INamedIconOptions {
