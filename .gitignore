@@ -4,3 +4,4 @@
 /.gradle
 /src/generated/resources/.cache
 /.idea
+.idea/
