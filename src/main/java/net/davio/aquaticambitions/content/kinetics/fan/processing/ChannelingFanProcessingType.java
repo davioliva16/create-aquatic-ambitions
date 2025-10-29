@@ -68,7 +68,7 @@ public class ChannelingFanProcessingType implements FanProcessingType {
         var input = new SingleRecipeInput(stack);
         return recipeManager
                 .getRecipeFor(CAARecipeTypes.CHANNELING.getType(), input, level)
-                .map(recipe -> RecipeApplier.applyRecipeOn(level, stack, recipe))
+                .map(recipe -> RecipeApplier.applyRecipeOn(level, stack, recipe.value(), true))
                 .orElse(null);
     }
 
