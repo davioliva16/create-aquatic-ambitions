@@ -1,7 +1,6 @@
 package net.davio.aquaticambitions.infrastructure.config;
 
 import net.createmod.catnip.config.ConfigBase;
-import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class CAAServerConfig extends ConfigBase {
     public final CAAConduitCageConfig conduitCage = nested(0, CAAConduitCageConfig::new, Comments.conduitCage);

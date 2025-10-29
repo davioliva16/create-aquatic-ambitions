@@ -1,10 +1,5 @@
 package net.davio.aquaticambitions.registry;
 
-import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
-import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
-import static com.simibubi.create.foundation.data.TagGen.tagBlockAndItem;
-import static net.davio.aquaticambitions.CreateAquaticAmbitions.REGISTRATE;
-
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock;
@@ -17,6 +12,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.common.Tags;
+
+import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
+import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
+import static com.simibubi.create.foundation.data.TagGen.tagBlockAndItem;
+import static net.davio.aquaticambitions.CreateAquaticAmbitions.REGISTRATE;
 
 public class CAABlocks {
 

@@ -7,18 +7,16 @@ import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.INamedIconOptions;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollOptionBehaviour;
-import com.simibubi.create.foundation.utility.CreateLang;
 import dev.engine_room.flywheel.api.visualization.VisualizationManager;
 import net.createmod.catnip.animation.LerpedFloat;
 import net.createmod.catnip.lang.Lang;
-import net.createmod.catnip.lang.LangBuilder;
 import net.createmod.catnip.math.AngleHelper;
+import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
 import net.davio.aquaticambitions.infrastructure.config.CAAConfig;
-import net.davio.aquaticambitions.infrastructure.config.CAAServerConfig;
-import net.davio.aquaticambitions.util.CAALang;
 import net.davio.aquaticambitions.registry.CAABlockEntityTypes;
-import net.davio.aquaticambitions.registry.CAATags;
 import net.davio.aquaticambitions.registry.CAAIcons;
+import net.davio.aquaticambitions.registry.CAATags;
+import net.davio.aquaticambitions.util.CAALang;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -52,9 +50,6 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-
-import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
-
 
 import java.util.HashMap;
 import java.util.List;

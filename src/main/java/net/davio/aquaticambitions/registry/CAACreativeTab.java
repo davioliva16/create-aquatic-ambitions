@@ -1,13 +1,13 @@
 package net.davio.aquaticambitions.registry;
 
+import com.simibubi.create.AllCreativeModeTabs;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.CreativeModeTab;
-import net.neoforged.neoforge.registries.DeferredRegister;
-import com.simibubi.create.AllCreativeModeTabs;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 
 public class CAACreativeTab {

@@ -1,6 +1,5 @@
 package net.davio.aquaticambitions.content.processing.conduit;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;

@@ -1,32 +1,20 @@
 package net.davio.aquaticambitions.infrastructure.data.recipe;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
-import java.util.function.UnaryOperator;
-
-import javax.annotation.ParametersAreNonnullByDefault;
-
-import com.simibubi.create.AllBlocks;
-import com.simibubi.create.AllItems;
-import net.davio.aquaticambitions.CreateAquaticAmbitions;
-import net.davio.aquaticambitions.registry.CAABlocks;
-import net.davio.aquaticambitions.registry.CAAItems;
-import org.jetbrains.annotations.Nullable;
-
 import com.google.common.base.Supplier;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
 import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
 import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
 import com.simibubi.create.foundation.mixin.accessor.MappedRegistryAccessor;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import net.createmod.catnip.registry.RegisteredObjectsHelper;
+import net.davio.aquaticambitions.CreateAquaticAmbitions;
+import net.davio.aquaticambitions.registry.CAABlocks;
+import net.davio.aquaticambitions.registry.CAAItems;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
@@ -52,6 +40,16 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.NotCondition;
+import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public class CAAStandardRecipeGen extends BaseRecipeProvider {
     final List<GeneratedRecipe> all = new ArrayList<>();

@@ -1,13 +1,12 @@
 package net.davio.aquaticambitions.registry;
 
-import org.joml.Matrix4f;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
+import com.simibubi.create.foundation.gui.AllIcons;
 import net.createmod.catnip.gui.element.DelegatedStencilElement;
 import net.createmod.catnip.theme.Color;
+import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -16,10 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-
-import com.simibubi.create.foundation.gui.AllIcons;
-
-import net.davio.aquaticambitions.CreateAquaticAmbitions;
+import org.joml.Matrix4f;
 
 
 public class CAAIcons extends AllIcons {

@@ -6,8 +6,6 @@ import com.simibubi.create.content.logistics.item.filter.attribute.SingletonItem
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.registry.CAARecipeTypes;
 import net.minecraft.world.item.ItemStack;
-import java.util.function.BiPredicate;
-
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
@@ -15,6 +13,8 @@ import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.BiPredicate;
 
 public class CAAItemAttributes {
 

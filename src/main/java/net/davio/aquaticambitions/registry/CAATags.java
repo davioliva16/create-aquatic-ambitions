@@ -1,22 +1,21 @@
 package net.davio.aquaticambitions.registry;
 
+import com.simibubi.create.Create;
 import net.createmod.catnip.lang.Lang;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
-
-import com.simibubi.create.Create;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.material.FluidState;
 
 import static net.davio.aquaticambitions.CreateAquaticAmbitions.MODID;

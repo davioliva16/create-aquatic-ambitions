@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import com.simibubi.create.AllShapes;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.block.IBE;
-
 import com.simibubi.create.foundation.block.ProperWaterloggedBlock;
 import net.createmod.catnip.lang.Lang;
 import net.davio.aquaticambitions.registry.CAABlockEntityTypes;
