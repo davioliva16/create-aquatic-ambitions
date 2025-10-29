@@ -5,8 +5,9 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
+
 public class CAACommonEvents {
-    @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber
     public static class ModBusEvents {
         @SubscribeEvent
         public static void registerCapabilities(RegisterCapabilitiesEvent event) {
