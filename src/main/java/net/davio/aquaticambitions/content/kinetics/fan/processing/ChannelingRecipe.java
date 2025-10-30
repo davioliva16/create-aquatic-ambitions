@@ -18,9 +18,7 @@ public class ChannelingRecipe extends StandardProcessingRecipe<SingleRecipeInput
 
     @Override
     public boolean matches(SingleRecipeInput inv, Level worldIn) {
-        if (inv.isEmpty())
-            return false;
-        return ingredients.get(0).test(inv.getItem(0));
+        return !inv.isEmpty() && ingredients.getFirst().test(inv.getItem(0));
     }
 
     @Override
