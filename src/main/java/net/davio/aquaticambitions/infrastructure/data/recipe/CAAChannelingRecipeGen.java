@@ -1,5 +1,7 @@
 package net.davio.aquaticambitions.infrastructure.data.recipe;
 
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
 import com.simibubi.create.foundation.data.recipe.Mods;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.davio.aquaticambitions.api.data.recipe.ChannelingRecipeGen;
@@ -7,9 +9,11 @@ import net.davio.aquaticambitions.registry.CAAItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 
 public class CAAChannelingRecipeGen extends ChannelingRecipeGen {
 
@@ -88,6 +92,61 @@ public class CAAChannelingRecipeGen extends ChannelingRecipeGen {
 
     public CAAChannelingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, String defaultNamespace) {
         super(output, registries, CreateAquaticAmbitions.MODID);
+        createOxidationChain(
+                () -> Blocks.CHISELED_COPPER,
+                () -> Blocks.EXPOSED_CHISELED_COPPER,
+                () -> Blocks.WEATHERED_CHISELED_COPPER,
+                () -> Blocks.OXIDIZED_CHISELED_COPPER
+        );
+
+        createOxidationChain(
+                () -> Blocks.COPPER_GRATE,
+                () -> Blocks.EXPOSED_COPPER_GRATE,
+                () -> Blocks.WEATHERED_COPPER_GRATE,
+                () -> Blocks.OXIDIZED_COPPER_GRATE
+        );
+
+        createOxidationChain(
+                () -> Blocks.CUT_COPPER,
+                () -> Blocks.EXPOSED_CUT_COPPER,
+                () -> Blocks.WEATHERED_CUT_COPPER,
+                () -> Blocks.OXIDIZED_CUT_COPPER
+        );
+
+        createOxidationChain(
+                () -> Blocks.CUT_COPPER_STAIRS,
+                () -> Blocks.EXPOSED_CUT_COPPER_STAIRS,
+                () -> Blocks.WEATHERED_CUT_COPPER_STAIRS,
+                () -> Blocks.OXIDIZED_CUT_COPPER_STAIRS
+        );
+
+        createOxidationChain(
+                () -> Blocks.CUT_COPPER_SLAB,
+                () -> Blocks.EXPOSED_CUT_COPPER_SLAB,
+                () -> Blocks.WEATHERED_CUT_COPPER_SLAB,
+                () -> Blocks.OXIDIZED_CUT_COPPER_SLAB
+        );
+
+        createOxidationChain(
+                () -> Blocks.COPPER_BULB,
+                () -> Blocks.EXPOSED_COPPER_BULB,
+                () -> Blocks.WEATHERED_COPPER_BULB,
+                () -> Blocks.OXIDIZED_COPPER_BULB
+        );
+
+        createOxidationChain(
+                () -> Blocks.COPPER_DOOR,
+                () -> Blocks.EXPOSED_COPPER_DOOR,
+                () -> Blocks.WEATHERED_COPPER_DOOR,
+                () -> Blocks.OXIDIZED_COPPER_DOOR
+        );
+
+        createOxidationChain(
+                () -> Blocks.COPPER_TRAPDOOR,
+                () -> Blocks.EXPOSED_COPPER_TRAPDOOR,
+                () -> Blocks.WEATHERED_COPPER_TRAPDOOR,
+                () -> Blocks.OXIDIZED_COPPER_TRAPDOOR
+        );
     }
 
     public GeneratedRecipe moddedConversion(Mods mod, String input, String output) {
@@ -104,4 +163,12 @@ public class CAAChannelingRecipeGen extends ChannelingRecipeGen {
                 .output(0.25f, mod, coral,1 )
                 .whenModLoaded(mod.getId()));
     }
+
+    private void createOxidationChain(Supplier<ItemLike> clean, Supplier<ItemLike> exposed,
+                                      Supplier<ItemLike> weathered, Supplier<ItemLike> oxidized) {
+        convert(clean.get(), exposed.get());
+        convert(exposed.get(), weathered.get());
+        convert(weathered.get(), oxidized.get());
+    }
+
 }
