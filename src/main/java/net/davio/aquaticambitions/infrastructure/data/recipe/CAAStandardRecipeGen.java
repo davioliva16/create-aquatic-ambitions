@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import com.google.common.base.Supplier;
 import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
 import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
-import com.simibubi.create.foundation.data.recipe.CompatMetals;
+import com.simibubi.create.foundation.data.recipe.CommonMetal;
 import com.simibubi.create.foundation.data.recipe.Mods;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
@@ -48,6 +48,10 @@ import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
+
+import net.davio.aquaticambitions.CreateAquaticAmbitions;
+import net.davio.aquaticambitions.registry.CAABlocks;
+import net.davio.aquaticambitions.registry.CAAItems;
 
 public class CAAStandardRecipeGen extends BaseRecipeProvider {
     final List<GeneratedRecipe> all = new ArrayList<>();
@@ -164,8 +168,8 @@ public class CAAStandardRecipeGen extends BaseRecipeProvider {
                 .inBlastFurnace();
     }
 
-    GeneratedRecipe blastModdedCrushedMetal(ItemEntry<? extends Item> ingredient, CompatMetals metal) {
-        for (Mods mod : metal.getMods()) {
+    GeneratedRecipe blastModdedCrushedMetal(ItemEntry<? extends Item> ingredient, CommonMetal metal) {
+        for (Mods mod : metal.mods) {
             String metalName = metal.getName(mod);
             ResourceLocation ingot = mod.ingotOf(metalName);
             String modId = mod.getId();
@@ -237,7 +241,7 @@ public class CAAStandardRecipeGen extends BaseRecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> p_200404_1_) {
+    public void buildRecipes(Consumer<FinishedRecipe> p_200404_1_) {
         all.forEach(c -> c.register(p_200404_1_));
         Create.LOGGER.info(getName() + " registered " + all.size() + " recipe" + (all.size() == 1 ? "" : "s"));
     }

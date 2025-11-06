@@ -9,7 +9,10 @@ import com.simibubi.create.foundation.data.AssetLookup;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock;
 import net.davio.aquaticambitions.ponder.util.fakeConduitEntity.FakeActiveConduitBlock;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MapColor;
@@ -25,7 +28,10 @@ public class CAABlocks {
             .properties(p -> p.mapColor(MapColor.GLOW_LICHEN).requiresCorrectToolForDrops())
             .transform(pickaxeOnly())
             .tag(BlockTags.NEEDS_IRON_TOOL)
-            .transform(tagBlockAndItem("storage_blocks/prismarine"))
+            .transform(tagBlockAndItem(
+                    TagKey.create(Registries.BLOCK, new ResourceLocation("c", "storage_blocks/prismarine_alloy")),
+                    TagKey.create(Registries.ITEM, new ResourceLocation("c", "storage_blocks/prismarine_alloy"))
+            ))
             .build()
             .lang("Prismarine Alloy Block")
             .register();
@@ -49,5 +55,5 @@ public class CAABlocks {
                     prov.models().getExistingFile(ctx.getId())))
             .register();
 
-    public static void register() {};
+    public static void register() {}
 }

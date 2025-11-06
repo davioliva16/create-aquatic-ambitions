@@ -1,0 +1,26 @@
+{
+  "type": "create_aquatic_ambitions:add_item",
+  "conditions": [
+    {
+      "condition": "minecraft:inverted",
+      "term": {
+        "condition": "minecraft:match_tool",
+        "predicate": {
+          "enchantments": [
+            {
+              "enchantment": "minecraft:silk_touch",
+              "levels": {
+                "min": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "upgrade_aquatic:blocks/dead_silk_coral"
+    }
+  ],
+  "item": "minecraft:air"
+}

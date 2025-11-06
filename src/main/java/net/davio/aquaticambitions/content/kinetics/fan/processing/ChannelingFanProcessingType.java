@@ -67,7 +67,9 @@ public class ChannelingFanProcessingType implements FanProcessingType {
         public @Nullable List<ItemStack> process(ItemStack stack, Level level) {
             CHANNELING_WRAPPER.setItem(0,stack);
             Optional<ChannelingRecipe> recipe = CAARecipeTypes.CHANNELING.find(CHANNELING_WRAPPER,level);
-            return recipe.map(channelingRecipe -> RecipeApplier.applyRecipeOn(level, stack, channelingRecipe)).orElse(null);
+            if (recipe.isPresent())
+                return RecipeApplier.applyRecipeOn(level, stack, recipe.get(),true);
+            return null;
         }
 
         @Override
