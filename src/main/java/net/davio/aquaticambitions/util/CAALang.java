@@ -1,10 +1,10 @@
 package net.davio.aquaticambitions.util;
+
 import net.createmod.catnip.lang.Lang;
 import net.createmod.catnip.lang.LangBuilder;
 import net.createmod.catnip.lang.LangNumberFormat;
 import net.davio.aquaticambitions.CreateAquaticAmbitions;
 import net.minecraft.Util;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;

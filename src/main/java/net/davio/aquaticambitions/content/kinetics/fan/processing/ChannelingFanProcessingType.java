@@ -3,6 +3,7 @@ package net.davio.aquaticambitions.content.kinetics.fan.processing;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
 import net.createmod.catnip.theme.Color;
+import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
 import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlockEntity;
 import net.davio.aquaticambitions.registry.CAARecipeTypes;
 import net.davio.aquaticambitions.registry.CAATags.CAABlockTags;
@@ -25,7 +26,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
-import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
 
 import java.util.List;
 
@@ -68,7 +68,7 @@ public class ChannelingFanProcessingType implements FanProcessingType {
         var input = new SingleRecipeInput(stack);
         return recipeManager
                 .getRecipeFor(CAARecipeTypes.CHANNELING.getType(), input, level)
-                .map(recipe -> RecipeApplier.applyRecipeOn(level, stack, recipe))
+                .map(recipe -> RecipeApplier.applyRecipeOn(level, stack, recipe.value(), true))
                 .orElse(null);
     }
 

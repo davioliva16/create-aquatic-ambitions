@@ -1,6 +1,6 @@
 package net.davio.aquaticambitions.content.processing.conduit;
 
-import com.simibubi.create.foundation.blockEntity.behaviour.*;
+import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
 import net.createmod.catnip.math.AngleHelper;
 import net.createmod.catnip.math.VecHelper;
 import net.minecraft.core.BlockPos;

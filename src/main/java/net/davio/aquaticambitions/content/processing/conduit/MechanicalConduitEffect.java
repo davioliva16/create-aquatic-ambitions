@@ -1,10 +1,10 @@
 package net.davio.aquaticambitions.content.processing.conduit;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.level.material.Fluid;
 
 public class MechanicalConduitEffect {
 
@@ -13,10 +13,10 @@ public class MechanicalConduitEffect {
     private final String langKey;
     private final Holder<MobEffect> effect;
     private final int hexColor;
-    private final TagKey fluidTag;
+    private final TagKey<Fluid> fluidTag;
 
 
-    public MechanicalConduitEffect(String langKey, Holder<MobEffect> effect, int hexColor, TagKey fluidTag) {
+    public MechanicalConduitEffect(String langKey, Holder<MobEffect> effect, int hexColor, TagKey<Fluid> fluidTag) {
         this.ticks = 0;
         this.amplifier = 0;
         this.langKey = langKey;
@@ -70,7 +70,7 @@ public class MechanicalConduitEffect {
         return effect;
     }
 
-    public TagKey getFluidTag(){
+    public TagKey<Fluid> getFluidTag(){
         return fluidTag;
     }
 }

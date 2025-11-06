@@ -1,0 +1,13 @@
+{
+  "type": "create_aquatic_ambitions:channeling",
+  "ingredients": [
+    {
+      "item": "minecraft:copper_trapdoor"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:exposed_copper_trapdoor"
+    }
+  ]
+}

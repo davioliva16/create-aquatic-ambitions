@@ -12,6 +12,8 @@
   "item.create_aquatic_ambitions.calcium_rich_powder": "富钙粉",
 
   "recipe.create_aquatic_ambitions.fan_channeling": "引潮",
+  "recipe.create_aquatic_ambitions.fan_channeling.fan": "引潮",
+
 
   "create_aquatic_ambitions.tooltip.conduitcage.header" : "潮涌笼信息",
   "tooltip.create_aquatic_ambitions.effect.cleansing" : "净化",

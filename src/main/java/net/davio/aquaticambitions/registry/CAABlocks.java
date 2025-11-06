@@ -1,19 +1,22 @@
 package net.davio.aquaticambitions.registry;
 
-import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
-import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
-import static com.simibubi.create.foundation.data.TagGen.tagBlockAndItem;
-import static net.davio.aquaticambitions.CreateAquaticAmbitions.REGISTRATE;
-
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock;
 import net.davio.aquaticambitions.ponder.util.fakeConduitEntity.FakeActiveConduitBlock;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.common.Tags;
+
+import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
+import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
+import static com.simibubi.create.foundation.data.TagGen.tagBlockAndItem;
+import static net.davio.aquaticambitions.CreateAquaticAmbitions.REGISTRATE;
 
 public class CAABlocks {
 
@@ -28,7 +31,10 @@ public class CAABlocks {
             .transform(pickaxeOnly())
             .tag(BlockTags.NEEDS_IRON_TOOL)
             .tag(Tags.Blocks.STORAGE_BLOCKS)
-            .transform(tagBlockAndItem("storage_blocks/prismarine_alloy"))
+            .transform(tagBlockAndItem(
+                    TagKey.create(Registries.BLOCK, ResourceLocation.parse("c:storage_blocks/prismarine_alloy")),
+                    TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/prismarine_alloy"))
+                    ))
             .build()
             .lang("Prismarine Alloy Block")
             .register();

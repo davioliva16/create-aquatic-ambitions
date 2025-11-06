@@ -3,11 +3,9 @@ package net.davio.aquaticambitions.infrastructure.data.tags;
 
 import com.simibubi.create.AllFluids;
 import com.simibubi.create.foundation.data.TagGen;
-
 import com.simibubi.create.foundation.data.recipe.Mods;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
-
 import net.davio.aquaticambitions.registry.CAATags;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;

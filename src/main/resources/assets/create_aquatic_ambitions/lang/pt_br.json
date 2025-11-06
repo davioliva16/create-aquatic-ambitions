@@ -12,6 +12,8 @@
   "item.create_aquatic_ambitions.calcium_rich_powder": "Pó Rico em Cálcio",
 
   "recipe.create_aquatic_ambitions.fan_channeling": "Canalização com Aqueduto",
+  "recipe.create_aquatic_ambitions.fan_channeling.fan": "Canalização com Aqueduto",
+
 
   "create_aquatic_ambitions.tooltip.conduitcage.header": "Informações da Gaiola de Aqueduto",
   "tooltip.create_aquatic_ambitions.effect.cleansing": "Purificação",

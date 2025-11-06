@@ -13,12 +13,11 @@ import dev.engine_room.flywheel.lib.visual.SimpleDynamicVisual;
 import dev.engine_room.flywheel.lib.visual.SimpleTickableVisual;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.math.AngleHelper;
+import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
 import net.davio.aquaticambitions.registry.CAAPartials;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
-
-import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
 
 import java.util.function.Consumer;
 

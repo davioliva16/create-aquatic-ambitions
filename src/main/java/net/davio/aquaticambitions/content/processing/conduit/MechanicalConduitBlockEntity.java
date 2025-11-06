@@ -7,18 +7,16 @@ import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.INamedIconOptions;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollOptionBehaviour;
-import com.simibubi.create.foundation.utility.CreateLang;
 import dev.engine_room.flywheel.api.visualization.VisualizationManager;
 import net.createmod.catnip.animation.LerpedFloat;
 import net.createmod.catnip.lang.Lang;
-import net.createmod.catnip.lang.LangBuilder;
 import net.createmod.catnip.math.AngleHelper;
+import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
 import net.davio.aquaticambitions.infrastructure.config.CAAConfig;
-import net.davio.aquaticambitions.infrastructure.config.CAAServerConfig;
-import net.davio.aquaticambitions.util.CAALang;
 import net.davio.aquaticambitions.registry.CAABlockEntityTypes;
-import net.davio.aquaticambitions.registry.CAATags;
 import net.davio.aquaticambitions.registry.CAAIcons;
+import net.davio.aquaticambitions.registry.CAATags;
+import net.davio.aquaticambitions.util.CAALang;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -52,9 +50,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-
-import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
-
+import org.jetbrains.annotations.Contract;
 
 import java.util.HashMap;
 import java.util.List;
@@ -214,6 +210,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     @Override
     public void tick() {
         super.tick();
+        if (this.level == null) return;
 
         if (level.isClientSide) {
             if (shouldTickAnimation()) {
@@ -300,6 +297,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     }
 
     public void setConduitLevelOfBlock(ConduitPowerLevel conduitPowerLevel) {
+        if (this.level == null) return;
         ConduitPowerLevel inBlockState = getConduitLevelFromBlock();
         if (inBlockState == conduitPowerLevel)
             return;
@@ -413,12 +411,12 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     }
 
     public List<LivingEntity> getLivingEntities(int range) {
+        if (this.level == null) return List.of();
         int k = this.getBlockPos().getX();
         int l = this.getBlockPos().getY();
         int i1 = this.getBlockPos().getZ();
-        AABB aabb = (new AABB((double)k, (double)l, (double)i1, (double)(k + 1), (double)(l + 1), (double)(i1 + 1))).inflate((double)range).expandTowards((double)0.0F, (double)this.level.getHeight(), (double)0.0F);
-        List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, aabb);
-        return list;
+        AABB aabb = (new AABB(k, l, i1, k + 1, l + 1, i1 + 1)).inflate(range).expandTowards(0.0F, this.level.getHeight(), 0.0F);
+        return this.level.getEntitiesOfClass(LivingEntity.class, aabb);
     }
 
     public float getConversionRate(FluidStack fluidStack) {
@@ -437,13 +435,15 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     }
 
 
+    @Contract(pure = true)
     public static boolean entityMatchesSelector(LivingEntity entity, EntitySelectionMode mode) {
-        if (mode == EntitySelectionMode.PLAYERS) return (entity instanceof Player);
-        else if (mode == EntitySelectionMode.MONSTERS) return (entity instanceof Enemy);
-        else if (mode == EntitySelectionMode.FRIENDLY_MOBS) return (entity instanceof PathfinderMob && !(entity instanceof Monster));
-        else if (mode == EntitySelectionMode.PLAYERS_FRIENDLY_MOBS) return (
-                (entity instanceof PathfinderMob && !(entity instanceof Monster) || (entity instanceof Player)));
-        return true;
+        return switch (mode) {
+            case EVERYONE -> true;
+            case PLAYERS -> entity instanceof Player;
+            case MONSTERS -> entity instanceof Enemy;
+            case FRIENDLY_MOBS -> entity instanceof PathfinderMob && !(entity instanceof Monster);
+            case PLAYERS_FRIENDLY_MOBS -> entity instanceof PathfinderMob && !(entity instanceof Monster) || (entity instanceof Player);
+        };
     }
 
     public enum EntitySelectionMode implements INamedIconOptions {

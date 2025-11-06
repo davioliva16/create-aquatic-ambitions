@@ -2,14 +2,14 @@ package net.davio.aquaticambitions.compat.JEI;
 
 import com.google.common.base.Preconditions;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
-import java.util.ArrayList;
-import java.util.List;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.davio.aquaticambitions.CreateAquaticAmbitions;
+import net.davio.aquaticambitions.compat.JEI.category.FanChannelingCategory;
 import net.davio.aquaticambitions.util.ErrorMessages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -18,10 +18,9 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.loading.FMLLoader;
 import org.jetbrains.annotations.ApiStatus.Internal;
-import com.simibubi.create.compat.jei.*;
-import net.davio.aquaticambitions.CreateAquaticAmbitions;
-import net.davio.aquaticambitions.compat.JEI.category.FanChannelingCategory;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @JeiPlugin
