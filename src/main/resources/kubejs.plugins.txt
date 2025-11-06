@@ -1,1 +1,1 @@
-net.davio.aquaticambitions.compat.KubeJS.KubeJSPlugin create_aquatic_ambitions
+net.davio.aquaticambitions.compat.KubeJS.CAAKubeJSPlugin create_aquatic_ambitions
