@@ -1,0 +1,49 @@
+{
+  "itemGroup.create_aquatic_ambitions":"Create: Aquatic Ambitions",
+
+  "block.create_aquatic_ambitions.mechanical_conduit": "Клітка провідника",
+  "block.create_aquatic_ambitions.prismarine_alloy_block": "Блок призмаринового стопу",
+
+  "item.create_aquatic_ambitions.prismarine_alloy": "Призмариновий сплав",
+  "item.create_aquatic_ambitions.prismarine_alloy_rod": "Стрижень із призмаринового стопу",
+  "item.create_aquatic_ambitions.nautilus_shard": "Уламок навтилуса",
+  "item.create_aquatic_ambitions.suspicious_rock": "Підозрілий камінь",
+  "item.create_aquatic_ambitions.spiky_shell": "Колюча мушля",
+  "item.create_aquatic_ambitions.calcium_rich_powder": "Збагачений кальцієм пил",
+
+  "recipe.create_aquatic_ambitions.fan_channeling": "Купне проводнення",
+  "recipe.create_aquatic_ambitions.fan_channeling.fan": "Вітрогін позаду провідника",
+
+  "create_aquatic_ambitions.tooltip.conduitcage.header" : "Інформація клітки провідника",
+  "tooltip.create_aquatic_ambitions.effect.cleansing" : "Очищення",
+  "tooltip.create_aquatic_ambitions.effect.burning" : "Горіння",
+
+  "create.item_attributes.can_be_channeled" : "можна проводнити",
+
+  "create_aquatic_ambitions.mechanical_conduit.entity_filter.title": "Фільтр сутностей",
+  "mechanical_conduit.selection_mode.everyone": "Усі",
+  "mechanical_conduit.selection_mode.players": "Гравці",
+  "mechanical_conduit.selection_mode.friendly_mobs": "Дружні моби",
+  "mechanical_conduit.selection_mode.players_friendly_mobs": "Гравці та дружні моби",
+  "mechanical_conduit.selection_mode.monsters": "Монстри",
+
+  "create_aquatic_ambitions.ponder.conduit_processing.header": "Обробка предметів через провідник",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_1": "Пробуджений провідник можна використовувати для вітрогінної обробки",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_2": "Повітря, що проходить крізь воду провідника, утворюватиме область проводнення",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_3": "Зайвий шар води розбавить силу провідника, і замість нього утворить область промивання",
+  "create_aquatic_ambitions.ponder.conduit_processing.text_4": "Предмети, що потрапили у потік проводнення, будуть оброблені",
+
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.header": "Пробудження провідника у клітці",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_1": "Клітка провідника викристовується як компактніша версія призмаринових кілець провідника",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_2": "Рідина вводиться до клітки з нижньої сторони",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_awaken.text_3": "Введення рідини у клітку провідника пробудить його",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.header": "Обробка предметів через провідник",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_1": "Пробуджений провідник також можна використовувати для вітрогінної обробки",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_2": "Повітря, що проходить крізь клітку провідника, утворюватиме область проводнення",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_processing.text_3": "Предмети, що потрапили у потік проводнення, будуть оброблені",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.header": "Надання ефектів кліткою провідника",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_1": "Клітка провідника здатна впливати на сутностей навколо",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_2": "Клітка провідника, пробуджена за допомогою води, буде надавати ефект Сили морів",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_3": "Різні рідини забезпечують різні ефекти",
+  "create_aquatic_ambitions.ponder.mechanical_conduit_effects.text_4": "Слот режиму дозволяє обрати вплив лише для певних типів сутностей"
+}
