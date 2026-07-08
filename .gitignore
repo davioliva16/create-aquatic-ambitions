@@ -4,3 +4,5 @@
 /.gradle
 /src/generated/resources/.cache
 .idea/
+.claude/
+CLAUDE.MD

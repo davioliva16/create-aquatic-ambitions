@@ -1,0 +1,6 @@
+{
+  "behavior": "set_on_fire",
+  "color": "#E2AA22",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/sets_on_fire",
+  "lang_key": "tooltip.create_aquatic_ambitions.effect.burning"
+}

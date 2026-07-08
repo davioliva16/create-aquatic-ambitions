@@ -1,0 +1,6 @@
+{
+  "color": "#FCC500",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/gives_strength",
+  "lang_key": "effect.minecraft.strength",
+  "mob_effect": "minecraft:strength"
+}

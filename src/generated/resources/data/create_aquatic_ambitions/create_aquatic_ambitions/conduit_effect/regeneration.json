@@ -1,0 +1,6 @@
+{
+  "color": "#CD5CAB",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/gives_regen",
+  "lang_key": "effect.minecraft.regeneration",
+  "mob_effect": "minecraft:regeneration"
+}

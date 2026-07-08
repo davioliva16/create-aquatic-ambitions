@@ -1,0 +1,6 @@
+{
+  "color": "#BDC9FF",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/gives_wind",
+  "lang_key": "effect.minecraft.wind_charged",
+  "mob_effect": "minecraft:wind_charged"
+}

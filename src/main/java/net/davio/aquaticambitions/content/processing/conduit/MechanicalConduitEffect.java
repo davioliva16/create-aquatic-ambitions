@@ -1,28 +1,28 @@
 package net.davio.aquaticambitions.content.processing.conduit;
 
+import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitEffectDefinition.Behavior;
 import net.minecraft.core.Holder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.material.Fluid;
 
+/**
+ * Per-conduit mutable state for a single effect. The immutable definition (lang key, effect, color, fluid tag,
+ * behavior) now comes from the {@code conduit_effect} datapack registry
+ * ({@link MechanicalConduitEffectDefinition}); this class just tracks the accumulated ticks and amplifier for one
+ * block entity and delegates the read-only fields to its definition.
+ */
 public class MechanicalConduitEffect {
 
+    private final MechanicalConduitEffectDefinition definition;
     private float ticks;
     private int amplifier;
-    private final String langKey;
-    private final Holder<MobEffect> effect;
-    private final int hexColor;
-    private final TagKey<Fluid> fluidTag;
 
-
-    public MechanicalConduitEffect(String langKey, Holder<MobEffect> effect, int hexColor, TagKey<Fluid> fluidTag) {
+    public MechanicalConduitEffect(MechanicalConduitEffectDefinition definition) {
+        this.definition = definition;
         this.ticks = 0;
         this.amplifier = 0;
-        this.langKey = langKey;
-        this.effect = effect;
-        this.hexColor = hexColor;
-        this.fluidTag = fluidTag;
     }
 
     public int getTicks(){
@@ -59,18 +59,23 @@ public class MechanicalConduitEffect {
     }
 
     public String getLangKey(){
-        return langKey;
+        return definition.langKey();
     }
 
     public int getColor(){
-        return hexColor;
+        return definition.color();
     }
 
+    /** The mob effect to apply, or {@code null} for non-effect behaviors (clear/burn). */
     public Holder<MobEffect> getEffect(){
-        return effect;
+        return definition.mobEffect().orElse(null);
     }
 
     public TagKey<Fluid> getFluidTag(){
-        return fluidTag;
+        return definition.fluidTag();
+    }
+
+    public Behavior getBehavior(){
+        return definition.behavior();
     }
 }

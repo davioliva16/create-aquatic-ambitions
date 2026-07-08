@@ -1,0 +1,6 @@
+{
+  "color": "#1F1FA1",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/gives_night_vision",
+  "lang_key": "effect.minecraft.night_vision",
+  "mob_effect": "minecraft:night_vision"
+}

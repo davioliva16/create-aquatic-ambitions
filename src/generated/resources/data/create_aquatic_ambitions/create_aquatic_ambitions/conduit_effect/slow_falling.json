@@ -1,0 +1,6 @@
+{
+  "color": "#FFEFD1",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/gives_slow_fall",
+  "lang_key": "effect.minecraft.slow_falling",
+  "mob_effect": "minecraft:slow_falling"
+}

@@ -1,0 +1,6 @@
+{
+  "behavior": "clear_effects",
+  "color": "#FFFFFF",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/clears_effects",
+  "lang_key": "tooltip.create_aquatic_ambitions.effect.cleansing"
+}

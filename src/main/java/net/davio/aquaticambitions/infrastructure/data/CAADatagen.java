@@ -26,6 +26,7 @@ public class CAADatagen {
 
         generator.addProvider(event.includeServer(), new CAAStandardRecipeGen(output, lookupProvider));
         generator.addProvider(event.includeServer(), new CAAGlobalLootModifierProvider(output, lookupProvider));
+        generator.addProvider(event.includeServer(), new CAAConduitEffectsProvider(output, lookupProvider));
 
         if (event.includeServer()) {
             CAARecipeProvider.registerAllProcessing(generator, output, lookupProvider);

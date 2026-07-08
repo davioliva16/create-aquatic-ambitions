@@ -1,0 +1,6 @@
+{
+  "color": "#96D7BE",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/gives_water_breathing",
+  "lang_key": "effect.minecraft.water_breathing",
+  "mob_effect": "minecraft:water_breathing"
+}

@@ -1,0 +1,6 @@
+{
+  "color": "#E49A3A",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/gives_fire_resistance",
+  "lang_key": "effect.minecraft.fire_resistance",
+  "mob_effect": "minecraft:fire_resistance"
+}

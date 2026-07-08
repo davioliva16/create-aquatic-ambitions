@@ -1,0 +1,16 @@
+# Normalize line endings so the repo stores LF and checks out LF on every platform.
+# Without this, `./gradlew runData` on Windows rewrites every file under
+# src/generated/resources with CRLF and git reports the whole tree as "modified"
+# even though the content is unchanged.
+* text=auto eol=lf
+
+# Windows-only scripts must stay CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary assets: never touch line endings.
+*.png binary
+*.jar binary
+*.ogg binary
+*.wav binary
+*.zip binary

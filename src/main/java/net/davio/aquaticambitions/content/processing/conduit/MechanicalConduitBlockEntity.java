@@ -12,9 +12,11 @@ import net.createmod.catnip.animation.LerpedFloat;
 import net.createmod.catnip.lang.Lang;
 import net.createmod.catnip.math.AngleHelper;
 import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitBlock.ConduitPowerLevel;
+import net.davio.aquaticambitions.content.processing.conduit.MechanicalConduitEffectDefinition.Behavior;
 import net.davio.aquaticambitions.infrastructure.config.CAAConfig;
 import net.davio.aquaticambitions.registry.CAABlockEntityTypes;
 import net.davio.aquaticambitions.registry.CAAIcons;
+import net.davio.aquaticambitions.registry.CAARegistries;
 import net.davio.aquaticambitions.registry.CAATags;
 import net.davio.aquaticambitions.util.CAALang;
 import net.minecraft.ChatFormatting;
@@ -26,6 +28,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -33,7 +36,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.monster.Enemy;
@@ -52,7 +54,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.Contract;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -66,7 +68,8 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
 
     private final int awakenedTicksLimit = 144000;
 
-    Map<String, MechanicalConduitEffect> conduitEffectsMap = new HashMap<>();
+    // Built lazily from the conduit_effect datapack registry once a level (and its registry access) is available.
+    private Map<ResourceLocation, MechanicalConduitEffect> conduitEffectsMap = null;
 
     protected LerpedFloat eyeAnimation;
     protected LerpedFloat eyeAngle;
@@ -76,61 +79,6 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
 
     public MechanicalConduitBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-
-        //Init all possible effects - I don't know if this is best place for it -
-        conduitEffectsMap.put("CONDUIT_POWER", new MechanicalConduitEffect(
-                "effect.minecraft.conduit_power", MobEffects.CONDUIT_POWER,0x1DC2D1, CAATags.CAAFluidTags.CONDUIT_FUEL.tag));
-
-        //MILK
-        conduitEffectsMap.put("CLEAR", new MechanicalConduitEffect(
-                "tooltip.create_aquatic_ambitions.effect.cleansing", null,0xFFFFFF, CAATags.CAAFluidTags.CLEARS_EFFECTS.tag));
-        //LAVA
-        conduitEffectsMap.put("BURNING", new MechanicalConduitEffect(
-                "tooltip.create_aquatic_ambitions.effect.burning", null,0xE2AA22, CAATags.CAAFluidTags.SETS_ON_FIRE.tag));
-
-        //Potions and other effects
-        conduitEffectsMap.put("SATURATION", new MechanicalConduitEffect(
-                "effect.minecraft.saturation", MobEffects.SATURATION,0xF82421, CAATags.CAAFluidTags.GIVES_SATURATION.tag));
-        conduitEffectsMap.put("FIRE_RESISTANCE", new MechanicalConduitEffect(
-                "effect.minecraft.fire_resistance",MobEffects.FIRE_RESISTANCE,0xE49A3A, CAATags.CAAFluidTags.GIVES_FIRE_RES.tag));
-        conduitEffectsMap.put("HASTE", new MechanicalConduitEffect(
-                "effect.minecraft.haste", MobEffects.DIG_SPEED,0xD9C043, CAATags.CAAFluidTags.GIVES_HASTE.tag));
-        conduitEffectsMap.put("INFESTED", new MechanicalConduitEffect(
-                "effect.minecraft.infested", MobEffects.INFESTED,0x8C9B8C, CAATags.CAAFluidTags.GIVES_INFESTED.tag));
-        conduitEffectsMap.put("INVISIBILITY", new MechanicalConduitEffect(
-                "effect.minecraft.invisibility", MobEffects.INVISIBILITY,0x7F8392, CAATags.CAAFluidTags.GIVES_INVIS.tag));
-        conduitEffectsMap.put("JUMP_BOOST", new MechanicalConduitEffect(
-                "effect.minecraft.jump_boost", MobEffects.JUMP,0x23FC4D, CAATags.CAAFluidTags.GIVES_JUMP.tag));
-        conduitEffectsMap.put("LUCK", new MechanicalConduitEffect(
-                "effect.minecraft.luck", MobEffects.LUCK, 0x339900, CAATags.CAAFluidTags.GIVES_LUCK.tag));
-        conduitEffectsMap.put("NIGHT_VISION", new MechanicalConduitEffect(
-                "effect.minecraft.night_vision", MobEffects.NIGHT_VISION,0x1F1FA1, CAATags.CAAFluidTags.GIVES_NIGHT_VISION.tag));
-        conduitEffectsMap.put("OOZING", new MechanicalConduitEffect(
-                "effect.minecraft.oozing", MobEffects.OOZING,0x99FFA3 , CAATags.CAAFluidTags.GIVES_OOZING.tag));
-        conduitEffectsMap.put("POISON", new MechanicalConduitEffect(
-                "effect.minecraft.poison", MobEffects.POISON,0x4E9331, CAATags.CAAFluidTags.GIVES_POISON.tag));
-        conduitEffectsMap.put("REGENERATION", new MechanicalConduitEffect(
-                "effect.minecraft.regeneration", MobEffects.REGENERATION,0xCD5CAB, CAATags.CAAFluidTags.GIVES_REGEN.tag));
-        conduitEffectsMap.put("RESISTANCE", new MechanicalConduitEffect(
-                "effect.minecraft.resistance", MobEffects.DAMAGE_RESISTANCE,0x8F45ED, CAATags.CAAFluidTags.GIVES_RESISTANCE.tag));
-        conduitEffectsMap.put("SLOW_FALLING", new MechanicalConduitEffect(
-                "effect.minecraft.slow_falling", MobEffects.SLOW_FALLING,0xFFEFD1 , CAATags.CAAFluidTags.GIVES_SLOW_FALL.tag));
-        conduitEffectsMap.put("SLOWNESS", new MechanicalConduitEffect(
-                "effect.minecraft.slowness", MobEffects.MOVEMENT_SLOWDOWN,0x5A6C81, CAATags.CAAFluidTags.GIVES_SLOWNESS.tag));
-        conduitEffectsMap.put("SPEED", new MechanicalConduitEffect(
-                "effect.minecraft.speed", MobEffects.MOVEMENT_SPEED,0x7CAFC6, CAATags.CAAFluidTags.GIVES_SPEED.tag));
-        conduitEffectsMap.put("STRENGTH", new MechanicalConduitEffect(
-                "effect.minecraft.strength", MobEffects.DAMAGE_BOOST,0xFCC500, CAATags.CAAFluidTags.GIVES_STRENGTH.tag));
-        conduitEffectsMap.put("WATER_BREATHING", new MechanicalConduitEffect(
-                "effect.minecraft.water_breathing", MobEffects.WATER_BREATHING,0x96D7BE, CAATags.CAAFluidTags.GIVES_WATER_BREATHING.tag)); //make this an achievement "Redundancies Expert"
-        conduitEffectsMap.put("WEAKNESS", new MechanicalConduitEffect(
-                "effect.minecraft.weakness", MobEffects.WEAKNESS,0x484D48, CAATags.CAAFluidTags.GIVES_WEAKNESS.tag));
-        conduitEffectsMap.put("WEAVING", new MechanicalConduitEffect(
-                "effect.minecraft.weaving", MobEffects.WEAVING,0x78695A, CAATags.CAAFluidTags.GIVES_WEAVING.tag));
-        conduitEffectsMap.put("WIND_CHARGED", new MechanicalConduitEffect(
-                "effect.minecraft.wind_charged", MobEffects.WIND_CHARGED,0xBDC9FF, CAATags.CAAFluidTags.GIVES_WIND.tag));
-        conduitEffectsMap.put("WITHER", new MechanicalConduitEffect(
-                "effect.minecraft.wither", MobEffects.WITHER,0x352A27, CAATags.CAAFluidTags.GIVES_WITHER.tag));
 
         eyeAnimation = LerpedFloat.linear();
         eyeAngle = LerpedFloat.angular();
@@ -166,11 +114,33 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         );
     }
 
+    /**
+     * Builds the per-conduit effect state map from the {@code conduit_effect} datapack registry the first time it's
+     * needed. Disabled definitions ({@code enabled: false}) are skipped entirely, so all downstream loops ignore
+     * them. Returns an empty map if no registry access is available yet.
+     */
+    private Map<ResourceLocation, MechanicalConduitEffect> getConduitEffects() {
+        if (conduitEffectsMap == null && level != null) {
+            ensureEffects(level.registryAccess());
+        }
+        return conduitEffectsMap != null ? conduitEffectsMap : Map.of();
+    }
+
+    private void ensureEffects(HolderLookup.Provider registries) {
+        if (conduitEffectsMap != null) return;
+        Map<ResourceLocation, MechanicalConduitEffect> map = new LinkedHashMap<>();
+        registries.lookupOrThrow(CAARegistries.CONDUIT_EFFECT)
+                .listElements()
+                .filter(ref -> ref.value().enabled())
+                .forEach(ref -> map.put(ref.key().location(), new MechanicalConduitEffect(ref.value())));
+        conduitEffectsMap = map;
+    }
+
     private void consumeFluid() {
 
         FluidStack fluidStack = tank.getPrimaryHandler().getFluid();
 
-        for(MechanicalConduitEffect conduitEffect : conduitEffectsMap.values()) {
+        for(MechanicalConduitEffect conduitEffect : getConduitEffects().values()) {
             if (fluidStack.is(conduitEffect.getFluidTag()) || potionHasEffect(fluidStack, conduitEffect)) // or NBT matches create:potion
                 {
                 conduitEffect.addTicks(getConversionRate(fluidStack)*fluidStack.getAmount());
@@ -188,6 +158,9 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     }
 
     private boolean potionHasEffect(FluidStack fluidStack, MechanicalConduitEffect conduitEffect) {
+        if (conduitEffect.getEffect() == null) { // clear/burn behaviors have no mob effect to match against
+            return false;
+        }
         PotionContents potionContents = fluidStack.get(DataComponents.POTION_CONTENTS);
         if (potionContents == null) {
             return false;
@@ -224,18 +197,19 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
 
         int maxAwakanedTicks = 0;
 
-        for(MechanicalConduitEffect conduitEffect : conduitEffectsMap.values()) {
+        for(MechanicalConduitEffect conduitEffect : getConduitEffects().values()) {
             if (conduitEffect.isActive()) {
                 conduitEffect.subtractTicks();
 
-                //Handle effects
-                if (conduitEffect.getFluidTag() == CAATags.CAAFluidTags.CLEARS_EFFECTS.tag) {
-                    this.clearEffects();
-                } else if (conduitEffect.getFluidTag() == CAATags.CAAFluidTags.SETS_ON_FIRE.tag) {
-                    this.setOnFire();
-                }
-                else {
-                    this.applyEffects(conduitEffect.getEffect(), conduitEffect.getAmplifier());
+                //Handle effects, dispatching on the definition's behavior
+                switch (conduitEffect.getBehavior()) {
+                    case CLEAR_EFFECTS -> this.clearEffects();
+                    case SET_ON_FIRE -> this.setOnFire();
+                    case APPLY -> {
+                        if (conduitEffect.getEffect() != null) {
+                            this.applyEffects(conduitEffect.getEffect(), conduitEffect.getAmplifier());
+                        }
+                    }
                 }
 
                 if (conduitEffect.getTicks() < awakenedTicksLimit) {
@@ -266,9 +240,10 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     public void write(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
         compound.putInt("awakenedTimeRemaining", awakenedTicks);
 
+        ensureEffects(registries);
         CompoundTag effectsTag = new CompoundTag();
-        for (Map.Entry<String, MechanicalConduitEffect> entry : conduitEffectsMap.entrySet()) {
-            effectsTag.putInt(entry.getKey(), entry.getValue().getTicks());
+        for (Map.Entry<ResourceLocation, MechanicalConduitEffect> entry : conduitEffectsMap.entrySet()) {
+            effectsTag.putInt(entry.getKey().toString(), entry.getValue().getTicks());
         }
         compound.put("ConduitEffects", effectsTag);
 
@@ -279,9 +254,13 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         awakenedTicks = compound.getInt("awakenedTimeRemaining");
         super.read(compound, registries, clientPacket);
 
+        ensureEffects(registries);
         CompoundTag effectsTag = compound.getCompound("ConduitEffects");
         for (String key : effectsTag.getAllKeys()) {
-            MechanicalConduitEffect effect = conduitEffectsMap.get(key);
+            // Keys are now effect ResourceLocations; pre-2.0.3 saves used enum names, which won't parse/match here
+            // (in-progress conduit timers reset once on update — this is intentional, no migration).
+            ResourceLocation id = ResourceLocation.tryParse(key);
+            MechanicalConduitEffect effect = id == null ? null : conduitEffectsMap.get(id);
             if (effect != null) {
                 effect.setTicks(effectsTag.getInt(key));
             }
@@ -481,7 +460,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
 
         CAALang.translate("tooltip.conduitcage.header").forGoggles(tooltip);
 
-        for(MechanicalConduitEffect conduitEffect : conduitEffectsMap.values()) {
+        for(MechanicalConduitEffect conduitEffect : getConduitEffects().values()) {
 
             Component effectName = Component.translatable(conduitEffect.getLangKey())
                     .withStyle(Style.EMPTY.withColor(conduitEffect.getColor()));

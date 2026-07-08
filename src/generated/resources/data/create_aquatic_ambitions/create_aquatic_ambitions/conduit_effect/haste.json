@@ -1,0 +1,6 @@
+{
+  "color": "#D9C043",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/gives_haste",
+  "lang_key": "effect.minecraft.haste",
+  "mob_effect": "minecraft:haste"
+}

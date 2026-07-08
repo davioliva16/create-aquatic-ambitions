@@ -1,0 +1,6 @@
+{
+  "color": "#F82421",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/gives_saturation",
+  "lang_key": "effect.minecraft.saturation",
+  "mob_effect": "minecraft:saturation"
+}

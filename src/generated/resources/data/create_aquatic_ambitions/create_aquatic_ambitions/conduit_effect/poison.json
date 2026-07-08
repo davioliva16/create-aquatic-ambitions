@@ -1,0 +1,6 @@
+{
+  "color": "#4E9331",
+  "fluid_tag": "create_aquatic_ambitions:conduit_effects/gives_poison",
+  "lang_key": "effect.minecraft.poison",
+  "mob_effect": "minecraft:poison"
+}
