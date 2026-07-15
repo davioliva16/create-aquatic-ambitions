@@ -2,10 +2,13 @@ package net.davio.aquaticambitions.content.processing.conduit;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.effect.MobEffect;
@@ -42,8 +45,23 @@ public record MechanicalConduitEffectDefinition(
             },
             i -> String.format("#%06X", i & 0xFFFFFF));
 
+    /**
+     * Optional {@code mob_effect} id that tolerates an unresolvable value. A datapack can reference an effect from a
+     * mod that isn't installed (see the Ars Nouveau {@code mana_regen} example in the README) or simply typo the id;
+     * with {@code holderByNameCodec()} that threw and failed the whole {@code conduit_effect} registry load, which
+     * prevents the world from loading. Here an absent, malformed, or unregistered id all decode to
+     * {@link Optional#empty()} — the entry still loads, just with no effect (an {@code apply} behavior with no effect
+     * is a no-op) — so one bad datapack line can't brick a world.
+     */
+    public static final MapCodec<Optional<Holder<MobEffect>>> MOB_EFFECT_FIELD = Codec.STRING.optionalFieldOf("mob_effect").xmap(
+            optString -> optString
+                    .map(ResourceLocation::tryParse) // empty if the string isn't a valid id
+                    .flatMap(id -> BuiltInRegistries.MOB_EFFECT.getHolder(ResourceKey.create(Registries.MOB_EFFECT, id)))
+                    .map(ref -> (Holder<MobEffect>) ref), // empty if the effect isn't registered (e.g. mod not installed)
+            optHolder -> optHolder.flatMap(Holder::unwrapKey).map(key -> key.location().toString()));
+
     public static final Codec<MechanicalConduitEffectDefinition> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            BuiltInRegistries.MOB_EFFECT.holderByNameCodec().optionalFieldOf("mob_effect").forGetter(MechanicalConduitEffectDefinition::mobEffect),
+            MOB_EFFECT_FIELD.forGetter(MechanicalConduitEffectDefinition::mobEffect),
             COLOR_CODEC.fieldOf("color").forGetter(MechanicalConduitEffectDefinition::color),
             Codec.STRING.fieldOf("lang_key").forGetter(MechanicalConduitEffectDefinition::langKey),
             TagKey.codec(Registries.FLUID).fieldOf("fluid_tag").forGetter(MechanicalConduitEffectDefinition::fluidTag),

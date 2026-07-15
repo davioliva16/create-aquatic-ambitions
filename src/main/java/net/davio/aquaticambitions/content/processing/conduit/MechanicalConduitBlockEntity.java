@@ -60,13 +60,19 @@ import java.util.Map;
 
 public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IHaveGoggleInformation {
 
-    private static final int TANK_CAPACITY = 1000;
-
     private SmartFluidTankBehaviour tank;
 
     private int awakenedTicks = 0;
 
-    private final int awakenedTicksLimit = 144000;
+    /** Max fluid (mB) accepted per insertion. Config-driven so large fluid packages/transfers can be accepted. */
+    private static int tankCapacity() {
+        return CAAConfig.server().conduitCage.conduitFluidCapacity.get();
+    }
+
+    /** Max awakening the conduit can accumulate, in ticks. Config is in seconds; 20 ticks/second. */
+    private static int awakenedTicksLimit() {
+        return CAAConfig.server().conduitCage.awakenedTimeLimit.get() * 20;
+    }
 
     // Built lazily from the conduit_effect datapack registry once a level (and its registry access) is available.
     private Map<ResourceLocation, MechanicalConduitEffect> conduitEffectsMap = null;
@@ -91,8 +97,9 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
 
-        tank = new SmartFluidTankBehaviour(SmartFluidTankBehaviour.INPUT, this, 1, TANK_CAPACITY,true)
-                .whenFluidUpdates(this::consumeFluid)
+        // Consumption runs from tick(), not whenFluidUpdates: draining mid-fill() makes fill() return 0, so
+        // external fillers think nothing was accepted and duplicate the fluid (issue #59).
+        tank = new SmartFluidTankBehaviour(SmartFluidTankBehaviour.INPUT, this, 1, tankCapacity(),true)
                 .forbidExtraction();
         behaviours.add(tank);
 
@@ -139,18 +146,23 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     private void consumeFluid() {
 
         FluidStack fluidStack = tank.getPrimaryHandler().getFluid();
+        if (fluidStack.isEmpty()) // called every server tick
+            return;
 
+        int limit = awakenedTicksLimit();
         for(MechanicalConduitEffect conduitEffect : getConduitEffects().values()) {
             if (fluidStack.is(conduitEffect.getFluidTag()) || potionHasEffect(fluidStack, conduitEffect)) // or NBT matches create:potion
                 {
                 conduitEffect.addTicks(getConversionRate(fluidStack)*fluidStack.getAmount());
+                if (conduitEffect.getTicks() > limit) // clamp: one large insertion (e.g. a big fluid package) can't exceed the configured cap
+                    conduitEffect.setTicks(limit);
             }
-            if (conduitEffect.getTicks() > awakenedTicksLimit) {
+            if (conduitEffect.getTicks() >= limit) {
                 tank.forbidInsertion();
             }
         }
 
-        tank.getPrimaryHandler().drain(TANK_CAPACITY, IFluidHandler.FluidAction.EXECUTE);
+        tank.getPrimaryHandler().drain(tankCapacity(), IFluidHandler.FluidAction.EXECUTE);
 
         notifyUpdate();
         updateBlockState();
@@ -195,6 +207,8 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
             return;
         }
 
+        consumeFluid();
+
         int maxAwakanedTicks = 0;
 
         for(MechanicalConduitEffect conduitEffect : getConduitEffects().values()) {
@@ -212,7 +226,7 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
                     }
                 }
 
-                if (conduitEffect.getTicks() < awakenedTicksLimit) {
+                if (conduitEffect.getTicks() < awakenedTicksLimit()) {
                     tank.allowInsertion();
                 }
 
@@ -484,7 +498,9 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
     }
 
     public String tickToDuration(int tickAmount) {
-        if (tickAmount>143990) return "∞";
+        // Within ~0.5s of the configured cap the conduit is effectively "always on" while fed, so show ∞ instead
+        // of a jittery near-max countdown. Relative to the config so a lowered awakenedTimeLimit still reads right.
+        if (tickAmount >= awakenedTicksLimit() - 10) return "∞";
         int totalSeconds = tickAmount / 20;
         int hours = totalSeconds / 3600;
         int minutes = (totalSeconds / 60)%60;

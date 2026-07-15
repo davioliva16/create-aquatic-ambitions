@@ -99,7 +99,7 @@ configurations {
 
 dependencies {
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
-    implementation("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
+    implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}") // coordinate changed in Create 6.0.10 (was Ponder-NeoForge-1.21.1)
     compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
     runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
     implementation("com.tterrag.registrate:Registrate:${registrate_version}")
@@ -113,9 +113,10 @@ dependencies {
     // Ars Nouveau — dev-runtime only, for testing modded conduit_effect datapacks (not a published dependency).
     // transitive = false to skip its optional POM deps (TerraBlender/Jade/infiniverse, all guarded by ModList
     // checks in Ars); its only mandatory deps per mods.toml are geckolib + curios, added explicitly below.
-    localRuntime("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:5.12.1.1381") { transitive = false }
-    localRuntime "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:4.6.6"
-    localRuntime "top.theillusivec4.curios:curios-neoforge:9.3.1+${minecraft_version}"
+    // Commented out — modded-datapack interaction already verified; re-enable to test against Ars again.
+    // localRuntime("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:5.12.1.1381") { transitive = false }
+    // localRuntime "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:4.6.6"
+    // localRuntime "top.theillusivec4.curios:curios-neoforge:9.3.1+${minecraft_version}"
 
     api("dev.latvian.mods:kubejs-neoforge:$kubejs_version")
     interfaceInjectionData("dev.latvian.mods:kubejs-neoforge:$kubejs_version")

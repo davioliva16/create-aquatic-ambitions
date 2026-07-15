@@ -26,6 +26,10 @@ Each effect matches one JSON at `data/<your_pack>/create_aquatic_ambitions/condu
 `fluid_tag` (fluids that trigger it), and optional `mob_effect`, `behavior` (`apply`/`clear_effects`/`set_on_fire`),
 and `enabled`. Reload the world afterward or restart the server. `/reload` doesn't rebuild datapack registries.
 
+If `mob_effect` names an effect that isn't registered — e.g. a mod you don't have installed (as in the Ars Nouveau
+example below), or a typo — that one effect is skipped rather than failing to load the world. So it's safe to ship
+optional-mod compat effects; they simply do nothing when the mod is absent.
+
 **Add an effect example**: Ars Nouveau Mana Regeneration from Create's Chocolate:
 
 `data/my_pack/create_aquatic_ambitions/conduit_effect/mana_regen.json`

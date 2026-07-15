@@ -20,6 +20,9 @@ public class CAAConduitCageConfig extends ConfigBase {
             "awakenedTimeLimit",
             Comments.awakenedTimeLimit,
             ConfigAnnotations.RequiresRestart.SERVER.asComment());
+    public final ConfigInt conduitFluidCapacity = i(1000, 1000,256000,
+            "conduitFluidCapacity",
+            Comments.conduitFluidCapacity);
 
 
     static class Comments {
@@ -28,6 +31,7 @@ public class CAAConduitCageConfig extends ConfigBase {
         static final String potionConversionRate = "How many seconds of awakening are added per bucket of potion";
         static final String fluidConversionRate = "How many seconds of awakening are added per bucket of fluid. Used for anything but water and potions";
         static final String awakenedTimeLimit = "Max amount of seconds a conduit can accumulate before it starts rejecting fluids. Lower this if want conduit cages to need constant fluid supply";
+        static final String conduitFluidCapacity = "How much fluid (in mB) the conduit accepts in a single insertion, e.g. from a fluid pipe or a package. Defaults to 1 bucket. Raise this only if you need the conduit to accept larger single transfers, such as multi-bucket Fluid Logistics packages";
     }
 
     @Override
