@@ -341,6 +341,12 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
         }
     }
 
+    // Night vision (and similar) visually oscillate while their remaining duration is <= 200 ticks, so effects must
+    // be kept comfortably above that: apply for longer than 200 ticks and refresh before dropping back under it,
+    // otherwise short-duration reapplication leaves entities permanently in the "flashing" window (issue #55).
+    private static final int APPLIED_EFFECT_DURATION = 260;
+    private static final int EFFECT_REFRESH_THRESHOLD = 210;
+
     private void applyEffects(Holder<MobEffect> effect, int amplifier  ) {
         int range = CAAConfig.server().conduitCage.conduitCageRange.get();
         List<LivingEntity> list = getLivingEntities(range);
@@ -350,8 +356,8 @@ public class MechanicalConduitBlockEntity extends SmartBlockEntity implements IH
                 if (entityMatchesSelector(entity, entityTypeSelector.get())){
                     if (this.getBlockPos().closerThan(entity.blockPosition(), (double)range)) {
                         MobEffectInstance existing = entity.getEffect(effect);
-                        if (existing == null || existing.getDuration() < 25) {
-                            entity.addEffect(new MobEffectInstance(effect, 119, amplifier, true, true));
+                        if (existing == null || existing.getDuration() < EFFECT_REFRESH_THRESHOLD) {
+                            entity.addEffect(new MobEffectInstance(effect, APPLIED_EFFECT_DURATION, amplifier, true, true));
                         }
                     }
                 }

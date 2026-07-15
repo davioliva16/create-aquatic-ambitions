@@ -112,7 +112,7 @@ public class CAARegistrateTags {
         prov.tag(CAATags.CAAFluidTags.CLEARS_EFFECTS.tag)
                 .add(NeoForgeMod.MILK.get());
         prov.tag(CAATags.CAAFluidTags.GIVES_HASTE.tag)
-                .add(AllFluids.TEA.get());
+                .add(AllFluids.TEA.getSource());
         prov.tag(CAATags.CAAFluidTags.GIVES_SATURATION.tag)
                 .add(AllFluids.HONEY.getSource())
                 .add(AllFluids.CHOCOLATE.getSource());

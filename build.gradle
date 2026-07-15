@@ -17,8 +17,10 @@ repositories {
     maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
     maven { url = "https://mvn.devos.one/snapshots" } // Registrate
     maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // ForgeConfigAPIPort
-    maven { url = "https://maven.blamejared.com/"} //JEI
+    maven { url = "https://maven.blamejared.com/"} //JEI, Ars Nouveau
     maven {  url = "https://modmaven.dev"} //JEI Backup
+    maven { url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" } // GeckoLib (Ars Nouveau dep)
+    maven { url = "https://maven.theillusivec4.top/" } // Curios (Ars Nouveau dep)
     // KubeJS, Rhino
     maven {
         url "https://maven.latvian.dev/releases"
@@ -107,6 +109,13 @@ dependencies {
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
     // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
     localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+
+    // Ars Nouveau — dev-runtime only, for testing modded conduit_effect datapacks (not a published dependency).
+    // transitive = false to skip its optional POM deps (TerraBlender/Jade/infiniverse, all guarded by ModList
+    // checks in Ars); its only mandatory deps per mods.toml are geckolib + curios, added explicitly below.
+    localRuntime("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:5.12.1.1381") { transitive = false }
+    localRuntime "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:4.6.6"
+    localRuntime "top.theillusivec4.curios:curios-neoforge:9.3.1+${minecraft_version}"
 
     api("dev.latvian.mods:kubejs-neoforge:$kubejs_version")
     interfaceInjectionData("dev.latvian.mods:kubejs-neoforge:$kubejs_version")
