@@ -18,7 +18,7 @@ description='''${mod_description}'''
 [[dependencies.${mod_id}]]
     modId="neoforge"
     type="required"
-    versionRange="[${neo_version},)"
+    versionRange="${neo_version_range}"
     ordering="NONE"
     side="BOTH"
 
@@ -39,11 +39,11 @@ description='''${mod_description}'''
 [[dependencies.${mod_id}]]
     modId="kubejs"
     type="optional"
-    versionRange="[${kubejs_version},)"
+    versionRange="${kubejs_version_range}"
     ordering="NONE"
 
 [[dependencies.${mod_id}]]
     modId="jei"
     type="optional"
-    versionRange="[${jei_version},)"
+    versionRange="${jei_version_range}"
     ordering="NONE"
